@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS project_db
+DROP DATABASE IF EXISTS picnic_db;
 
-CREATE DATABASE project_db
+CREATE DATABASE picnic_db;
