@@ -1,5 +1,5 @@
 // sequelize models
-const sequelize = require('../config/connection.js');
+const {sequelize} = require('../config/connection.js');
 const { User, Picnic } = require('../models');
 
 // raw JSON starter data files
@@ -15,7 +15,7 @@ const seedDatabase = async () => {
     });
 
     // seeds picnics
-    const picnics = await User.bulkCreate(picnicData, {
+    const picnics = await Picnic.bulkCreate(picnicData, {
         individualHooks: true,
         returning: true
     });

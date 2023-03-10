@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const {sequelize} = require('../config/connection.js');
 
 class Health extends Model {}
 
@@ -24,5 +24,3 @@ Health.init(
     modelName: 'health',
   }
 );
-
-module.exports = Health;

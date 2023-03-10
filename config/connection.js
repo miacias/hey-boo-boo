@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -27,6 +27,7 @@ const sess = {
     db: sequelize,
   }),
 };
+
 module.exports = {
   sequelize,
   sess,

@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const {sequelize} = require('../config/connection.js');
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -32,14 +32,14 @@ User.init(
         isEmail: true,
       },
     },
-    dietary_restriction: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        references: {
-            model: "health",
-            key: "id"
-        }
-    },
+    // dietary_restriction: {
+    //     type: DataTypes.STRING,
+    //     allowNull: true,
+    //     references: {
+    //         model: "health",
+    //         key: "id"
+    //     }
+    // },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

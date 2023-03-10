@@ -24,5 +24,3 @@ Warning.init(
     modelName: 'warning',
   }
 );
-
-module.exports = Warning;

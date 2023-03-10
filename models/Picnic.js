@@ -1,5 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes, NOW } = require('sequelize');
+const bcrypt = require('bcrypt');
+const {sequelize} = require('../config/connection.js');
 
 class Picnic extends Model {}
 
@@ -20,10 +21,11 @@ Picnic.init(
       allowNull: true,
      },
      start_time: {
-        type: DataTypes.DATETIME,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW, // add real dates later (REMOVE THIS)
         allowNull: false
      },
-     join_password: {
+     password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -34,36 +36,20 @@ Picnic.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: "user",
-            key: "id"
-        }
-     },
-     invitee_role: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: "user",
-            key: "id"
-        }
-     },
-     foods: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        references: {
-            model: "food",
+            model: "users",
             key: "id"
         }
      }
   },
   {
     hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
+      beforeCreate: async (newPicnicData) => {
+        newPicnicData.password = await bcrypt.hash(newPicnicData.password, 10);
+        return newPicnicData;
       },
-      beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-        return updatedUserData;
+      beforeUpdate: async (updatedPicnicData) => {
+        updatedPicnicData.password = await bcrypt.hash(updatedPicnicData.password, 10);
+        return updatedPicnicData;
       },
     },
     sequelize,
