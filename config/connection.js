@@ -16,6 +16,7 @@ const sequelize = process.env.JAWSDB_URL
         port: 3306,
       }
     );
+    
 //cookies
 const sess = {
   secret: process.env.SESSION_SECRET,
