@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
 });
 
 // get logged in home page with all picnics for user
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     console.log("GET: logged in home", req.session.user_id, req.session.logged_in);
     try {
         const allMyPicnics = await Picnic.findAll({
