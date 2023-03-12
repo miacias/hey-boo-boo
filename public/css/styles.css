@@ -1,0 +1,13 @@
+:root {
+    /* Yogi Bear color palette - https://www.schemecolor.com/yogi-bear.php */
+    --dark-gold: #9A6A39;
+    --caramel: #FFD38C;
+    --eton-blue: #A3D29B;
+    --rich-black: #000004;
+    --begonia: #F46D74;
+}
+
+body {
+    background-color: var(--caramel);
+    color: var(--rich-black);
+}
