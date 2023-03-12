@@ -1,22 +1,23 @@
 :root {
-    /* Yogi Bear color palette - https://www.schemecolor.com/yogi-bear.php */
+    /* Yogi Bear color palette */
     --dark-gold: #9A6A39;
     --caramel: #FFD38C;
     --eton-blue: #A3D29B;
     --rich-black: #000004;
     --begonia: #F46D74;
+    /* available fonts */
+    --hanna-barbera: 'Hanna-Barbera 1960 Font', sans-serif;
+    --caveat-brush: 'Caveat Brush', cursive;
+    --oleo-script: 'Oleo Script', cursive;
+    --rancho: 'Rancho', cursive;
 }
-
-/* available fonts
-font-family: 'Hanna-Barbera 1960 Font', sans-serif;
-font-family: 'Caveat Brush', cursive;
-font-family: 'Oleo Script', cursive;
-font-family: 'Rancho', cursive;
-*/
 
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
+    font-family: var(--caveat-brush);
+    font-size: x-large;
+    line-height: 120%;
 }
 
 nav {

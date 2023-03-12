@@ -3,7 +3,13 @@ Project 2
 
 ## Credits
 
-Tutorial(s):
+Documentation referenced:
+
+- Mozilla Developer Network
+- Slack Overflow forums
+- Bootstrap CSS
+
+Tutorial(s) referenced:
 
 - [Stephanie Eckles](https://moderncss.dev/totally-custom-list-styles/) - custom CSS list styles
 
