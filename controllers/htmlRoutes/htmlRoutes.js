@@ -20,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
             attributes: ['id', ],
             where: { userId: req.session.user_id },
             order: [['start_time', 'DESC']],
-        })
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
