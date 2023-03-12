@@ -56,7 +56,22 @@ calendar.freebusy.query({
 } )
 
 //  look at code below to see if you will need. if heroku can .env without exposing secrets this will not be necessary. See 
-https://stackoverflow.com/questions/43405331/how-can-i-use-google-default-credentials-on-heroku-without-the-json-file
+// ref: https://stackoverflow.com/questions/43405331/how-can-i-use-google-default-credentials-on-heroku-without-the-json-file
+
+// cloud services appear to expect a json object that looks like 
+// {
+//     "type": "service_account",
+//     "project_id": "project-00000000",
+//     "private_key_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+//     "private_key": "-----BEGIN PRIVATE KEY-----xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-----END PRIVATE KEY-----\n",
+//     "client_email": "xxxxxxxxxxxxxxxxx@xxxxxxxx.iam.gserviceaccount.com",
+//     "client_id": "xxxxxxxxxxxxxxxxx",
+//     "auth_uri": "xxxxxxxxxxxxxxxxx",
+//     "token_uri": "xxxxxxxxxxxxxxxxx",
+//     "auth_provider_cert_url": "xxxxxxxxxxxxxxxxx",
+//     "client_cert_url": "xxxxxxxxxxxxxxxxx"
+//   }
+//  ref: https://dev.to/sylviapap/setting-heroku-config-vars-with-google-cloud-json-file-on-rails-4dnf
 
 const Translate = require('@google-cloud/translate');
 const projectId = 'your project id here';
