@@ -21,7 +21,6 @@ body {
 }
 
 nav {
-    /* font-family: 'Hanna-Barbera 1960 Font', sans-serif; */
     background-color: var(--dark-gold);
 }
 
@@ -33,17 +32,20 @@ h1 {
     letter-spacing: 0.1em;
 }
 
-nav h2 {
+nav h2,
+footer {
     font-family: var(--oleo-script);
+    color: var(--begonia)
 }
 
 #welcome-title-pitch h3 {
     font-family: var(--rancho);
-
 }
 
 .card {
+    background-color: var(--begonia);
     font-family: var(--rancho);
+    font-size: 120%;
 }
 
 ul li::before {
@@ -54,8 +56,5 @@ ul li::before {
     content: attr(data-icon);
     /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
-}
-
-footer {
-    font-family: var(--oleo-script);
+    line-height: 2em;
 }
