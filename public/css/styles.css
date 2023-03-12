@@ -33,6 +33,10 @@ h1 {
     letter-spacing: 0.1em;
 }
 
+nav h2 {
+    font-family: var(--oleo-script);
+}
+
 #welcome-title-pitch h3 {
     font-family: var(--rancho);
 
@@ -50,4 +54,8 @@ ul li::before {
     content: attr(data-icon);
     /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
-  }
+}
+
+footer {
+    font-family: var(--oleo-script);
+}
