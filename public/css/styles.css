@@ -26,27 +26,11 @@ h1 {
 }
 
 ul li::before {
+    /* creates space between bullet point and list item */
+    position: relative;
+    left: -10px;
+    /* sets bullet point to data-icon attribute instead of standard dot */
     content: attr(data-icon);
-    /* Make slightly larger than the li font-size
-    but smaller than the li gap */
+    /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
   }
-
-/* ol {
-    counter-reset: orderedlist;
-    
-}
-
-ol li::before {
-    counter-increment: orderedlist;
-    content: counter(orderedlist);
-    font-family: "Indie Flower";
-    font-size: 1.25em;
-    line-height: 0.75;
-    width: 1.5rem;
-    padding-top: 0.25rem;
-    text-align: center;
-    color: #fff;
-    background-color: var(--begonia);
-    border-radius: 0.25em;
-} */
