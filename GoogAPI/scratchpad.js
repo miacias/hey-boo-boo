@@ -1,3 +1,5 @@
+// code I need to figure out how to deploy to gethub without exposing secrets 
+
 const {OAuth2} = google.auth;
 
 const oAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID,process.env.GOOGLE_CLIENT_SECRET)
@@ -52,3 +54,17 @@ calendar.freebusy.query({
     })
     return console.log('sorry, busy ')
 } )
+
+//  look at code below to see if you will need. if heroku can .env without exposing secrets this will not be necessary. See 
+https://stackoverflow.com/questions/43405331/how-can-i-use-google-default-credentials-on-heroku-without-the-json-file
+
+const Translate = require('@google-cloud/translate');
+const projectId = 'your project id here';
+
+const translate = new Translate({
+  projectId: projectId,
+  credentials: {
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL
+  }
+});
