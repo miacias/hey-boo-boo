@@ -15,7 +15,7 @@
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
-    font-family: var(--caveat-brush);
+    /* font-family: var(--caveat-brush); */
     font-size: x-large;
     line-height: 120%;
 }
@@ -26,11 +26,20 @@ nav {
 }
 
 h1 {
-    font-family: 'Hanna-Barbera 1960 Font', sans-serif;
+    font-family: var(--hanna-barbera);
     font-weight: 400;
     color: var(--eton-blue);
     font-size: 48px;
     letter-spacing: 0.1em;
+}
+
+#welcome-title-pitch h3 {
+    font-family: var(--rancho);
+
+}
+
+.card {
+    font-family: var(--rancho);
 }
 
 ul li::before {

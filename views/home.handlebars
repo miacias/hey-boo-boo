@@ -5,12 +5,14 @@
 </section>
 {{else}}
 {{!-- horizontal Welcome page card for logged out users --}}
-<section>
-  <div>
-    <h2>Join Hey Boo-Boo with Your Friends</h2>
-    <p>Looking for the perfect picnic? Hey Boo-Boo, give us a hand! Our Boo-Boo app is designed to make planning get-togethers quick, easy, and stress-free.</p>
+<section class="p-5 mb-4 rounded-3" id="welcome-title-pitch">
+  <div class="container-fluid py-5">
+    <h3 class="display-5 fw-bold">Join Hey Boo-Boo with Your Friends</h3>
+    <p class="col-md-8 fs-4 text-muted">Looking for the perfect picnic? Hey Boo-Boo, give us a hand! Our app is designed to make planning get-togethers quick, easy, and stress-free.</p>
   </div>
-  {{!-- welcome card text --}}
+</section>
+{{!-- welcome card text --}}
+<section id="welcome-card-pitch">
   <div class="card border-warning mb-3" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-8">
@@ -24,7 +26,6 @@
               <li data-icon="🐻">Invite friends: Our app makes it easy to invite friends and family to your picnic. Simply send them an invitation through the app and they'll receive all the details they need to join you.</li>
               {{!-- <li data-icon="🌸">Share photos: After your picnic, you can share photos of your experience with friends and family through our app.</li> --}}
             </ul>
-          <p>So why wait? Sign up with Hey Boo-Boo today and start planning your perfect picnic!</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -33,6 +34,12 @@
         <img src="/assets/picnic cards (vertical)/2020 - Kin Li (Unsplash).jpg" class="img-fluid rounded-start" alt="picnic blanket in the daylinght on the grass with a basket, wicker hat, some bottled drinks and a book lying on the blanket next to a blackboard chalk 'Welcome' sign and some candle lanterns">
       </div>
     </div>
+  </div>
+</section>
+<section id="welcome-tag-pitch">
+  {{!-- tag line --}}
+  <div>
+    <p>So why wait? Sign up with Hey Boo-Boo today and start planning your perfect picnic!</p>
   </div>
 </section>
 {{/if}}
