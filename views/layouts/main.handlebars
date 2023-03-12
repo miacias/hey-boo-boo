@@ -6,8 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{!-- bootstrap CDN --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    {{!-- fonts --}}
+    <link href="https://fonts.cdnfonts.com/css/hanna-barbera-1960-font-2" rel="stylesheet">
+    {{!-- local CSS --}}
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/styles.css"/>
+    {{!-- removes any favicon errors from DevTools --}}
+    <link rel="shortcut icon" href="">
     <title>Hey Boo-Boo!</title>
   </head>
 
@@ -15,7 +21,8 @@
     {{!-- navigation --}}
     <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Hey BooBoo! A picnic/potluck app.</a>
+        <a class="navbar-brand" href="/"><h1>Hey Boo-Boo!</h1></a>
+        <h2>Plan picnics and potlucks.</h2>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

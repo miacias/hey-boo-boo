@@ -11,3 +11,42 @@ body {
     background-color: var(--caramel);
     color: var(--rich-black);
 }
+
+nav {
+    /* font-family: 'Hanna-Barbera 1960 Font', sans-serif; */
+    background-color: var(--dark-gold);
+}
+
+h1 {
+    font-family: 'Hanna-Barbera 1960 Font', sans-serif;
+    font-weight: 400;
+    color: var(--eton-blue);
+    font-size: 48px;
+    letter-spacing: 0.1em;
+}
+
+ul li::before {
+    content: attr(data-icon);
+    /* Make slightly larger than the li font-size
+    but smaller than the li gap */
+    font-size: 1.25em;
+  }
+
+/* ol {
+    counter-reset: orderedlist;
+    
+}
+
+ol li::before {
+    counter-increment: orderedlist;
+    content: counter(orderedlist);
+    font-family: "Indie Flower";
+    font-size: 1.25em;
+    line-height: 0.75;
+    width: 1.5rem;
+    padding-top: 0.25rem;
+    text-align: center;
+    color: #fff;
+    background-color: var(--begonia);
+    border-radius: 0.25em;
+} */
