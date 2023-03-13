@@ -3,9 +3,16 @@ Project 2
 
 ## Credits
 
-Tutorial(s):
+Documentation referenced:
+
+- Mozilla Developer Network
+- Slack Overflow forums
+- Bootstrap CSS
+
+Tutorial(s) referenced:
 
 - [Stephanie Eckles](https://moderncss.dev/totally-custom-list-styles/) - custom CSS list styles
+- [RhymBil on YouTube](https://www.youtube.com/watch?v=1YjybCS4B2U) - dynamically select random images
 
 Artist(s):
 
@@ -14,3 +21,4 @@ Artist(s):
 - [soytutype fonts](https://fonts.google.com/specimen/Oleo+Script) - Oleo Script font
 - [Sideshow](https://fonts.google.com/specimen/Rancho) - Rancho font
 - [Impallari Type](https://fonts.google.com/specimen/Caveat+Brush) - Caveat Brush font
+- [nawicon](https://www.flaticon.com/free-icons/picnic) - picnic basket icon
