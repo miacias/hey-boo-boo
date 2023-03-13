@@ -1,6 +1,6 @@
 module.exports = {
-    randomVerticalPhoto: () => {
-        // images array
+    // randomly selects image from provided list
+    verticalPhoto: () => {
         const verticalPhotos = [
             '2019 - Krisztina Papp (Unsplash).jpg',
             '2020 - Annie Spratt (Unsplash).jpg',

@@ -12,6 +12,7 @@ Documentation referenced:
 Tutorial(s) referenced:
 
 - [Stephanie Eckles](https://moderncss.dev/totally-custom-list-styles/) - custom CSS list styles
+- [RhymBil on YouTube](https://www.youtube.com/watch?v=1YjybCS4B2U) - dynamically select random images
 
 Artist(s):
 
