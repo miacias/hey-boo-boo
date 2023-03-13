@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     console.log("GET: home", req.session.user_id, req.session.logged_in);
     try {
         const allMyPicnics = await Picnic.findAll({
-            attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role'],
+            attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
             include: {
                 model: User,
                 as: 'events',

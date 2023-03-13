@@ -1,25 +1,33 @@
 {{!-- horizontal Welcome page card for logged in users --}}
+{{log home}}
 {{#if loggedIn}}
-{{!-- new event alert (Bootstrap toast) --}}
-{{!-- currently simulated data --}}
-<section class="updates">
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="...">
-      <strong class="me-auto">Update!</strong>
-      <small>At: {{picnic.created_at}}</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  {{!-- new event alert (Bootstrap toast) --}}
+  {{#if newPicnic}}
+  <section class="updates">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Update!</strong>
+        <small>At: {{created_at}}</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, {{firstName}}! You have a new event: {{event_name}}.
+      </div>
     </div>
-    <div class="toast-body">
-      Hello, {{username}}! You have a new event: {{picnic.event_name}}.
-    </div>
-  </div>
-</section>
-{{!-- user data here --}}
+  </section>
+  {{/if}}
+{{!-- user's picnic events overview here --}}
 <section>
-  <p>hi you are logged in</p>
   <div class="my-picnics">
-
+    <div class="card text-bg-dark">
+      <img src="..." class="card-img" alt="...">
+      <div class="card-img-overlay">
+        <h5 class="card-title">{{event_name}}</h5>
+        <p class="card-text">On {{start_time}}</p>
+        <p class="card-text"><small>At {{address}}</small></p>
+      </div>
+    </div>
   </div>
   <div class="my-calendar"></div>
 </section>
