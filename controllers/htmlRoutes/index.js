@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const userRoutes = require('../apiRoutes');
+const htmlRoutes = require('./htmlRoutes');
 // const { User, Picnic, Food } = require('../../models');
 
-router.use('/users', userRoutes);
+router.use('/', htmlRoutes);
 
 module.exports = router;

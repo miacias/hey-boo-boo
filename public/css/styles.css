@@ -1,0 +1,43 @@
+:root {
+    /* Yogi Bear color palette - https://www.schemecolor.com/yogi-bear.php */
+    --dark-gold: #9A6A39;
+    --caramel: #FFD38C;
+    --eton-blue: #A3D29B;
+    --rich-black: #000004;
+    --begonia: #F46D74;
+}
+
+/* available fonts
+font-family: 'Hanna-Barbera 1960 Font', sans-serif;
+font-family: 'Caveat Brush', cursive;
+font-family: 'Oleo Script', cursive;
+font-family: 'Rancho', cursive;
+*/
+
+body {
+    background-color: var(--caramel);
+    color: var(--rich-black);
+}
+
+nav {
+    /* font-family: 'Hanna-Barbera 1960 Font', sans-serif; */
+    background-color: var(--dark-gold);
+}
+
+h1 {
+    font-family: 'Hanna-Barbera 1960 Font', sans-serif;
+    font-weight: 400;
+    color: var(--eton-blue);
+    font-size: 48px;
+    letter-spacing: 0.1em;
+}
+
+ul li::before {
+    /* creates space between bullet point and list item */
+    position: relative;
+    left: -10px;
+    /* sets bullet point to data-icon attribute instead of standard dot */
+    content: attr(data-icon);
+    /* Make slightly larger than the li font-size but smaller than the li gap */
+    font-size: 1.25em;
+  }
