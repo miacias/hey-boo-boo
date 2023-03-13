@@ -9,7 +9,7 @@ const router = require('./controllers');
 
 // handlebars.js
 const exphbs = require('express-handlebars');
-const helpers = require('./utils/helpers');
+// const helpers = require('./utils/helpers');
 
 // environment variables
 require('dotenv').config();
