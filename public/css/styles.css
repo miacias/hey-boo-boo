@@ -1,35 +1,51 @@
 :root {
-    /* Yogi Bear color palette - https://www.schemecolor.com/yogi-bear.php */
+    /* Yogi Bear color palette */
     --dark-gold: #9A6A39;
     --caramel: #FFD38C;
     --eton-blue: #A3D29B;
     --rich-black: #000004;
     --begonia: #F46D74;
+    /* available fonts */
+    --hanna-barbera: 'Hanna-Barbera 1960 Font', sans-serif;
+    --caveat-brush: 'Caveat Brush', cursive;
+    --oleo-script: 'Oleo Script', cursive;
+    --rancho: 'Rancho', cursive;
 }
-
-/* available fonts
-font-family: 'Hanna-Barbera 1960 Font', sans-serif;
-font-family: 'Caveat Brush', cursive;
-font-family: 'Oleo Script', cursive;
-font-family: 'Rancho', cursive;
-*/
 
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
+    /* font-family: var(--caveat-brush); */
+    font-size: x-large;
+    line-height: 120%;
 }
 
 nav {
-    /* font-family: 'Hanna-Barbera 1960 Font', sans-serif; */
     background-color: var(--dark-gold);
 }
 
 h1 {
-    font-family: 'Hanna-Barbera 1960 Font', sans-serif;
-    font-weight: 400;
+    font-family: var(--hanna-barbera);
+    font-weight: 500;
     color: var(--eton-blue);
-    font-size: 48px;
+    font-size: 2.2em;
     letter-spacing: 0.1em;
+}
+
+nav h2,
+footer {
+    font-family: var(--oleo-script);
+    color: var(--begonia)
+}
+
+#welcome-title-pitch h3 {
+    font-family: var(--rancho);
+}
+
+.card {
+    background-color: var(--begonia);
+    font-family: var(--rancho);
+    font-size: 120%;
 }
 
 ul li::before {
@@ -40,4 +56,5 @@ ul li::before {
     content: attr(data-icon);
     /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
-  }
+    line-height: 2em;
+}
