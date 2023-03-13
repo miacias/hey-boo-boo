@@ -72,7 +72,7 @@ calendar.freebusy.query({
 //     "client_cert_url": "xxxxxxxxxxxxxxxxx"
 //   }
 
-// this code might work here tool
+// this code might work here too
 // const GoogleAuth = require('google-auth-library');
 
 // function authorize() {
