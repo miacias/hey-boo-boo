@@ -53,7 +53,11 @@ Picnic.init(
       },
     },
     sequelize,
+<<<<<<< HEAD
     timestamps: false,
+=======
+    timestamps: true,
+>>>>>>> a6e747ad174b7f475257d60b8a89519ec920b979
     freezeTableName: false,
     underscored: true,
     modelName: 'picnic',
