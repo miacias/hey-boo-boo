@@ -26,9 +26,9 @@ nav {
 
 h1 {
     font-family: var(--hanna-barbera);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--eton-blue);
-    font-size: 48px;
+    font-size: 2.2em;
     letter-spacing: 0.1em;
 }
 
