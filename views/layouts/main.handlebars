@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/styles.css"/>
     {{!-- removes any favicon errors from DevTools --}}
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="/assets/picnic basket icons/favicon-32x32.png">
     <title>Hey Boo-Boo!</title>
   </head>
 
@@ -32,7 +32,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/"><span><img src="/assets/picnic basket icons/favicon-32x32.png"></span> Home</a>
             {{#if loggedIn}}
             <a class="nav-link" href="/logout" id="logout">Logout</a>
             <a class="nav-link" href="/profile">Dashboard</a>
@@ -44,7 +44,7 @@
       </div>
     </nav>
     {{{body}}}
-    <footer class="footer text-center bg-dark p4">Pic-a-nic baskets, yippee!</footer>
+    <footer class="footer text-center bg-dark p-4">Pic-a-nic baskets, yippee!</footer>
     {{!-- script tags --}}
     {{#if loggedIn}}
     <script src="/js/logout.js"></script>

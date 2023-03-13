@@ -1,7 +1,27 @@
 {{!-- horizontal Welcome page card for logged in users --}}
 {{#if loggedIn}}
+{{!-- new event alert (Bootstrap toast) --}}
+{{!-- currently simulated data --}}
+<section class="updates">
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Update!</strong>
+      <small>At: {{picnic.created_at}}</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, {{username}}! You have a new event: {{picnic.event_name}}.
+    </div>
+  </div>
+</section>
+{{!-- user data here --}}
 <section>
   <p>hi you are logged in</p>
+  <div class="my-picnics">
+
+  </div>
+  <div class="my-calendar"></div>
 </section>
 {{else}}
 {{!-- horizontal Welcome page card for logged out users --}}
@@ -20,7 +40,7 @@
           <h5 class="card-title">With our app, you can:</h5>
             <ul role="list" class="card-text app-feature-list">
               {{!-- <li data-icon="🌲">Find the best picnic spots in your area: Our app will show you the top picnic spots near you, complete with reviews, photos, and detailed information about the park or location.</li> --}}
-              {{!-- <li>Create a picnic checklist: Our app will help you plan your picnic by providing you with a customizable checklist of everything you need, from blankets and utensils to food and drinks.</li> --}}
+              {{!-- <li data-icon="🍽️">Create a picnic checklist: Hey Boo-Boo will help you plan your picnic by providing you with a customizable checklist of everything you need, from blankets and utensils to food and drinks.</li> --}}
               {{!-- <li data-icon="🍎">Choose your menu: Our app features a variety of recipes for picnic-friendly foods, including sandwiches, salads, snacks, and desserts. You can browse our recipes, save your favorites, and even create a shopping list.</li> --}}
               <li data-icon="🍎">View your menu: Our app features dishes everyone will bring so you can plan ahead!</li>
               <li data-icon="🐻">Invite friends: Hey Boo-Boo makes it easy to invite friends and family to your picnic. Simply send them an invitation through the app and they'll receive all the details they need to join you.</li>
@@ -30,7 +50,7 @@
         </div>
       </div>
       {{!-- welcome card image --}}
-      <div class="col-md-4">
+      <div class="image-parent col-md-4">
         <img src="/assets/picnic cards (vertical)/2020 - Kin Li (Unsplash).jpg" class="img-fluid rounded" alt="picnic blanket in the daylinght on the grass with a basket, wicker hat, some bottled drinks and a book lying on the blanket next to a blackboard chalk 'Welcome' sign and some candle lanterns">
       </div>
     </div>
