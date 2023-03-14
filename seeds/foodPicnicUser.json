@@ -1,54 +1,54 @@
 [
     {
-        "food_id":1,
-        "picnicUser_id":1
+        "foodId":1,
+        "picnicUserId":1
     },
     {
-        "food_id":2,
-        "picnicUser_id":1
+        "foodId":2,
+        "picnicUserId":1
     },
     {
-        "food_id":3,
-        "picnicUser_id":1
+        "foodId":3,
+        "picnicUserId":1
     },
     {
-        "food_id":4,
-        "picnicUser_id":1
+        "foodId":4,
+        "picnicUserId":1
     },
     {
-        "food_id":5,
-        "picnic_user_id":1
+        "foodId":5,
+        "picnicUserId":1
     },
     {
-        "food_id":1,
-        "picnic_user_id":2
+        "foodId":1,
+        "picnicUserId":2
     },
     {
-        "food_id":3,
-        "picnic_user_id":2
+        "foodId":3,
+        "picnicUserId":2
     },
     {
-        "food_id":4,
-        "picnic_user_id":3
+        "foodId":4,
+        "picnicUserId":3
     },
     {
-        "food_id":2,
-        "picnic_user_id":3
+        "foodId":2,
+        "picnicUserId":3
     },
     {
-        "food_id":4,
-        "picnic_user_id":4
+        "foodId":4,
+        "picnicUserId":4
     },
     {
-        "food_id":1,
-        "picnic_user_id":5
+        "foodId":1,
+        "picnicUserId":5
     },
     {
-        "food_id":3,
-        "picnic_user_id":6
+        "foodId":3,
+        "picnicUserId":6
     },
     {
-        "food_id":3,
-        "picnic_user_id":7
+        "foodId":3,
+        "picnicUserId":7
     }
 ]
