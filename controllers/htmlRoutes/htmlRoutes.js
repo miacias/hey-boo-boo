@@ -56,7 +56,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
                 through: PicnicUser,
             },
             where: {
-                id: /*req.session.user_id*/ 3
+                id: /*req.session.user_id*/ 2
             },
             order: [['start_time', 'DESC']],
         });
