@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 const withAuth = require('../../utils/auth.js');
 
-
 // renders login page for user to sign up or log in
 router.get('/login', (req, res) => {
     // sends to home page if already connected
@@ -11,24 +10,6 @@ router.get('/login', (req, res) => {
         return;
     };
     res.render('login');
-});
-// find all users attending one picnic
-// NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
-// need to add food-related stuff
-router.get('/:picnic', async (req, res) => {
-    try {
-        const allAttendees = await Picnic.findOne({
-            where: {id: /*req.params.id*/ 'e544c0de-aa1e-471a-9f2b-9f06d96e6459'},
-            include: {
-                model: User,
-                through: PicnicUser,
-            },
-        });
-        console.log(allAttendees)
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
 });
 
 // JOIN PICNIC: assigns existing user (session) to an existing picnic
@@ -148,6 +129,25 @@ router.get('/new-picnic', async (req, res) => {
             firstName: req.session.first_name,
             lastName: req.session.last_name
         });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
+// find all users attending one picnic
+// NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
+// need to add food-related stuff
+router.get('/:picnic', async (req, res) => {
+    try {
+        const allAttendees = await Picnic.findOne({
+            where: {id: /*req.params.id*/ 'e544c0de-aa1e-471a-9f2b-9f06d96e6459'},
+            include: {
+                model: User,
+                through: PicnicUser,
+            },
+        });
+        console.log(allAttendees)
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
