@@ -14,7 +14,7 @@ async function handleSignup(event) {
     password: passwordValue,
   };
 
-  const response = await fetch('/api/signup', {
+  const response = await fetch('/api/users/signup', {
     body: JSON.stringify(newUser),
     method: 'POST',
     headers: {
@@ -23,9 +23,9 @@ async function handleSignup(event) {
   });
 
   if (response.ok) {
-    console.log('IT WORKED!');
+    document.location.replace('/');
   } else {
-    console.log('IT DIDNT WORKED!');
+    alert('Failed to log in. Please try again.');
   }
 
   signupForm.reset();

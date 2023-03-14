@@ -1,0 +1,23 @@
+{{!-- {{log}} --}}
+{{!-- user's picnic events overview here --}}
+<section>
+  <div class="my-picnics">
+    {{!-- creates a picnic event card for each picnic --}}
+    {{#each events}}
+    <div class="card text-bg-dark">
+      <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img" alt="picnic imagery">
+      <div class="card-img-overlay">
+        <h5 class="card-title">{{event_name}}</h5>
+        <p class="card-text">On {{start_time}}</p>
+        <p class="card-text"><small>At {{address}}</small></p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>
+{{!-- user's embedded Google calendar events --}}
+<section>
+  <div class="my-calendar">
+    {{!-- data inside this DIV --}}
+  </div>
+</section>
