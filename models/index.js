@@ -118,4 +118,4 @@ PicnicUser.hasMany(FoodPicnicUser);
 // })();
 
 
-module.exports = { User, Picnic, Food };
+module.exports = { User, Picnic, Food, PicnicUser,FoodPicnicUser };
