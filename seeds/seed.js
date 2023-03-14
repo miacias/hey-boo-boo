@@ -13,6 +13,7 @@ const foodPicnicUser = require('./foodPicnicUser.json')
 const seedDatabase = async () => {
     // seeds users
     await sequelize.sync({force: true});
+    
     const users = await User.bulkCreate(userData, {
         individualHooks: true,
         returning: true
@@ -23,21 +24,24 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true
     });
-    await sequelize.sync({force: true});
-    const foods = await Food.bulkCreate(foodData, {
-        individualHooks: true,
-        returning: true
-    });
-    await sequelize.sync({force: true});
-    const picnicUsers = await PicnicUser.bulkCreate(picnicUser, {
-        individualHooks: true,
-        returning: true
-    });
-    await sequelize.sync({force: true});
-    const foodPicnicUsers = await FoodPicnicUser.bulkCreate(foodPicnicUser, {
-        individualHooks: true,
-        returning: true
-    });
+    // await sequelize.sync({force: true});
+    const foods = await Food.bulkCreate(foodData) 
+    //     {
+    //     individualHooks: true,
+    //     returning: true
+    // });
+    // await sequelize.sync({force: true});
+    const picnicUsers = await PicnicUser.bulkCreate(picnicUser)
+    // , {
+    //     individualHooks: true,
+    //     returning: true
+    // });
+    // await sequelize.sync({force: true});
+    const foodPicnicUsers = await FoodPicnicUser.bulkCreate(foodPicnicUser)
+    // , {
+    //     individualHooks: true,
+    //     returning: true
+    // });
 
     // ends MySQL connection
     process.exit(0);

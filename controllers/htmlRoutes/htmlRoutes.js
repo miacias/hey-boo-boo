@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Picnic, Food } = require('../../models');
+const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 const withAuth = require('../../utils/auth.js');
 
 // renders login page for user to sign up or log in
@@ -19,9 +19,8 @@ router.get('/', async (req, res) => {
         const allMyPicnics = await Picnic.findAll({
             // attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
             include: {
-                model: User,
-                as: 'events',
-                through: Food
+                model: User ,
+                through: PicnicUser
                 // attributes: ['id', 'first_name', 'last_name']
             },
             // where: { userId: req.session.user_id },
@@ -48,4 +47,39 @@ router.get('/', async (req, res) => {
     }
 });
 
+// get logged in home page
+router.get('/newpicnic', async (req, res) => {
+    console.log("GET: home", req.session.user_id, req.session.logged_in);
+    try {
+        const allMyPicnics = await User.findAll({
+            // attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
+            include: {
+                model: Picnic,
+                through: PicnicUser
+                // attributes: ['id', 'first_name', 'last_name']
+            },
+            // where: { userId: req.session.user_id },
+            // order: [['start_time', 'DESC']],
+        });
+        if (!allMyPicnics) {
+            res.status(404).json({message: 'No picnics available' });
+            return;
+        }
+        const home = allMyPicnics.map((picnic) => {
+            return picnic.get({plain: true});
+        });
+        console.log('home')
+        console.log(home)
+        res.render('newpicnic', {
+            home,
+            loggedIn: req.session.logged_in,
+            userId: req.session.user_id,
+            firstName: req.session.first_name,
+            lastName: req.session.last_name
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
 module.exports = router;
