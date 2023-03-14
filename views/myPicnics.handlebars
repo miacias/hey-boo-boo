@@ -2,9 +2,19 @@
 {{!-- user's picnic events overview here --}}
 <section>
   <div class="my-picnics">
-    {{!-- creates a picnic event card for each picnic --}}
     {{#each picnics}}
-    <div class="card text-bg-dark">
+    <div class="card mb-3">
+      <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img-top img-fluid" alt="picnic imagery">
+      <div class="card-body">
+        <h5 class="card-title">Event name: {{event_name}}</h5>
+        <p class="card-text">On {{format_time start_time}}</p>
+        <p class="card-text"><small>At {{address}}</small></p>
+      </div>
+    </div>
+    {{/each}}
+    {{!-- creates a picnic event card for each picnic --}}
+    {{!-- {{#each picnics}}
+    <div class="card text-bg-dark mb-3">
       <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img" alt="picnic imagery">
       <div class="card-img-overlay">
         <h5 class="card-title">{{event_name}}</h5>
@@ -12,7 +22,7 @@
         <p class="card-text"><small>At {{address}}</small></p>
       </div>
     </div>
-    {{/each}}
+    {{/each}} --}}
   </div>
 </section>
 {{!-- user's embedded Google calendar events --}}
