@@ -9,6 +9,13 @@
         "event_name": "Graduation, Yay",
         "address": "Snyder Ave Philadelphia, PA 19148",
         "creator_role": 1,
-        "password": "no"
+        "password": "yes"
+    },
+    {
+        "event_name": "Food Time",
+        "address": "3451 Walnut Street Philadelphia, PA 19104",
+        "creator_role": 2,
+        "password": "yes"
     }
+
 ]
