@@ -44,7 +44,14 @@
       </div>
     </nav>
     {{{body}}}
-    <footer class="footer text-center bg-dark p-4">Pic-a-nic baskets, yippee!</footer>
+    <footer class="footer text-center bg-dark p-4">
+      <p>Pic-a-nic baskets, yippee!</p>
+      <span class="badges">
+      {{!-- <img id="contributors" alt="GitHub contributors" src="https://img.shields.io/github/contributors/miacias/hey-boo-boo?color=%23A3D29B&style=for-the-badge"> --}}
+      <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/miacias/hey-boo-boo?color=%23A3D29B">
+      <img id="last-updated" alt="GitHub last commit" src="https://img.shields.io/github/last-commit/miacias/hey-boo-boo?color=%23A3D29B&label=Last%20updated">
+      </span>
+    </footer>
     {{!-- script tags --}}
     {{#if loggedIn}}
     <script src="/js/logout.js"></script>

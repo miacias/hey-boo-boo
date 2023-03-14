@@ -29,7 +29,7 @@ Picnic.init(
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [3],
+          len: [3], // must change back to 8 after testing
         },
      },
      creator_role: {
