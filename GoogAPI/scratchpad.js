@@ -1,5 +1,5 @@
 // code I need to figure out how to deploy to gethub without exposing secrets 
-
+const {google} = require ('googleapis');
 const {OAuth2} = google.auth;
 
 const oAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID,process.env.GOOGLE_CLIENT_SECRET)
@@ -52,7 +52,7 @@ calendar.freebusy.query({
 
         return console.log('event created')
     })
-    return console.log('sorry, busy ')
+    return console.log('sorry, busy')
 } )
 
 //  look at code below to see if you will need. if heroku can .env without exposing secrets this will not be necessary. See 
