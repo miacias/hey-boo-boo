@@ -1,5 +1,5 @@
-const signupForm = document.querySelector('.signup-form');
-const loginForm = document.querySelector('.login-form');
+const signupForm = document.querySelector('#signup-form');
+const loginForm = document.querySelector('#login-form');
 
 async function handleSignup(event) {
   event.preventDefault();
@@ -42,7 +42,7 @@ async function handleLogin(event) {
     password: passwordValue,
   };
 
-  const response = await fetch('/api/login', {
+  const response = await fetch('/api/users/login', {
     body: JSON.stringify(loginUser),
     method: 'POST',
     headers: {
