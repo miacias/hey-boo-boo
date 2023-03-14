@@ -14,6 +14,7 @@ Food.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'Yucky food'
     },
     // warning: {
     //     type: DataTypes.STRING,
