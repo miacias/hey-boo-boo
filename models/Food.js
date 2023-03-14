@@ -14,6 +14,7 @@ Food.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'Yucky food'
     },
     // warning: {
     //     type: DataTypes.STRING,
@@ -23,22 +24,22 @@ Food.init(
     //         key: "id"
     //     }
     // },
-    picnic_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "picnics",
-        key: "id",
-        unique: false
-    }
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "users",
-        key: "id",
-        unique: false
-    }
-    }
+    // picnic_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "picnics",
+    //     key: "id",
+    //     unique: false
+    // }
+    // },
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "users",
+    //     key: "id",
+    //     unique: false
+    // }
+    // }
   },
   {
     sequelize,
