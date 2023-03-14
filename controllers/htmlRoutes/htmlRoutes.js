@@ -2,6 +2,16 @@ const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 const withAuth = require('../../utils/auth.js');
 
+
+// renders login page for user to sign up or log in
+router.get('/login', (req, res) => {
+    // sends to home page if already connected
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    };
+    res.render('login');
+});
 // find all users attending one picnic
 // NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
 // need to add food-related stuff
@@ -69,7 +79,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
             },
             order: [['start_time', 'DESC']],
         });
-
+        
         if (!myPicnics) {
             res.status(404).json({ message: 'No picnics available' });
             return;
@@ -107,15 +117,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// renders login page for user to sign up or log in
-router.get('/login', (req, res) => {
-    // sends to home page if already connected
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    };
-    res.render('login');
-});
 
 // renders new-picnic page to allow user to create or join an event
 router.get('/new-picnic', async (req, res) => {

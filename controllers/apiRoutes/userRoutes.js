@@ -43,10 +43,10 @@ router.post('/login', async (req, res) => {
     console.log(userData)
     // saves user session
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.dataValues.id;
       req.session.logged_in = true;
-      req.session.first_name = userData.first_name;
-      req.session.last_name = userData.last_name;
+      req.session.first_name = userData.dataValues.first_name;
+      req.session.last_name = userData.dataValues.last_name;
       res.json({ user: userData, message: 'You have logged in successfully.' });
     });
   } catch (err) {
