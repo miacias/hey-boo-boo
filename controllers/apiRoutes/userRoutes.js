@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, /* Picnic, Food*/ } = require('../../models');
+const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
@@ -40,6 +40,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again.' });
       return;
     }
+    console.log(userData)
     // saves user session
     req.session.save(() => {
       req.session.user_id = userData.id;
