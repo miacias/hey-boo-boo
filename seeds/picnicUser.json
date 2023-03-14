@@ -2,37 +2,37 @@
  [
     {
         "id":1,
-        "picnic_id":1,
-        "user_id":4
+        "userId":1,
+        "picnicId":1
     },
     {
         "id":2,
-        "picnic_id":1,
-        "user_id":2
+        "userId":2,
+        "picnicId":1
     },
     {
         "id":3,
-        "picnic_id":1,
-        "user_id":4
+        "userId":4,
+        "picnicId":1
     },
     {
         "id":4,
-        "picnic_id":2,
-        "user_id":2
+        "userId":2,
+        "picnicId":2
     },
     {
         "id":5,
-        "picnic_id":2,
-        "user_id":4
+        "userId":4,
+        "picnicId":2
     },
     {
         "id":6,
-        "picnic_id":3,
-        "user_id":2
+        "userId":2,
+        "picnicId":3
     },
     {
         "id":7,
-        "picnic_id":3,
-        "user_id":3
+        "userId":3,
+        "picnicId":3
     }
 ]
