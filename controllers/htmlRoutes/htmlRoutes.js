@@ -12,16 +12,17 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// get logged in home page (with all picnics for user if logged in)
+// get logged in home page
 router.get('/', async (req, res) => {
     console.log("GET: home", req.session.user_id, req.session.logged_in);
     try {
         const allMyPicnics = await Picnic.findAll({
-            attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
+            // attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
             include: {
                 model: User,
                 as: 'events',
-                attributes: ['id', 'first_name', 'last_name']
+                through: Food
+                // attributes: ['id', 'first_name', 'last_name']
             },
             // where: { userId: req.session.user_id },
             order: [['start_time', 'DESC']],
@@ -33,6 +34,7 @@ router.get('/', async (req, res) => {
         const home = allMyPicnics.map((picnic) => {
             return picnic.get({plain: true});
         });
+        console.log(home)
         res.render('home', {
             home,
             loggedIn: req.session.logged_in,
