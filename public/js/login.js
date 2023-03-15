@@ -25,7 +25,7 @@ async function handleSignup(event) {
   if (response.ok) {
     document.location.replace('/');
   } else {
-    alert('Failed to log in. Please try again.');
+    alert('Failed to sign up. Please try again.');
   }
 
   signupForm.reset();
@@ -51,9 +51,9 @@ async function handleLogin(event) {
   });
 
   if (response.ok) {
-    console.log('IT WORKED!');
+    document.location.replace('/');
   } else {
-    console.log('IT DIDNT WORKED!');
+    alert('Failed to log in. Please try again.');
   }
 
   loginForm.reset();
