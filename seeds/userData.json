@@ -1,0 +1,26 @@
+[
+    {
+        "first_name": "Josh",
+        "last_name": "Eflin",
+        "email": "josh@eflin.com",
+        "password": "yogi"
+    },
+    {
+        "first_name": "Stevie",
+        "last_name": "O'Connell",
+        "email": "stevie@oconnell.com",
+        "password": "cindy" 
+    },
+    {
+        "first_name": "Jack",
+        "last_name": "Einhorn",
+        "email": "jack@einhorn.com",
+        "password": "booboo" 
+    },
+    {
+        "first_name": "Mia",
+        "last_name": "Ciasullo",
+        "email": "mia@ciasullo.com",
+        "password": "ranger" 
+    }
+]
