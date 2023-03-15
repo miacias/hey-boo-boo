@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+// Parent route = /api/users
+
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
   try {
@@ -56,14 +58,16 @@ router.post('/login', async (req, res) => {
 });
 
 // handles log out for exiting users
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      return res.redirect('/');
     });
   } else {
-    res.status(404).end();
+    res.status(400).end();
   }
 });
+
+
 
 module.exports = router;
