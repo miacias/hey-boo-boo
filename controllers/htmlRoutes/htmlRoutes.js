@@ -135,7 +135,7 @@ router.get('/new-picnic', async (req, res) => {
 // find all users attending one picnic
 // NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
 // need to add food-related stuff
-router.get('/:picnic', async (req, res) => {
+router.get('/my-picnics/:picnic', async (req, res) => {
     try {
         const allAttendees = await Picnic.findOne({
             where: {id: /*req.params.id*/ '1'},
