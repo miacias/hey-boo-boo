@@ -58,6 +58,10 @@ footer {
     font-size: 120%;
 }
 
+#coming-soon {
+    background-color: var(--dark-gold);
+}
+
 ul li::before {
     /* creates space between bullet point and list item */
     position: relative;
@@ -67,6 +71,15 @@ ul li::before {
     /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
     line-height: 2em;
+}
+
+hr {
+    border: 1px dashed var(--dark-gold);
+}
+
+#coming-soon-list {
+    font-family: var(--roboto-slab);
+    font-size: medium;
 }
 
 /* ----- MY PICNICS DASHBOARD ----- */
