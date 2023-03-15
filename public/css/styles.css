@@ -12,6 +12,8 @@
     --rancho: 'Rancho', cursive;
 }
 
+/* ----- MAIN HANDLEBARS ----- */
+
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
@@ -38,6 +40,8 @@ footer {
     color: var(--begonia)
 }
 
+/* ----- HOME PAGE ----- */
+
 #welcome-title-pitch h3 {
     font-family: var(--rancho);
 }
@@ -59,10 +63,17 @@ ul li::before {
     line-height: 2em;
 }
 
-.picnic-card-img {
-    max-height: 10%;
-}
+/* ----- MY PICNICS DASHBOARD ----- */
 
 .my-picnics {
     font-size: medium;
+}
+
+.picnic-card-img {
+    height: 351px; 
+    object-fit: cover;
+}
+
+.picnic-id {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
