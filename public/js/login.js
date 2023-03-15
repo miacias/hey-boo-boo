@@ -51,7 +51,7 @@ async function handleLogin(event) {
   });
 
   if (response.ok) {
-    console.log('IT WORKED!');
+    document.location.replace('/')
   } else {
     console.log('IT DIDNT WORKED!');
   }
