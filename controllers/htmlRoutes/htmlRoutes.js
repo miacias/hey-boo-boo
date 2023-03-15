@@ -12,24 +12,7 @@ router.get('/login', (req, res) => {
     };
     res.render('login');
 });
-// find all users attending one picnic
-// NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
-// need to add food-related stuff
-router.get('/:picnic', async (req, res) => {
-    try {
-        const allAttendees = await Picnic.findOne({
-            where: {id: /*req.params.id*/ 'e544c0de-aa1e-471a-9f2b-9f06d96e6459'},
-            include: {
-                model: User,
-                through: PicnicUser,
-            },
-        });
-        console.log(allAttendees)
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
+
 
 // JOIN PICNIC: assigns existing user (session) to an existing picnic
 router.post('/new-picnic', async (req, res) => {
