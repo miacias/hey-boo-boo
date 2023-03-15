@@ -23,7 +23,7 @@ async function handleSignup(event) {
     },
   });
   if (response.ok) {
-    document.location.replace('/');
+    await document.location.replace('/');
   } else {
     alert('Failed to sign up. Please try again.');
   }
@@ -49,7 +49,7 @@ async function handleLogin(event) {
     headers: { 'content-type': 'application/json' },
   });
   if (response.ok) {
-    document.location.replace('/');
+    await document.location.replace('/');
   } else {
     alert('Failed to log in. Please try again.');
   }
