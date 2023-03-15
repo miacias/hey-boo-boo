@@ -23,3 +23,4 @@ Artist(s):
 - [Impallari Type](https://fonts.google.com/specimen/Caveat+Brush) - Caveat Brush font
 - [nawicon](https://www.flaticon.com/free-icons/picnic) - picnic basket icon
 - [Shields.io](https://shields.io/) - status badges
+- [Custom-Cursor](https://custom-cursor.com/en/collection/minimal-style/minimal-bear) - bear cursor

@@ -20,6 +20,7 @@ body {
     /* font-family: var(--caveat-brush); */
     font-size: x-large;
     line-height: 120%;
+    cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
 }
 
 nav {
@@ -76,4 +77,29 @@ ul li::before {
 
 .picnic-id {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.picnic-id:hover {
+    box-shadow: 0 4px 8px 0 var(--dark-gold), 0 6px 20px 0 var(--dark-gold);
+}
+
+.event-name {
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+/* .event-name a:link,
+.event-name a:visited,
+.event-name a:hover,
+.event-name a:active {
+    text-decoration: none;
+    color: green;
+} */
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'),auto;    
 }
