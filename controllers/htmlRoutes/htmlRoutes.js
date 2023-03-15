@@ -56,7 +56,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
                 through: PicnicUser,
             },
             where: {
-                id: /*req.session.user_id*/ 2
+                id: /*req.session.user_id*/ 4
             },
             order: [['start_time', 'DESC']],
         });
@@ -120,8 +120,6 @@ router.get('/new-picnic', async (req, res) => {
         const home = allMyPicnics.map((picnic) => {
             return picnic.get({ plain: true });
         });
-        console.log('home')
-        console.log(home)
         res.render('newpicnic', {
             home,
             loggedIn: req.session.logged_in,
@@ -141,12 +139,17 @@ router.get('/new-picnic', async (req, res) => {
 router.get('/:picnic', async (req, res) => {
     try {
         const allAttendees = await Picnic.findOne({
-            where: {id: /*req.params.id*/ 'e544c0de-aa1e-471a-9f2b-9f06d96e6459'},
+            where: {id: /*req.params.id*/ '1'},
             include: {
                 model: User,
                 through: PicnicUser,
             },
         });
+        const creator = allAttendees.dataValues.creator_role;
+        const host = await User.findOne({
+            where: {id: creator}
+        })
+        console.log(host)
         console.log(allAttendees)
     } catch (err) {
         console.error(err);

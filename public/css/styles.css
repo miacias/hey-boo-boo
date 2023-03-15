@@ -58,3 +58,11 @@ ul li::before {
     font-size: 1.25em;
     line-height: 2em;
 }
+
+.picnic-card-img {
+    max-height: 10%;
+}
+
+.my-picnics {
+    font-size: medium;
+}
