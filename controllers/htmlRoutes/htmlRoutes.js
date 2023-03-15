@@ -46,7 +46,7 @@ router.post('/new-picnic', async (req, res) => {
 });
 
 // renders all picnics one user is attending
-router.get('/my-picnics', withAuth, async (req, res) => {
+router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
         // finds all picnics for one user
@@ -56,11 +56,10 @@ router.get('/my-picnics', withAuth, async (req, res) => {
                 through: PicnicUser,
             },
             where: {
-                id: /*req.session.user_id*/ 4
+                id: /* req.session.user_id */  3
             },
             order: [['start_time', 'DESC']],
         });
-        
         if (!myPicnics) {
             res.status(404).json({ message: 'No picnics available' });
             return;
@@ -148,7 +147,7 @@ router.get('/:picnic', async (req, res) => {
         const creator = allAttendees.dataValues.creator_role;
         const host = await User.findOne({
             where: {id: creator}
-        })
+        });
         console.log(host)
         console.log(allAttendees)
     } catch (err) {
