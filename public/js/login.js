@@ -1,9 +1,10 @@
 const signupForm = document.querySelector('#signup-form');
 const loginForm = document.querySelector('#login-form');
 
+
 async function handleSignup(event) {
   event.preventDefault();
-
+  // collects user data
   const userNameValue = document.querySelector('#username-signup').value.trim();
   const passwordValue = document.querySelector('#password-signup').value.trim();
   const emailValue = document.querySelector('#email-signup').value.trim();
@@ -21,9 +22,8 @@ async function handleSignup(event) {
       'content-type': 'application/json',
     },
   });
-
   if (response.ok) {
-    document.location.replace('/');
+    await document.location.replace('/');
   } else {
     alert('Failed to sign up. Please try again.');
   }
@@ -31,9 +31,10 @@ async function handleSignup(event) {
   signupForm.reset();
 }
 
+// allows user to log in
 async function handleLogin(event) {
   event.preventDefault();
-
+  // collects user data
   const emailValue = document.querySelector('#email-login').value.trim();
   const passwordValue = document.querySelector('#password-login').value.trim();
 
@@ -45,13 +46,10 @@ async function handleLogin(event) {
   const response = await fetch('/api/users/login', {
     body: JSON.stringify(loginUser),
     method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
+    headers: { 'content-type': 'application/json' },
   });
-
   if (response.ok) {
-    document.location.replace('/');
+    await document.location.replace('/');
   } else {
     alert('Failed to log in. Please try again.');
   }
