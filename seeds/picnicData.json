@@ -1,14 +1,24 @@
 [
     {
+        "id":1,
         "event_name": "Project Two Party!",
         "address": "3451 Walnut Street Philadelphia, PA 19104",
-        "creator_role": 4,
-        "password": "yes"
+        "password": "yes",
+        "creator_role": 4
     },
     {
+        "id":2,
         "event_name": "Graduation, Yay",
         "address": "Snyder Ave Philadelphia, PA 19148",
-        "creator_role": 1,
-        "password": "no"
+        "password": "yes",
+        "creator_role": 1
+    },
+    {
+        "id":3,
+        "event_name": "Food Time",
+        "address": "3451 Walnut Street Philadelphia, PA 19104",
+        "password": "yes",
+        "creator_role": 2
     }
+
 ]

@@ -22,3 +22,4 @@ Artist(s):
 - [Sideshow](https://fonts.google.com/specimen/Rancho) - Rancho font
 - [Impallari Type](https://fonts.google.com/specimen/Caveat+Brush) - Caveat Brush font
 - [nawicon](https://www.flaticon.com/free-icons/picnic) - picnic basket icon
+- [Shields.io](https://shields.io/) - status badges

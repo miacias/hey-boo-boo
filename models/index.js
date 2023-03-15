@@ -24,7 +24,7 @@ const FoodPicnicUser = require('./FoodPicnicUser.js');
 // https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/#the-best-of-both-worlds-the-super-many-to-many-relationship
 // team = user
 // game = Picnic
-// food = player
+// player = food
 
 User.belongsToMany(Picnic, { through: PicnicUser });
 Picnic.belongsToMany(User, { through: PicnicUser });
@@ -118,4 +118,4 @@ PicnicUser.hasMany(FoodPicnicUser);
 // })();
 
 
-module.exports = { User, Picnic, Food };
+module.exports = { User, Picnic, Food, PicnicUser,FoodPicnicUser };

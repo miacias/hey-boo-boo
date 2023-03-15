@@ -1,8 +1,8 @@
-{{!-- horizontal Welcome page card for logged in users --}}
-{{log home}}
-{{#if loggedIn}}
+{{!-- {{#if loggedIn}} --}}
+
   {{!-- new event alert (Bootstrap toast) --}}
-  {{#if newPicnic}}
+
+  {{!-- {{#if newPicnic}}
   <section class="updates">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
@@ -16,29 +16,11 @@
       </div>
     </div>
   </section>
-  {{/if}}
-{{!-- user's picnic events overview here --}}
-<section>
-  <div class="my-picnics">
-    {{!-- creates a picnic event card for each picnic --}}
-    {{#each events}}
-    <div class="card text-bg-dark">
-      <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img" alt="picnic imagery">
-      <div class="card-img-overlay">
-        <h5 class="card-title">{{event_name}}</h5>
-        <p class="card-text">On {{start_time}}</p>
-        <p class="card-text"><small>At {{address}}</small></p>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{!-- user's Google calendar events overview here --}}
-  <div class="my-calendar">
-    {{!-- data inside this DIV --}}
-  </div>
-</section>
-{{else}}
-{{!-- horizontal Welcome page card for logged out users --}}
+  {{/if}} --}}
+
+{{!-- {{/if}} --}}
+
+{{!-- horizontal Welcome page card --}}
 <section class="ps-4 pe-4 pb-0 m-1 rounded-3" id="welcome-title-pitch">
   <div class="container-fluid py-5">
     <h3 class="display-5 fw-bold">Join Hey Boo-Boo with Your Friends</h3>
@@ -60,12 +42,12 @@
               <li data-icon="🐻">Invite friends: Hey Boo-Boo makes it easy to invite friends and family to your picnic. Simply send them an invitation through the app and they'll receive all the details they need to join you.</li>
               {{!-- <li data-icon="🌸">Share photos: After your picnic, you can share photos of your experience with friends and family through our app.</li> --}}
             </ul>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          {{!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
         </div>
       </div>
       {{!-- welcome card image --}}
       <div class="image-parent col-md-4">
-        <img src="/assets/images/picnic cards (vertical)/2020 - Kin Li (Unsplash).jpg" class="img-fluid rounded" alt="picnic blanket in the daylinght on the grass with a basket, wicker hat, some bottled drinks and a book lying on the blanket next to a blackboard chalk 'Welcome' sign and some candle lanterns">
+        <img src="/assets/images/picnic cards (vertical)/2020 - Kin Li (Unsplash).jpg" class="img-fluid rounded" alt="picnic blanket in the daylight on the grass with a basket, wicker hat, some bottled drinks and a book lying on the blanket next to a blackboard chalk 'Welcome' sign and some candle lanterns">
       </div>
     </div>
   </div>
@@ -76,4 +58,3 @@
     <p>So why wait? Sign up with Hey Boo-Boo today and start planning your perfect picnic!</p>
   </div>
 </section>
-{{/if}}

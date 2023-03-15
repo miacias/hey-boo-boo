@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelize } = require('../config/connection.js');
 
+// this is an event!
 class PicnicUser extends Model { }
 
 PicnicUser.init(
@@ -12,13 +13,13 @@ PicnicUser.init(
             allowNull: false
         }
     },
-    {
+     {
         sequelize,
         timestamps: false,
         freezeTableName: false,
         underscored: true,
         modelName: 'picnicUser',
-    }
+     }
 );
 
 module.exports = PicnicUser;
