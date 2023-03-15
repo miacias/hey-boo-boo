@@ -21,9 +21,9 @@ async function handleSignup(event) {
       'content-type': 'application/json',
     },
   });
-
+  console.log(response.ok)
   if (response.ok) {
-    document.location.replace('/');
+    document.location.replace('/my-picnics');
   } else {
     alert('Failed to log in. Please try again.');
   }

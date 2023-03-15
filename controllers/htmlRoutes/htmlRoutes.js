@@ -2,6 +2,23 @@ const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 const withAuth = require('../../utils/auth.js');
 
+
+// get logged in home page
+router.get('/', async (req, res) => {
+    console.log("GET: home", req.session.user_id, req.session.logged_in);
+    try {
+        res.render('home', {
+            loggedIn: req.session.logged_in,
+            userId: req.session.user_id,
+            firstName: req.session.first_name,
+            lastName: req.session.last_name
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
 // renders login page for user to sign up or log in
 router.get('/login', (req, res) => {
     // sends to home page if already connected
@@ -80,23 +97,6 @@ router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-// get logged in home page
-router.get('/', async (req, res) => {
-    console.log("GET: home", req.session.user_id, req.session.logged_in);
-    try {
-        res.render('home', {
-            loggedIn: req.session.logged_in,
-            userId: req.session.user_id,
-            firstName: req.session.first_name,
-            lastName: req.session.last_name
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
-
 
 // renders new-picnic page to allow user to create or join an event
 router.get('/new-picnic', async (req, res) => {
