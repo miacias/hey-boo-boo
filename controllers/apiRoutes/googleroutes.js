@@ -1,83 +1,100 @@
-const router = require('express').Router();
+const router = require("express").Router();
+const { google } = require("googleapis");
+const { OAuth2 } = google.auth;
 
-// Create a route for the callback URL
-router.get('/callback', async (req, res)=>{
-    const { code } = req.query;
-    const { tokens } = await oAuth2Client.getToken(code);
-    
-    // Save the refresh token to the database
-    await RefreshToken.create({ token: tokens.refresh_token });
-    
-    // Redirect the user to a success page
-    res.redirect('/success');
-});
-// Create a route for the user to authorize your application
-router.get('/auth', (req, res) => {
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/calendar']
+const oAuth2Client = new OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  // redirect URL
+  "http://localhost:3001/api/goog/callback"
+);
+
+//  this route creates url for google auth pages
+router.get("/token", async (req, res) => {
+  // get a token from the google
+
+  // generate a url that asks permissions for Blogger and Google Calendar scopes
+  const scopes = ["https://www.googleapis.com/auth/calendar"];
+
+  const url = oAuth2Client.generateAuthUrl({
+    // 'online' (default) or 'offline' (gets refresh_token)
+    access_type: "offline",
+
+    // If you only need one scope you can pass it as a string
+    scope: scopes,
   });
-
-  res.redirect(authUrl);
-});
-
-// Example route for accessing the user's calendar
-router.get('/calendar', async (req, res) => {
-  // Retrieve the stored refresh token for the user
-  const refreshToken = await RefreshToken.findOne({ where: { id: req.params.id } });
-
-  // Use the refresh token to generate an access token
-  oAuth2Client.setCredentials({
-    refresh_token: refreshToken.token
-  });
-  
-  // Use the access token to make requests to the Google Calendar API
-  const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
-  const events = await calendar.events.list({
-    calendarId: 'primary',
-    timeMin: new Date().toISOString(),
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  });
-
-  res.render('calendar', { events });
+  console.log(url);
+  res.status(302).redirect(url);
 });
 
+router.get("/callback", async (req, res) => {
+  console.log(req.query);
+  const { tokens } = await oAuth2Client.getToken(req.query.code);
+  oAuth2Client.setCredentials(tokens);
+  console.log(tokens);
+  const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
+  const event = {
+    'summary': 'Google I/O 2015',
+    'location': '800 Howard St., San Francisco, CA 94103',
+    'description': 'A chance to hear more about Google\'s developer products.',
+    'start': {
+      'dateTime': '2023-05-28T09:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    'end': {
+      'dateTime': '2023-05-28T17:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    'recurrence': [
+      'RRULE:FREQ=DAILY;COUNT=2'
+    ],
+    'attendees': [
+      {'email': 'lpage@example.com'},
+      {'email': 'sbrin@example.com'},
+    ],
+    'reminders': {
+      'useDefault': false,
+      'overrides': [
+        {'method': 'email', 'minutes': 24 * 60},
+        {'method': 'popup', 'minutes': 10},
+      ],
+    },
+  };
 
-module.exports= router
-
-// const express = require('express');
-// const { google } = require('googleapis');
-// const { Sequelize } = require('sequelize');
-
-// const app = express();
-// const port = 3000;
-
-// // Create a Sequelize instance to handle database interactions
-// const sequelize = new Sequelize('database_name', 'database_user', 'database_password', {
-//   host: 'localhost',
-//   dialect: 'mysql'
-// });
-
-// // Define a model for storing refresh tokens
-// const RefreshToken = sequelize.define('refresh_token', {
-//   token: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   }
-// });
-
-// // Register your application with Google to obtain oAuth credentials
-// const oAuth2Client = new google.auth.OAuth2(
-//   'client_id',
-//   'client_secret',
-//   'http://localhost:3000/callback' // callback URL for your application
-// );
-
-
-
-// // Start the server
-// app.listen(port, () => {
-//   console.log(`Server running on http://localhost:${port}`);
-// });
+  calendar.events.insert(
+    {
+      auth: oAuth2Client,
+      calendarId: "primary",
+      resource: event,
+    },
+    function (err, event) {
+      if (err) {
+        console.log(
+          "There was an error contacting the Calendar service: " + err
+        );
+        return;
+      }
+      console.log("Event created: %s", event.data);
+      res.status(302).redirect(event.data.htmlLink);
+      
+    }
+  );
+  // const response = await calendar.events.list({
+  //   calendarId: "primary",
+  //   timeMin: new Date().toISOString(),
+  //   maxResults: 10,
+  //   singleEvents: true,
+  //   orderBy: "startTime",
+  // });
+  // const events = response.data.items;
+  // if (!events || events.length === 0) {
+  //   console.log("No upcoming events found.");
+  //   return;
+  // }
+  // console.log("Upcoming 10 events:");
+  // events.map((event, i) => {
+  //   const start = event.start.dateTime || event.start.date;
+  //   console.log(`${start} - ${event.summary}`);
+  // });
+});
+module.exports = router;

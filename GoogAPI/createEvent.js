@@ -109,7 +109,36 @@ async function createEvents(auth) {
       return;
     }
     console.log('Event created: %s', event.data);
+    fs.writeFile('test.json',JSON.stringify(event),err=> {
+      if(err){
+        console.log(err)
+      }
+     } )
   });
 }
 
 authorize().then(createEvents).catch(console.error);
+
+
+async function listEvents(auth) {
+  const calendar = google.calendar({version: 'v3', auth});
+  const res = await calendar.events.list({
+    calendarId: 'primary',
+    timeMin: new Date().toISOString(),
+    maxResults: 10,
+    singleEvents: true,
+    orderBy: 'startTime',
+  });
+  const events = res.data.items;
+  if (!events || events.length === 0) {
+    console.log('No upcoming events found.');
+    return;
+  }
+  console.log('Upcoming 10 events:');
+  events.map((event, i) => {
+    const start = event.start.dateTime || event.start.date;
+    console.log(`${start} - ${event.summary}`);
+  });
+}
+
+authorize().then(listEvents).catch(console.error);
