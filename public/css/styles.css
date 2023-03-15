@@ -7,7 +7,7 @@
     --begonia: #F46D74;
     /* available fonts */
     --hanna-barbera: 'Hanna-Barbera 1960 Font', sans-serif;
-    --caveat-brush: 'Caveat Brush', cursive;
+    --roboto-slab: 'Roboto Slab', serif;
     --oleo-script: 'Oleo Script', cursive;
     --rancho: 'Rancho', cursive;
 }
@@ -17,7 +17,7 @@
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
-    /* font-family: var(--caveat-brush); */
+    font-family: var(--roboto-slab);
     font-size: x-large;
     line-height: 120%;
     cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
@@ -47,6 +47,11 @@ footer {
     font-family: var(--rancho);
 }
 
+#pitch-list {
+    font-family: var(--roboto-slab);
+    font-size: large;
+}
+
 .card {
     background-color: var(--begonia);
     font-family: var(--rancho);
@@ -73,6 +78,7 @@ ul li::before {
 .picnic-card-img {
     height: 351px; 
     object-fit: cover;
+    filter: sepia(20%);
 }
 
 .picnic-id {
@@ -102,4 +108,8 @@ a:hover,
 a:active {
     text-decoration: none;
     cursor: url('../assets/images/cursors/bear-cursor-24x24.png'),auto;    
+}
+
+.event-name a {
+    color: var(--rich-black);
 }

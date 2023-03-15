@@ -13,7 +13,6 @@ module.exports = {
             '2019 - Krisztina Papp (Unsplash).jpg',
             '2020 - Annie Spratt (Unsplash).jpg',
             '2020 - Kateryna Hliznitsova (Unsplash).jpg',
-            '2020 - Kin Li (Unsplash).jpg',
             '2021 - Elena Popova (Unsplash).jpg',
             '2021 - Taisiia Shestopal (Unsplash).jpg',
             '2021 1 - Mariah Hewines (Unsplash).jpg',
