@@ -35,7 +35,7 @@ router.post('/new-picnic', async (req, res) => {
         // when inserting values to Sequelize, need to use camel case UNLESS setting foreign keys manually, then use that name
         // Sequelize changes values to snake case
         const newAttendee = await PicnicUser.create({
-            picnicId: /*req.body.address*/ 1, 
+            picnicId: /*req.body.address*/ 1,
             userId: /*req.body.address*/ 3
         });
         console.log(newAttendee)
@@ -135,10 +135,10 @@ router.get('/new-picnic', async (req, res) => {
 // find all users attending one picnic
 // NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
 // need to add food-related stuff
-router.get('/:picnic', async (req, res) => {
+router.get('/my-picnics/:picnic', async (req, res) => {
     try {
         const allAttendees = await Picnic.findOne({
-            where: {id: /*req.params.id*/ '1'},
+            where: { id: /*req.params.id*/ '1' },
             include: {
                 model: User,
                 through: PicnicUser,
@@ -146,7 +146,7 @@ router.get('/:picnic', async (req, res) => {
         });
         const creator = allAttendees.dataValues.creator_role;
         const host = await User.findOne({
-            where: {id: creator}
+            where: { id: creator }
         });
         console.log(host)
         console.log(allAttendees)
