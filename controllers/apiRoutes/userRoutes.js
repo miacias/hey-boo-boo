@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+
 // Parent route = /api/users
+
 
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
@@ -23,6 +25,7 @@ router.post('/signup', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 // handles log in for returning users
 router.post('/login', async (req, res) => {
@@ -55,6 +58,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 // handles log out for exiting users
 router.get('/logout', (req, res) => {
