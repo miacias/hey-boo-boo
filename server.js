@@ -9,7 +9,7 @@ const router = require('./controllers');
 
 // handlebars.js
 const exphbs = require('express-handlebars');
-// const helpers = require('./utils/helpers');
+const helpers = require('./utils/helpers');
 
 // environment variables
 require('dotenv').config();
@@ -21,7 +21,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 // enables Handlebars helpers
-const hbs = exphbs.create(/*{ helpers }*/);
+const hbs = exphbs.create({ helpers });
 
 app.use(session(config.sess));
 

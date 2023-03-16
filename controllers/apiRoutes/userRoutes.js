@@ -1,13 +1,16 @@
 const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+// Parent route = /api/users
+
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
   try {
     // collects user data
+    console.log("hey")
     const userData = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     });
@@ -40,7 +43,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again.' });
       return;
     }
-    console.log(userData)
     // saves user session
     req.session.save(() => {
       req.session.user_id = userData.dataValues.id;
@@ -48,6 +50,7 @@ router.post('/login', async (req, res) => {
       req.session.first_name = userData.dataValues.first_name;
       req.session.last_name = userData.dataValues.last_name;
       res.json({ user: userData, message: 'You have logged in successfully.' });
+
     });
   } catch (err) {
     res.status(400).json(err);
@@ -55,14 +58,16 @@ router.post('/login', async (req, res) => {
 });
 
 // handles log out for exiting users
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      return res.redirect('/');
     });
   } else {
-    res.status(404).end();
+    res.status(400).end();
   }
 });
+
+
 
 module.exports = router;

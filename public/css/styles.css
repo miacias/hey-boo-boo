@@ -7,17 +7,20 @@
     --begonia: #F46D74;
     /* available fonts */
     --hanna-barbera: 'Hanna-Barbera 1960 Font', sans-serif;
-    --caveat-brush: 'Caveat Brush', cursive;
+    --roboto-slab: 'Roboto Slab', serif;
     --oleo-script: 'Oleo Script', cursive;
     --rancho: 'Rancho', cursive;
 }
 
+/* ----- MAIN HANDLEBARS ----- */
+
 body {
     background-color: var(--caramel);
     color: var(--rich-black);
-    /* font-family: var(--caveat-brush); */
+    font-family: var(--roboto-slab);
     font-size: x-large;
     line-height: 120%;
+    cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
 }
 
 nav {
@@ -38,14 +41,25 @@ footer {
     color: var(--begonia)
 }
 
+/* ----- HOME PAGE ----- */
+
 #welcome-title-pitch h3 {
     font-family: var(--rancho);
+}
+
+#pitch-list {
+    font-family: var(--roboto-slab);
+    font-size: large;
 }
 
 .card {
     background-color: var(--begonia);
     font-family: var(--rancho);
     font-size: 120%;
+}
+
+#coming-soon {
+    background-color: var(--dark-gold);
 }
 
 ul li::before {
@@ -57,4 +71,58 @@ ul li::before {
     /* Make slightly larger than the li font-size but smaller than the li gap */
     font-size: 1.25em;
     line-height: 2em;
+}
+
+hr {
+    border: 1px dashed var(--dark-gold);
+}
+
+#coming-soon-list {
+    font-family: var(--roboto-slab);
+    font-size: medium;
+}
+
+/* ----- MY PICNICS DASHBOARD ----- */
+
+.my-picnics {
+    font-size: medium;
+}
+
+.picnic-card-img {
+    height: 351px; 
+    object-fit: cover;
+    filter: sepia(20%);
+}
+
+.picnic-id {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.picnic-id:hover {
+    box-shadow: 0 4px 8px 0 var(--dark-gold), 0 6px 20px 0 var(--dark-gold);
+}
+
+.event-name {
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+/* .event-name a:link,
+.event-name a:visited,
+.event-name a:hover,
+.event-name a:active {
+    text-decoration: none;
+    color: green;
+} */
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'),auto;    
+}
+
+.event-name a {
+    color: var(--rich-black);
 }
