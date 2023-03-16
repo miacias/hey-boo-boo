@@ -49,22 +49,3 @@ const joinPicnic = (event) => {
     event.preventDefault();
 
 };
-
-// autocomplete for addresses
-window.onload = function () {
-    // var input = document.getElementById('new-picnic-address');
-    let input = document.getElementById('pac-input');
-    const options = {
-        fields: ["formatted_address", "geometry", "name"],
-        strictBounds: false,
-        types: ["street_address"],
-    };
-    let autocomplete = new google.maps.places.Autocomplete(input, options);
-    // listens to form
-    google.maps.event.addEventListener(autocomplete, 'place_changed', function () {
-        const near_place = autocomplete.getPlace();
-    })
-}
-
-createBtn.addEventListener('click', createPicnic);
-joinBtn.addEventListener('click', joinPicnic);

@@ -64,7 +64,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Join someone's picnic</h4>
-                    <form class="new-picnic-form" id="">
+                    <form class="new-picnic-form" >
                         <div class="picnic-code">
                             <label for="join-picnic-code"></label>
                             <input id="join-picnic-code" type="text" placeholder="Picnic Code">
@@ -81,5 +81,8 @@
     </div>
 </section>
 {{!-- Google Maps autocomplete --}}
-<script id="google" src="" defer></script>
+<script id="google" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_lzFaPkQ0D4hUMzWih5DZ19d0HMv9Lf0&libraries=places&callback=initAutocomplete&solution_channel=GMP_QB_addressselection_v1_cA" defer></script>
+{{!-- Google Maps jQuery controls --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/googleMap.js"></script>
 <script src='/js/newPicnic.js'></script>
