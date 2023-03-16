@@ -23,28 +23,29 @@
   <title>Hey Boo-Boo!</title>
 </head>
 
-<body>
-  {{!-- navigation --}}
-  <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <h1>Hey Boo-Boo!</h1>
-      </a>
-      <h2>Plan picnics and potlucks.</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/"><span><img class="picnic-basket-icon"
-                src="/assets/images/picnic basket icons/favicon-32x32.png" alt="picnic-basket-icon"></span> Home</a>
-          {{#if loggedIn}}
-          <a class="nav-link" href="/api/users/logout" id="logout">Logout</a>
-          <a class="nav-link" href="/my-picnics">My Picnics</a>
-          {{else}}
-          <a class="nav-link" href="/login">Login/Sign-up</a>
-          {{/if}}
+  <body>
+    {{!-- navigation --}}
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <h1>Hey Boo-Boo!</h1>
+        </a>
+        <h2>Plan picnics and potlucks.</h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/"><span><img class="picnic-basket-icon"
+                  src="/assets/images/picnic basket icons/favicon-32x32.png" alt="picnic-basket-icon"></span> Home</a>
+            {{#if loggedIn}}
+            <a class="nav-link" href="/api/users/logout" id="logout">Logout</a>
+            <a class="nav-link" href="/my-picnics">My Picnics</a>
+            {{else}}
+            <a class="nav-link" href="/login">Login/Sign-up</a>
+            {{/if}}
+          </div>
         </div>
       </div>
     </div>
