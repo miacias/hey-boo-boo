@@ -10,7 +10,7 @@ class PicnicEvent {
     this.description = description;
     this.start = start;
     this.end = end
-    // this.attendees = attendees
+    //this.attendees = attendees
    }
 
 }
