@@ -4,12 +4,13 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../models');
 const sequelize = require('../config/connection')
 
 class PicnicEvent {
-    constructor(summary, location, description, start, end,/*attendees,*/){
+    constructor(summary, location, description, start, end,attendees){
     this.summary = summary;
     this.location = location;
     this.description = description;
     this.start = start;
     this.end = end
+    this.attendees = attendees
    }
 
 }
@@ -51,8 +52,10 @@ const myPicnics =  Picnic.findAll({
     order: [['start_time', 'DESC']],
     
 })
-const SQLDateTime = '2023-03-14T16:04:56.000Z'
+
 // this function is no longer needed
+
+// const SQLDateTime = '2023-03-14T16:04:56.000Z'
 // function convertDateTime(SQLDateTime){
 //     const newDateTime = SQLDateTime.slice(0,19);
 //     const googleDateTime = newDateTime.concat('-05:00')
@@ -60,29 +63,72 @@ const SQLDateTime = '2023-03-14T16:04:56.000Z'
 // }
 // const googleDateTime =convertDateTime(SQLDateTime)
 // console.log(googleDateTime)
+
 //  used Date to set new time to two hours later.
 function createEndTime(startTime){
     const dateTime = new Date(startTime);
     dateTime.setHours(dateTime.getHours() + 2);
     return dateTime.toISOString();
 }
+console.log(myPicnics)
 // console.log(createEndTime(googleDateTime))
 // myPicnics returns a promise, use a .then() to render the resulting object, and assign its properties to variables to be passed into
 // the build params function and fed to a new picnic event object to be sent to calendar api.
-    myPicnics.then((data)=>{
-    // console.log(data[0])
-    const thisPicnic = data[0].dataValues
-    const summary = thisPicnic.event_name;
-    const location = thisPicnic.address;
-    const description = summary
-    const start = `{'dateTime':${new Date(thisPicnic.start_time).toISOString()},'timeZone': 'America/New_York',}`
-    const end =`{'dateTime':${createEndTime(thisPicnic.start_time)},'timeZone': 'America/New_York',}` 
-    const attendees =thisPicnic.users
-    const newEvent = {summary, location, summary, start, end}
-    
-    console.log(new PicnicEvent(summary, location, description, start, end))
-})
-// ))
+// IF MYPICNICS IS NOT A PROMISE USE THIS
+
+    // const thisPicnic = myPicnics[0].dataValues
+    // const summary = thisPicnic.event_name;
+    // const location = thisPicnic.address;
+    // const description = summary
+    // const start = `{'dateTime':${new Date(thisPicnic.start_time).toISOString()},'timeZone': 'America/New_York',}`
+    // const end =`{'dateTime':${createEndTime(thisPicnic.start_time)},'timeZone': 'America/New_York',}` 
+    // const attending =thisPicnic.users
+    // const newEvent = {summary, location, summary, start, end}
+    // const attendees = []
+    // // console.log(attending)
+    // for (invited of attending){
+    //     // const first =invited.dataValues.first_name;
+    //     // const last = invited.dataValues.last_name;
+    //     // const attendee = first.concat(` ${last}`)
+    //     const email = invited.dataValues.email
+    //     attendees.push(`{'email': '${email}'}`)
+    // }
+    // // console.log(attendees)
+    // return new PicnicEvent(summary, location, description, start, end, attendees)
+
+
+
+
+
+// USE BELOW IF MYPICNICS IS A PENDING PROMISE
+// myPicnics.then((data)=>{
+//     const thisPicnic = data[0].dataValues
+//     const summary = thisPicnic.event_name;
+//     const location = thisPicnic.address;
+//     const description = summary
+//     const start = `{'dateTime':${new Date(thisPicnic.start_time).toISOString()},'timeZone': 'America/New_York',}`
+//     const end =`{'dateTime':${createEndTime(thisPicnic.start_time)},'timeZone': 'America/New_York',}` 
+//     const attending =thisPicnic.users
+//     const newEvent = {summary, location, summary, start, end}
+//     const attendees = []
+//     // console.log(attending)
+//     for (invited of attending){
+//         // const first =invited.dataValues.first_name;
+//         // const last = invited.dataValues.last_name;
+//         // const attendee = first.concat(` ${last}`)
+//         const email = invited.dataValues.email
+//         attendees.push(`{'email': '${email}'}`)
+//     }
+//     // console.log(attendees)
+//      console.log(new PicnicEvent(summary, location, description, start, end, attendees))
+//      return new PicnicEvent(summary, location, description, start, end, attendees)
+// })
+
+
+
+
+
+module.exports= {PicnicEvent, buildParams,createEndTime}
 
 
 

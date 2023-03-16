@@ -138,3 +138,202 @@ calendar.freebusy.query({
 //     client_email: process.env.GOOGLE_CLIENT_EMAIL
 //   }
 // });
+// const oAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID,process.env.GOOGLE_CLIENT_SECRET)
+// // consider access token, read docs again dummy SDK
+// oAuth2Client.setCredentials({refresh_token: process.env.GOOGLE_REFRESH_TOKEN})
+// const calendar = google.calendar({version:'v3', auth: oAuth2Client})
+
+// const eventStartTime = new Date()
+// // sets date for TOMORROW
+// eventStartTime.setDate(eventStartTime.getDay() + 2)
+
+
+// const eventEndTime = new Date()
+// // set end time to same day
+// eventEndTime.setDate(eventEndTime.getDay() + 2)
+// // set minutes to 45 minutes
+// eventEndTime.setMinutes(eventEndTime.getMinutes() + 60)
+
+// // minimum requirements for  event object
+// const event = {
+//     summary: 'Picnic with the Bunch',
+//     location: '1327 Snyder Ave, Philadelphia, PA 19148',
+//     description: 'have a picnic with all your friends!',
+//     start: {
+//         dateTime: eventStartTime,
+//         timeZone: 'America/Denver'
+//     },
+//     end: { dateTime:eventEndTime,
+//         timeZone: 'America/Denver'
+//     },
+//     // optional color id
+//     colorId:1
+// }
+// // free busy query (no way we'll need this for MVP)
+// calendar.freebusy.query({
+//     resource: {
+//         // are there any prescheduled events in this time block?
+//         timeMin: eventStartTime,
+//         timeMax: eventEndTime,
+//         timeZone: 'America/Denver',
+//         // array of all calendars to query. if user has more than primary calendar, insert list of all calendar ID's
+//         items: [{id:'primary'}]
+//     }
+// }, (err, res) =>{
+//     if (err) return console.error('query error', err)
+//     // events is an array 
+//     const events = res.data.calendars.primary.busy
+//     if (events.length === 0 ) return calendar.events.insert({calendarId:'primary', resource: event} ,(err)=> {
+//         if (err) return console.error('insiide the error message', err)
+
+//         return console.log('event created')
+//     })
+//     return console.log('sorry, busy ')
+// } )
+
+//  datetime format "2023-03-04T16:49:00.827Z"
+
+const fs = require('fs').promises;
+// const path = require('path');
+// const process = require('process');
+// const {authenticate} = require('@google-cloud/local-auth');
+// const {google} = require('googleapis');
+
+// // If modifying these scopes, delete token.json.
+// const SCOPES = ['https://www.googleapis.com/auth/calendar'];
+// // The file token.json stores the user's access and refresh tokens, and is
+// // created automatically when the authorization flow completes for the first
+// // time.
+// const TOKEN_PATH = path.join(process.cwd(), 'token.json');
+// const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+
+// /**
+//  * Reads previously authorized credentials from the save file.
+//  *
+//  * @return {Promise<OAuth2Client|null>}
+//  */
+// async function loadSavedCredentialsIfExist() {
+//   try {
+//     const content = await fs.readFile(TOKEN_PATH);
+//     const credentials = JSON.parse(content);
+//     return google.auth.fromJSON(credentials);
+//   } catch (err) {
+//     return null;
+//   }
+// }
+
+// /**
+//  * Serializes credentials to a file compatible with GoogleAUth.fromJSON.
+//  *
+//  * @param {OAuth2Client} client
+//  * @return {Promise<void>}
+//  */
+// async function saveCredentials(client) {
+//   const content = await fs.readFile(CREDENTIALS_PATH);
+//   const keys = JSON.parse(content);
+//   const key = keys.installed || keys.web;
+//   const payload = JSON.stringify({
+//     type: 'authorized_user',
+//     client_id: key.client_id,
+//     client_secret: key.client_secret,
+//     refresh_token: client.credentials.refresh_token,
+//   });
+//   await fs.writeFile(TOKEN_PATH, payload);
+// }
+
+// /**
+//  * Load or request or authorization to call APIs.
+//  *
+//  */
+// async function authorize() {
+//   let client = await loadSavedCredentialsIfExist();
+//   if (client) {
+//     return client;
+//   }
+//   client = await authenticate({
+//     scopes: SCOPES,
+//     keyfilePath: CREDENTIALS_PATH,
+//   });
+//   if (client.credentials) {
+//     await saveCredentials(client);
+//   }
+//   return client;
+// }
+
+// /**
+//  * Lists the next 10 events on the user's primary calendar.
+//  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+//  */
+// async function createEvents(auth) {
+//   const calendar = google.calendar({version: 'v3', auth});
+//   const event = {
+//     'summary': 'Google I/O 2015',
+//     'location': '800 Howard St., San Francisco, CA 94103',
+//     'description': 'A chance to hear more about Google\'s developer products.',
+//     'start': {
+//       'dateTime': '2015-05-28T09:00:00-07:00',
+//       'timeZone': 'America/Los_Angeles',
+//     },
+//     'end': {
+//       'dateTime': '2015-05-28T17:00:00-07:00',
+//       'timeZone': 'America/Los_Angeles',
+//     },
+//     'recurrence': [
+//       'RRULE:FREQ=DAILY;COUNT=2'
+//     ],
+//     'attendees': [
+//       {'email': 'lpage@example.com'},
+//       {'email': 'sbrin@example.com'},
+//     ],
+//     'reminders': {
+//       'useDefault': false,
+//       'overrides': [
+//         {'method': 'email', 'minutes': 24 * 60},
+//         {'method': 'popup', 'minutes': 10},
+//       ],
+//     },
+//   };
+  
+//   calendar.events.insert({
+//     auth: auth,
+//     calendarId: 'primary',
+//     resource: event,
+//   }, function(err, event) {
+//     if (err) {
+//       console.log('There was an error contacting the Calendar service: ' + err);
+//       return;
+//     }
+//     console.log('Event created: %s', event.data);
+//     fs.writeFile('test.json',JSON.stringify(event),err=> {
+//       if(err){
+//         console.log(err)
+//       }
+//      } )
+//   });
+// }
+
+// authorize().then(createEvents).catch(console.error);
+
+
+// async function listEvents(auth) {
+//   const calendar = google.calendar({version: 'v3', auth});
+//   const res = await calendar.events.list({
+//     calendarId: 'primary',
+//     timeMin: new Date().toISOString(),
+//     maxResults: 10,
+//     singleEvents: true,
+//     orderBy: 'startTime',
+//   });
+//   const events = res.data.items;
+//   if (!events || events.length === 0) {
+//     console.log('No upcoming events found.');
+//     return;
+//   }
+//   console.log('Upcoming 10 events:');
+//   events.map((event, i) => {
+//     const start = event.start.dateTime || event.start.date;
+//     console.log(`${start} - ${event.summary}`);
+//   });
+// }
+
+// authorize().then(listEvents).catch(console.error);
