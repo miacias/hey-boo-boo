@@ -1,16 +1,22 @@
+// JS file for both login and signup functionality.//
+
 const signupForm = document.querySelector('#signup-form');
 const loginForm = document.querySelector('#login-form');
 
 
 async function handleSignup(event) {
   event.preventDefault();
-  // collects user data
-  const userNameValue = document.querySelector('#username-signup').value.trim();
-  const passwordValue = document.querySelector('#password-signup').value.trim();
-  const emailValue = document.querySelector('#email-signup').value.trim();
+
+  const firstNameValue = document.querySelector('#registerFirstName').value.trim();
+  const lastNameValue = document.querySelector('#registerLastName').value.trim();
+  const emailValue = document.querySelector('#registerEmail').value.trim();
+  const passwordValue = document.querySelector('#registerPassword').value.trim();
+  const repeatPassword = document.querySelector('#registerRepeatPassword').value.trim();
+
 
   const newUser = {
-    username: userNameValue,
+    firstName: firstNameValue,
+    lastName: lastNameValue,
     email: emailValue,
     password: passwordValue,
   };
@@ -22,9 +28,14 @@ async function handleSignup(event) {
       'content-type': 'application/json',
     },
   });
+  if (passwordValue != repeatPassword) {
+    alert("The passwords must match!")
+    signupForm.reset();
+  }
   if (response.ok) {
-    await document.location.replace('/');
-  } else {
+    document.location.replace('/');
+  }
+  else {
     alert('Failed to sign up. Please try again.');
   }
 

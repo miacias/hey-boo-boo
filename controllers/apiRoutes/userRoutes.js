@@ -7,9 +7,10 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models
 router.post('/signup', async (req, res) => {
   try {
     // collects user data
+    console.log("hey")
     const userData = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     });
@@ -49,7 +50,7 @@ router.post('/login', async (req, res) => {
       req.session.first_name = userData.dataValues.first_name;
       req.session.last_name = userData.dataValues.last_name;
       res.json({ user: userData, message: 'You have logged in successfully.' });
-     
+
     });
   } catch (err) {
     res.status(400).json(err);
