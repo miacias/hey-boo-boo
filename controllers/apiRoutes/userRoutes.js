@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
-// Parent route is /api/users
+// parent route is /api/users
 
 // handles sign up for new users
 router.post('/signup', async (req, res) => {

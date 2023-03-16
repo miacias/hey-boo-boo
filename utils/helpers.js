@@ -1,4 +1,7 @@
 module.exports = {
+    password_length: () => {
+
+    },
     // formats date for handlebars views
     format_time: (date) => {
         const timestamp = new Intl.DateTimeFormat("en", {

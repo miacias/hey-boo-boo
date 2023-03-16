@@ -1,15 +1,80 @@
-<div>
-    {{home}}
-    <div>PICNIC TITLE</div>
-    <div> participants</div>
-    <div>DATE:</div>
-    <div>location:</div>
-    
-    <div>
-        Food LIST
+<section class="p-4">
+    <h3 class="text-center" id="join-friends">Join Friends!</h3>
+</section>
+<section class="m-3">
+    <div class="row">
+        {{!-- users can create a new picnic --}}
+        <div class="create-new-picnic col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Create a new picnic</h4>
+                    <form class="new-picnic-form" id="{{userId}}">
+                        <div class="name">
+                            <label for="new-picnic-name"></label>
+                            <input id="new-picnic-name" type="text" placeholder="Name Your Picnic">
+                        </div>
+                        <div class="address">
+                            <label for="new-picnic-address"></label>
+                            <input id="new-picnic-address" type="text" placeholder="Address">
+                        </div>
+                        <div class="date">
+                            <label for="new-picnic-date"></label>
+                            <input id="new-picnic-date" type="text" placeholder="Date">
+                        </div>
+                        <div class="time">
+                            <label for="new-picnic-time"></label>
+                            <input id="new-picnic-time" type="text" placeholder="Start Time">
+                        </div>
+                        <div class="password">
+                            <label for="new-picnic-password"></label>
+                            <input id="new-picnic-password" type="text" placeholder="Set a Password!">
+                        </div>
+                        <div class="password-check">
+                            <label for="new-picnic-password-check"></label>
+                            <input id="new-picnic-password-check" type="text" placeholder="Verify Password">
+                        </div>
+                        {{!-- submit button and modal trigger --}}
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                            <a href="/api/new-picnic/create" class="create-picnic btn btn-primary">Get Cookin'</a>
+                        </button>
+                    </form>
+                    {{!-- password check modal --}}
+                    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passCheckModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="passCheckModal">Invalid Password</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Password must be at least 8 characters in length.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- users can join an existing picnic --}}
+        <div class="join-new-picnic col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Join someone's picnic</h4>
+                    <form class="new-picnic-form" id="{{userId}}">
+                        <div class="picnic-code">
+                            <label for="join-picnic-code"></label>
+                            <input id="join-picnic-code" type="text" placeholder="Picnic Code">
+                        </div>
+                        <div class="password">
+                            <label for="join-picnic-password"></label>
+                            <input id="join-picnic-password" type="text" placeholder="Password from Host">
+                        </div>
+                        <a href="/api/new-picnic/join" class="join-picnic btn btn-primary">See my friends</a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div> ALLERGIES</div>
+</section>
 
-</div>
-
-<script src= '/js/picnic.js'></script>
+<script src='/js/newPicnic.js'></script>

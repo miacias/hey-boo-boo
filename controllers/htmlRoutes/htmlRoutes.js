@@ -3,7 +3,7 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models
 const withAuth = require('../../utils/auth.js');
 
 
-// get logged in home page
+// render logged in home page
 router.get('/', async (req, res) => {
     console.log("GET: home", req.session.user_id, req.session.logged_in);
     try {
