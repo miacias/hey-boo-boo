@@ -30,7 +30,7 @@ router.get('/login', (req, res) => {
 });
 
 // renders all picnics one user is attending
-router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
+router.get('/my-picnics', withAuth, async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
         // finds all picnics user is invited to
@@ -81,7 +81,7 @@ router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
 });
 
 // renders new-picnic page to allow user to create or join an event
-router.get('/new-picnic', async (req, res) => {
+router.get('/new-picnic', withAuth, async (req, res) => {
     console.log("GET: new-picnic", req.session.user_id, req.session.logged_in);
     try {
         res.render('newPicnic', {
