@@ -6,7 +6,7 @@ const oAuth2Client = new OAuth2(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
   // redirect URL
-  "http://localhost:3001/api/goog/callback"
+  process.env.GOOGLE_REDIRECT
 );
 
 //  this route creates url for google auth pages
