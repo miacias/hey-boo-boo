@@ -1,6 +1,8 @@
 const createBtn = document.querySelector('.create-picnic');
 const joinBtn = document.querySelector('.join-picnic');
 
+
+
 const createPicnic = async (event) => {
     event.preventDefault();
     const newPicnic = {
@@ -33,6 +35,13 @@ const createPicnic = async (event) => {
         method: 'POST',
         headers: { 'content-type': 'application/json' }
     });
+    console.log(response)
+    if (response.ok) {
+        document.location.replace('/my-picnics');
+        // document.location.replace(`${/*the new picnic name*/}`);
+    } else {
+        alert('Failed to create event. Please try again.');
+    }
 };
 
 const joinPicnic = (event) => {
@@ -40,5 +49,27 @@ const joinPicnic = (event) => {
 
 };
 
+
+
+// autocomplete for addresses
+window.onload = function () {
+    // var input = document.getElementById('new-picnic-address');
+    let input = document.getElementById('pac-input');
+    const options = {
+        fields: ["formatted_address", "geometry", "name"],
+        strictBounds: false,
+        types: ["street_address"],
+    };
+    let autocomplete = new google.maps.places.Autocomplete(input, options);
+    
+
+
+    google.maps.event.addEventListener(autocomplete, 'place_changed', function () {
+        const near_place = autocomplete.getPlace();
+    })
+}
+
+
+// google.maps.event.addDomListener(window, 'load', initialize);
 createBtn.addEventListener('click', createPicnic);
 joinBtn.addEventListener('click', joinPicnic);

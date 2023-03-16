@@ -32,7 +32,9 @@ router.post('/create', async (req, res) => {
             password: /*req.body.password*/ "password",
             creator_role: /*req.session.user_id*/ 2
         });
-        console.log(newPicnic)
+        // res.send(newPicnic)
+        res.status(200).json(newPicnic);
+        // console.log(newPicnic)
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

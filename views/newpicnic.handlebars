@@ -13,29 +13,33 @@
                             <label for="new-picnic-name"></label>
                             <input id="new-picnic-name" type="text" placeholder="Name Your Picnic">
                         </div>
-                        <div class="address">
+                        {{!-- google address autocomplete field --}}
+                        <div id="pac-container">
+                            <input id="pac-input" type="text" placeholder="Enter an address" />
+                        </div>
+                        {{!-- <div class="address">
                             <label for="new-picnic-address"></label>
                             <input id="new-picnic-address" type="text" placeholder="Address">
-                        </div>
+                        </div> --}}
                         <div class="date">
                             <label for="new-picnic-date"></label>
-                            <input id="new-picnic-date" type="text" placeholder="Date">
+                            <input id="new-picnic-date" type="date" placeholder="Date">
                         </div>
                         <div class="time">
                             <label for="new-picnic-time"></label>
-                            <input id="new-picnic-time" type="text" placeholder="Start Time">
+                            <input id="new-picnic-time" type="time" placeholder="Start Time">
                         </div>
                         <div class="password">
                             <label for="new-picnic-password"></label>
-                            <input id="new-picnic-password" type="text" placeholder="Set a Password!">
+                            <input id="new-picnic-password" type="password" placeholder="Set a Password!">
                         </div>
                         <div class="password-check">
                             <label for="new-picnic-password-check"></label>
-                            <input id="new-picnic-password-check" type="text" placeholder="Verify Password">
+                            <input id="new-picnic-password-check" type="password" placeholder="Verify Password">
                         </div>
                         {{!-- submit button and modal trigger --}}
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                            <a href="/api/new-picnic/create" class="create-picnic btn btn-primary">Get Cookin'</a>
+                            <a href="#" class="create-picnic btn btn-primary">Get Cookin'</a>
                         </button>
                     </form>
                     {{!-- modal: password check --}}
@@ -60,7 +64,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Join someone's picnic</h4>
-                    <form class="new-picnic-form" id="{{userId}}">
+                    <form class="new-picnic-form" id="">
                         <div class="picnic-code">
                             <label for="join-picnic-code"></label>
                             <input id="join-picnic-code" type="text" placeholder="Picnic Code">
@@ -76,5 +80,11 @@
         </div>
     </div>
 </section>
+<script id="google" src=""
+      defer></script>
 
+{{!-- <script src="/js/googleMap.js"></script> --}}
+{{!-- Google Maps jQuery controls --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{{!-- <script src="/js/test-map.js"></script> --}}
 <script src='/js/newPicnic.js'></script>

@@ -33,8 +33,7 @@ async function handleSignup(event) {
   });
   if (response.ok) {
     document.location.replace('/');
-  }
-  else {
+  } else {
     alert('Failed to sign up. Please try again.');
   }
   signupForm.reset();

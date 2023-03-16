@@ -33,27 +33,42 @@ router.get('/login', (req, res) => {
 router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
-        // finds all picnics for one user
-        const myPicnics = await Picnic.findAll({
+        // finds all picnics user is invited to
+        const iAmInvited = await Picnic.findAll({
             include: {
                 model: User,
                 through: PicnicUser,
             },
             where: {
-                id: /* req.session.user_id */  3
+                id: req.session.user_id
             },
-            order: [['start_time', 'DESC']],
+            order: [['start_time', 'DESC']]
         });
-        if (!myPicnics) {
+        // finds all picnics user is hosting
+        const iAmHosting = await Picnic.findAll({
+            include: {
+                model: User,
+                through: PicnicUser,
+            },
+            where: {
+                creator_role: req.session.user_id
+            },
+            order: [['start_time', 'DESC']]
+        })
+        if (!iAmInvited && !iAmHosting) {
             res.status(404).json({ message: 'No picnics available' });
             return;
         }
-        const picnics = myPicnics.map((picnic) => {
+        const attending = iAmInvited.map((picnic) => {
             return picnic.get({ plain: true });
         });
-        console.log(picnics)
+        const hosting = iAmHosting.map((picnic) => {
+            return picnic.get({plain: true});
+        });
+        // console.log(attending, hosting)
         res.render('myPicnics', {
-            picnics,
+            attending,
+            hosting,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,

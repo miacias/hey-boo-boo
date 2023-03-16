@@ -7,7 +7,6 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models
 router.post('/signup', async (req, res) => {
   try {
     // collects user data
-    console.log("hey")
     const userData = await User.create({
       first_name: req.body.firstName,
       last_name: req.body.lastName,
