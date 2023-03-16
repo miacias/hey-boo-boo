@@ -1,7 +1,7 @@
 const createBtn = document.querySelector('.create-picnic');
 const joinBtn = document.querySelector('.join-picnic');
 
-const createPicnic = (event) => {
+const createPicnic = async (event) => {
     event.preventDefault();
     const newPicnic = {
         newName: document.querySelector('#new-picnic-name').value.trim(),
@@ -11,10 +11,28 @@ const createPicnic = (event) => {
         newPassword: document.querySelector('#new-picnic-password').value.trim(),
         passCheck: document.querySelector('#new-picnic-password-check').value.trim()
     }
-    if (newPicnic.newPassword.length < 8) {
-        
-        return;
-    }
+    // const modal = document.querySelector('.modal-container');
+    // const closeModal = document.querySelector('.close-pass-check');
+    // if (newPicnic.newPassword.length < 8) {
+    //     // document.querySelector('.modal').showModal();
+    //     modal.style.visibility = 'visible';
+    //     closeModal.addEventListener('click', () => {
+    //         closeModal.style.visibility = 'hidden';
+    //     });
+    //     window.addEventListener('click', (event) => {
+    //         if (event.target == modal) {
+    //             modal.style.visibility = 'hidden';
+    //         }
+    //     })
+    //     return;
+    // } else {
+    //     modal.style.visibility = 'hidden';
+    // }
+    const response = await fetch('/api/new-picnic/create', {
+        body: JSON.stringify(newPicnic),
+        method: 'POST',
+        headers: { 'content-type': 'application/json' }
+    });
 };
 
 const joinPicnic = (event) => {

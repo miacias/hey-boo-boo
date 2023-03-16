@@ -19,6 +19,11 @@ async function handleSignup(event) {
     email: emailValue,
     password: passwordValue,
   };
+  // security against user incorrectly typing new password
+  if (passwordValue !== repeatPassword) {
+    alert("The passwords must match!")
+    signupForm.reset();
+  }
   const response = await fetch('/api/users/signup', {
     body: JSON.stringify(newUser),
     method: 'POST',
@@ -26,11 +31,6 @@ async function handleSignup(event) {
       'content-type': 'application/json',
     },
   });
-  // security against user incorrectly typing new password
-  if (passwordValue != repeatPassword) {
-    alert("The passwords must match!")
-    signupForm.reset();
-  }
   if (response.ok) {
     document.location.replace('/');
   }

@@ -38,13 +38,13 @@
                             <a href="/api/new-picnic/create" class="create-picnic btn btn-primary">Get Cookin'</a>
                         </button>
                     </form>
-                    {{!-- password check modal --}}
-                    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passCheckModal" aria-hidden="true">
+                    {{!-- modal: password check --}}
+                    <div class="modal fade hide" id="passwordModal" tabindex="-1" aria-labelledby="passCheckModal" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="passCheckModal">Invalid Password</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close close-pass-check" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Password must be at least 8 characters in length.</p>
