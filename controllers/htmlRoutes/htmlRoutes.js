@@ -84,7 +84,7 @@ router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
         const picnics = myPicnics.map((picnic) => {
             return picnic.get({ plain: true });
         });
-        console.log(picnics)
+        // console.log(picnics)
         res.render('myPicnics', {
             picnics,
             loggedIn: req.session.logged_in,
@@ -132,28 +132,5 @@ router.get('/new-picnic', async (req, res) => {
     }
 });
 
-// find all users attending one picnic
-// NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
-// need to add food-related stuff
-router.get('/my-picnics/:picnic', async (req, res) => {
-    try {
-        const allAttendees = await Picnic.findOne({
-            where: { id: /*req.params.id*/ '1' },
-            include: {
-                model: User,
-                through: PicnicUser,
-            },
-        });
-        const creator = allAttendees.dataValues.creator_role;
-        const host = await User.findOne({
-            where: { id: creator }
-        });
-        console.log(host)
-        console.log(allAttendees)
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
 
 module.exports = router;

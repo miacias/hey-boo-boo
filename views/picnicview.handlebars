@@ -2,11 +2,39 @@
 
 <div class="card">
   <div class="card-header">
-    Featured
+    Event: {{allAttendees.dataValues.event_name}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">When: {{format_time allAttendees.dataValues.start_time}}</h5>
+    <h6>Where: {{allAttendees.dataValues.address}}</h6>
+    <h6>Host: {{host.dataValues.first_name}} {{host.dataValues.last_name}}</h6>
+    <a class="btn btn-primary" href="/my-picnics">Go back to My Picnics</a>
+    <p>🐻🍽️</p>
+    <p>So who's bringing what?!</p>
   </div>
 </div>
+
+<ol class="list-group list-group-numbered">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      {{!-- This doesn't work yet! --}}
+      <div class="fw-bold">Honey!</div>
+      Cindy {{allAttendees.dataValues.users.first_name}}
+    </div>
+    <span class="badge bg-primary rounded-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Subheading</div>
+      Content for list item
+    </div>
+    <span class="badge bg-primary rounded-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Subheading</div>
+      Content for list item
+    </div>
+    <span class="badge bg-primary rounded-pill">14</span>
+  </li>
+</ol>

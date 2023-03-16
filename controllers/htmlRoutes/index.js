@@ -4,7 +4,7 @@ const picnicRoutes = require('./picnicRoutes');
 
 
 router.use('/', htmlRoutes);
-router.use('/picnic', picnicRoutes);
+router.use('/my-picnics', picnicRoutes);
 
 
 module.exports = router;
