@@ -52,19 +52,21 @@ const myPicnics =  Picnic.findAll({
     
 })
 const SQLDateTime = '2023-03-14T16:04:56.000Z'
-function convertDateTime(SQLDateTime){
-    const newDateTime = SQLDateTime.slice(0,19);
-    const googleDateTime = newDateTime.concat('-05:00')
-    return googleDateTime
-}
-const googleDateTime =convertDateTime(SQLDateTime)
-console.log(googleDateTime)
-function createEndTime(googleDateTime){
-    const dateTime = new Date(googleDateTime);
+// this function is no longer needed
+// function convertDateTime(SQLDateTime){
+//     const newDateTime = SQLDateTime.slice(0,19);
+//     const googleDateTime = newDateTime.concat('-05:00')
+//     return googleDateTime
+// }
+// const googleDateTime =convertDateTime(SQLDateTime)
+// console.log(googleDateTime)
+//  used Date to set new time to two hours later.
+function createEndTime(startTime){
+    const dateTime = new Date(startTime);
     dateTime.setHours(dateTime.getHours() + 2);
     return dateTime.toISOString();
 }
-console.log(createEndTime(googleDateTime))
+// console.log(createEndTime(googleDateTime))
 // myPicnics returns a promise, use a .then() to render the resulting object, and assign its properties to variables to be passed into
 // the build params function and fed to a new picnic event object to be sent to calendar api.
     myPicnics.then((data)=>{
@@ -72,11 +74,13 @@ console.log(createEndTime(googleDateTime))
     const thisPicnic = data[0].dataValues
     const summary = thisPicnic.event_name;
     const location = thisPicnic.address;
-    const start = `{'dateTime':${thisPicnic.start_time},'timeZone': 'America/New_York',}`
+    const description = summary
+    const start = `{'dateTime':${new Date(thisPicnic.start_time).toISOString()},'timeZone': 'America/New_York',}`
+    const end =`{'dateTime':${createEndTime(thisPicnic.start_time)},'timeZone': 'America/New_York',}` 
     const attendees =thisPicnic.users
-    const newEvent = {summary, location, summary, start, start}
-    // console.log(thisPicnic.start_time)
-    // console.log(new PicnicEvent(summary, location, summary, start, start))
+    const newEvent = {summary, location, summary, start, end}
+    
+    console.log(new PicnicEvent(summary, location, description, start, end))
 })
 // ))
 
