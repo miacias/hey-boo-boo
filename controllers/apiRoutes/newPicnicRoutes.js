@@ -1,11 +1,16 @@
 const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
-// JOIN PICNIC: assigns existing user (session) to an existing picnic
+/*
+When sending values to Sequelize, use camel case...
+...UNLESS setting foreign keys manually, then use that name.
+Sequelize changes values to snake case.
+*/
+
+
+// assigns existing user (session) to an existing picnic
 router.post('/join', async (req, res) => {
     try {
-        // when inserting values to Sequelize, need to use camel case UNLESS setting foreign keys manually, then use that name
-        // Sequelize changes values to snake case
         const newAttendee = await PicnicUser.create({
             picnicId: /*req.body.address*/ 1,
             userId: /*req.body.address*/ 3
@@ -17,7 +22,7 @@ router.post('/join', async (req, res) => {
     }
 });
 
-// CREATE PICNIC: creates a new picnic and assigns session user as creator
+// creates a new picnic and assigns session user as creator
 router.post('/create', async (req, res) => {
     try {
         const newPicnic = await Picnic.create({

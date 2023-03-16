@@ -67,56 +67,14 @@ router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
 
 // renders new-picnic page to allow user to create or join an event
 router.get('/new-picnic', async (req, res) => {
-    console.log("GET: home", req.session.user_id, req.session.logged_in);
+    console.log("GET: new-picnic", req.session.user_id, req.session.logged_in);
     try {
-        const allMyPicnics = await User.findAll({
-            // attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
-            include: {
-                model: Picnic,
-                through: PicnicUser
-                // attributes: ['id', 'first_name', 'last_name']
-            },
-            // where: { userId: req.session.user_id },
-            // order: [['start_time', 'DESC']],
-        });
-        if (!allMyPicnics) {
-            res.status(404).json({ message: 'No picnics available' });
-            return;
-        }
-        const home = allMyPicnics.map((picnic) => {
-            return picnic.get({ plain: true });
-        });
-        res.render('newpicnic', {
-            home,
+        res.render('newPicnic', {
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
             lastName: req.session.last_name
         });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
-
-// find all users attending one picnic
-// NEED TO MAKE A SECOND QUERY TO FIND USER DATA FOR CREATOR_ROLE
-// need to add food-related stuff
-router.get('/my-picnics/:picnic', async (req, res) => {
-    try {
-        const allAttendees = await Picnic.findOne({
-            where: { id: /*req.params.id*/ '1' },
-            include: {
-                model: User,
-                through: PicnicUser,
-            },
-        });
-        const creator = allAttendees.dataValues.creator_role;
-        const host = await User.findOne({
-            where: { id: creator }
-        });
-        console.log(host)
-        console.log(allAttendees)
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
