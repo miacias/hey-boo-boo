@@ -19,7 +19,7 @@
     <div class="ms-2 me-auto">
       {{!-- This doesn't work yet! --}}
       <div class="fw-bold">Honey!</div>
-      Cindy {{allAttendees.dataValues.users.first_name}}
+      {{allAttendees.dataValues.users.[0].dataValues.first_name}} {{allAttendees.dataValues.users.[0].dataValues.last_name}}
     </div>
     <span class="badge bg-primary rounded-pill">14</span>
   </li>
