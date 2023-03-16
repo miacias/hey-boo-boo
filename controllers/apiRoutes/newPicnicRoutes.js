@@ -26,15 +26,15 @@ router.post('/join', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const newPicnic = await Picnic.create({
-            event_name: /*req.body.event_name*/ "party",
-            address: /*req.body.address*/ "123 hello st",
-            // start_time: /*req.body.start_time*/,
-            password: /*req.body.password*/ "password",
-            creator_role: /*req.session.user_id*/ 2
+            event_name: req.body.event_name,
+            address: req.body.address,
+            start_time: req.body.start_time,
+            password: req.body.password,
+            creator_role: req.session.user_id
         });
-        // res.send(newPicnic)
+        console.log(newPicnic)
+        // res.send(newPicnic) // for testing via Insomnia
         res.status(200).json(newPicnic);
-        // console.log(newPicnic)
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
