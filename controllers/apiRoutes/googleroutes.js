@@ -1,13 +1,17 @@
 const router = require("express").Router();
 const { google } = require("googleapis");
-const { OAuth2 } = google.auth;
+const oAuth2Client = require('../../GoogAPI/oauth');
 
-const oAuth2Client = new OAuth2(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  // redirect URL
-  process.env.GOOGLE_REDIRECT
-);
+
+// const URL = process.env.GOOGLE_REDIRECT ? process.env.GOOGLE_REDIRECT :  "http://localhost:3001/api/goog/callback";
+// const oAuth2Client = new OAuth2(
+//   process.env.GOOGLE_CLIENT_ID,
+//   process.env.GOOGLE_CLIENT_SECRET,
+//   // redirect URL
+//   // process.env.GOOGLE_REDIRECT
+//   // "http://localhost:3001/api/goog/callback"
+//   URL
+// );
 
 //  this route creates url for google auth pages
 router.get("/token", async (req, res) => {
