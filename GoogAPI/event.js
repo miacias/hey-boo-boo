@@ -51,13 +51,22 @@ const myPicnics =  Picnic.findAll({
     order: [['start_time', 'DESC']],
     
 })
-
-
-// const picnics = myPicnics.map((picnic) => {
-//     return picnic.get({ plain: true });
-// });
-
-// const picnic3 = new PicnicEvent(...buildParams(
+const SQLDateTime = '2023-03-14T16:04:56.000Z'
+function convertDateTime(SQLDateTime){
+    const newDateTime = SQLDateTime.slice(0,19);
+    const googleDateTime = newDateTime.concat('-05:00')
+    return googleDateTime
+}
+const googleDateTime =convertDateTime(SQLDateTime)
+console.log(googleDateTime)
+function createEndTime(googleDateTime){
+    const dateTime = new Date(googleDateTime);
+    dateTime.setHours(dateTime.getHours() + 2);
+    return dateTime.toISOString();
+}
+console.log(createEndTime(googleDateTime))
+// myPicnics returns a promise, use a .then() to render the resulting object, and assign its properties to variables to be passed into
+// the build params function and fed to a new picnic event object to be sent to calendar api.
     myPicnics.then((data)=>{
     // console.log(data[0])
     const thisPicnic = data[0].dataValues
@@ -66,8 +75,8 @@ const myPicnics =  Picnic.findAll({
     const start = `{'dateTime':${thisPicnic.start_time},'timeZone': 'America/New_York',}`
     const attendees =thisPicnic.users
     const newEvent = {summary, location, summary, start, start}
-    console.log(newEvent)
-    console.log(new PicnicEvent(summary, location, summary, start, start))
+    // console.log(thisPicnic.start_time)
+    // console.log(new PicnicEvent(summary, location, summary, start, start))
 })
 // ))
 

@@ -31,12 +31,12 @@ router.get("/callback", async (req, res) => {
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
-      'dateTime': '2023-05-28T09:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
+      'dateTime': '2023-03-14T23:04:56.000Z',
+      'timeZone': 'America/New_York',
     },
     'end': {
-      'dateTime': '2023-05-28T17:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
+      'dateTime': '2023-03-14T23:04:56.000Z',
+      'timeZone': 'America/New_York',
     },
     'recurrence': [
       'RRULE:FREQ=DAILY;COUNT=2'
