@@ -7,6 +7,13 @@ module.exports = {
         }).format(date);
         return timestamp;
     },
+    myPicnicsUrl: (url) => {
+        if (url === '/my-picnics') {
+            return true;
+        } else {
+            return false;
+        }
+    },
     // randomly selects vertical image from provided list
     verticalPhoto: () => {
         const verticalPhotos = [

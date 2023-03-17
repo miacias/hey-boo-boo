@@ -14,7 +14,7 @@
         <p class="address card-text"><small>{{address}}</small></p>
       </div>
       <div>
-        <button class="invite-link" id="{{id}}">Copy Picnic Code</button>
+        <button type="button" class="invite-link btn btn-lg btn-danger" id="{{id}}" data-bs-toggle="popover" data-bs-title="Copied your code!" data-bs-content="Share {{id}} with your friends to join your event!">Copy Picnic Code</button>
       </div>
     </div>
     {{/each}}
@@ -42,4 +42,4 @@
     {{!-- data inside this DIV --}}
   </div>
 </section>
-<script src="/js/myPicnics.js"></script>
+

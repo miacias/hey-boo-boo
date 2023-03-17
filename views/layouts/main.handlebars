@@ -58,20 +58,17 @@
       <span class="badges">
         <img alt="GitHub contributors"
           src="https://img.shields.io/github/contributors/miacias/hey-boo-boo?color=%23A3D29B">
-        <img id="last-updated" alt="GitHub last commit"
+        <img id="last-updated" alt="GitHub last commit date"
           src="https://img.shields.io/github/last-commit/miacias/hey-boo-boo?color=%23A3D29B&label=Last%20updated">
       </span>
     </footer>
-    {{!-- script tags --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-      crossorigin="anonymous"></script>
+    {{!-- script tags: Popper.js first, Bootstrap.js next --}}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    {{#if (myPicnicsUrl url)}}
+    <script src="/js/myPicnics.js"></script>
+    {{/if}}
   </body>
 
 </html>

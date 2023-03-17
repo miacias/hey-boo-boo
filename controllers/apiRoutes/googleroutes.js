@@ -23,15 +23,14 @@ router.get("/token", async (req, res) => {
     // If you only need one scope you can pass it as a string
     scope: scopes,
   });
-  console.log(url);
   res.status(302).redirect(url);
 });
 
 router.get("/callback", async (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   const { tokens } = await oAuth2Client.getToken(req.query.code);
   oAuth2Client.setCredentials(tokens);
-  console.log(tokens);
+  // console.log(tokens);
   const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
   const event = {
     'summary': 'Google I/O 2015',

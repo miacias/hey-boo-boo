@@ -63,14 +63,14 @@ router.get('/my-picnics', withAuth, async (req, res) => {
         const hosting = iAmHosting.map((picnic) => {
             return picnic.get({ plain: true });
         });
-        // console.log(attending, hosting)
         res.render('myPicnics', {
             attending,
             hosting,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
-            lastName: req.session.last_name
+            lastName: req.session.last_name,
+            url: req.url
         });
     } catch (err) {
         console.error(err);
