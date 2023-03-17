@@ -3,7 +3,6 @@
 const signupForm = document.querySelector('#signup-form');
 const loginForm = document.querySelector('#login-form');
 
-
 async function handleSignup(event) {
   event.preventDefault();
 
@@ -28,17 +27,22 @@ async function handleSignup(event) {
       'content-type': 'application/json',
     },
   });
+
   if (passwordValue != repeatPassword) {
     alert("The passwords must match!")
     signupForm.reset();
   }
-  if (response.ok) {
+  
+  else if (response.ok) {
     document.location.replace('/');
   }
   else {
-    alert('Failed to sign up. Please try again.');
-  }
 
+    const test = await response.json();
+    const errorMessage = test.errors[0].message;
+    alert('Failed to sign up. Please try again. Error: ' + errorMessage);
+    
+  }
   signupForm.reset();
 }
 

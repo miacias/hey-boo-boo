@@ -20,7 +20,7 @@ body {
     font-family: var(--roboto-slab);
     font-size: x-large;
     line-height: 120%;
-    cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
+    cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'), auto;
 }
 
 nav {
@@ -89,7 +89,7 @@ hr {
 }
 
 .picnic-card-img {
-    height: 351px; 
+    height: 351px;
     object-fit: cover;
     filter: sepia(20%);
 }
@@ -120,9 +120,15 @@ a:visited,
 a:hover,
 a:active {
     text-decoration: none;
-    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'),auto;    
+    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'), auto;
 }
 
 .event-name a {
     color: var(--rich-black);
+}
+
+.login-photo {
+    height: 100%;
+    width: 100%;
+    object-fit: cover
 }
