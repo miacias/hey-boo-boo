@@ -12,13 +12,13 @@ Sequelize changes values to snake case.
 router.post('/join', async (req, res) => {
     try {
         // find picnic password
-        const getPassword = await Picnic.findOne({
+        const iAmInvited = await Picnic.findOne({
             where: {
                 id: req.body.id
             }
         });
         // verify picnic password is correct
-        const pass = await getPassword.checkPassword(req.body.password);
+        const pass = await iAmInvited.checkPassword(req.body.password);
         if (!pass) {
             res.status(404).json({message: 'Incorrect password. Please try again.'});
             return;
@@ -29,7 +29,7 @@ router.post('/join', async (req, res) => {
             userId: req.session.user_id
         });
         // all checks pass: add attendee to PicnicUser (i.e. event)
-        res.status(201).json(newAttendee);
+        res.status(201).json(iAmInvited.dataValues);
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
