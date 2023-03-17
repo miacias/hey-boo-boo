@@ -23,6 +23,7 @@ async function handleSignup(event) {
   if (passwordValue !== repeatPassword) {
     alert("The passwords must match!")
     signupForm.reset();
+    return;
   }
   const response = await fetch('/api/users/signup', {
     body: JSON.stringify(newUser),
