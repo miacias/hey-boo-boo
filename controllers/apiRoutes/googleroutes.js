@@ -4,9 +4,16 @@ const oAuth2Client = require('../../GoogAPI/oauth');
 const {PicnicEvent, buildParams,createEndTime,convertDateTime} = require('../../GoogAPI/event.js')
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+
+router.get('/newtab', async (req, res) =>{
+  res.send('<html><body><a href="http://localhost:3001/api/goog/token" target="_blank">add to calendar</a></body></html>');
+});
+
 //  this route creates url for google auth pages
-router.get("/token", async (req, res) => {
+router.get("/token/:id", async (req, res) => {
   // get a token from the google
+  // console.log(req.body)
+  console.log(req.params.id)
 
   // generate a url that asks permissions for Blogger and Google Calendar scopes
   const scopes = ["https://www.googleapis.com/auth/calendar"];
@@ -14,13 +21,13 @@ router.get("/token", async (req, res) => {
   const url = oAuth2Client.generateAuthUrl({
     // 'online' (default) or 'offline' (gets refresh_token)
     access_type: "offline",
-    state:'2',
+    // state: 3,
+    state:`${req.params.id}`,
 
     // If you only need one scope you can pass it as a string
     scope: scopes,
   });
-  console.log(url);
-  
+  // console.log(url);
   
   res.status(302).redirect(url) ;
 });
