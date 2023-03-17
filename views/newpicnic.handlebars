@@ -8,26 +8,31 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Create a new picnic</h4>
-                    <form class="create-picnic-form" id="{{userId}}">
+                    <form class="create-picnic-form m-2" id="{{userId}}">
                         <div class="name">
-                            <label for="new-picnic-name"></label>
+                            <label for="new-picnic-name">Event:</label>
                             <input id="new-picnic-name" type="text" placeholder="Name Your Picnic">
                         </div>
                         {{!-- google-aided autocomplete address field --}}
                         <div id="pac-container">
+                            <label for="new-picnic-address">Place:</label>
                             <input id="new-picnic-address" type="text" placeholder="Enter an address" />
                         </div>
                         <div class="date-time">
-                            <label for="new-picnic-time"></label>
+                            <label for="new-picnic-time">Time:</label>
                             <input id="new-picnic-time" type="datetime-local" placeholder="Start Time">
                         </div>
+                        {{!-- <div class="phone-number">
+                            <label for="new-picnic-phone">Receive secure sign up code:</label>
+                            <input id="new-picnic-phone" type="tel" placeholder="SMS +15556667777">
+                        </div> --}}
                         <div class="password">
-                            <label for="new-picnic-password"></label>
-                            <input id="new-picnic-password" type="password" placeholder="Set a Password!">
+                            <label for="new-picnic-password">Set password:</label>
+                            <input id="new-picnic-password" type="password" placeholder="8+ characters">
                         </div>
                         <div class="password-check">
-                            <label for="new-picnic-password-check"></label>
-                            <input id="new-picnic-password-check" type="password" placeholder="Verify Password">
+                            <label for="new-picnic-password-check">Verify password:</label>
+                            <input id="new-picnic-password-check" type="password" placeholder="must match">
                         </div>
                         {{!-- submit button and modal trigger --}}
                         {{!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
@@ -60,12 +65,12 @@
                     <h4 class="card-title text-center">Join someone's picnic</h4>
                     <form class="join-picnic-form" >
                         <div class="picnic-code">
-                            <label for="join-picnic-code"></label>
-                            <input id="join-picnic-code" type="text" placeholder="Picnic Code">
+                            <label for="join-picnic-code">Event code:</label>
+                            <input id="join-picnic-code" type="text" placeholder="36+ characters">
                         </div>
                         <div class="password">
-                            <label for="join-picnic-password"></label>
-                            <input id="join-picnic-password" type="text" placeholder="Password from Host">
+                            <label for="join-picnic-password">Password from Host:</label>
+                            <input id="join-picnic-password" type="text" placeholder="must match">
                         </div>
                         <button type="button" class="join-picnic btn btn-primary">See my friends</button>
                     </form>
