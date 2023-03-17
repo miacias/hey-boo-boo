@@ -18,7 +18,7 @@ router.post('/join', async (req, res) => {
             }
         });
         // verify picnic password is correct
-        const pass = await iAmInvited.checkPassword(req.body.password);
+        const pass = iAmInvited.checkPassword(req.body.password);
         if (!pass) {
             res.status(404).json({message: 'Incorrect password. Please try again.'});
             return;
@@ -29,7 +29,7 @@ router.post('/join', async (req, res) => {
             userId: req.session.user_id
         });
         // all checks pass: add attendee to PicnicUser (i.e. event)
-        res.status(201).json(iAmInvited.dataValues);
+        res.status(201).json(newAttendee);
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

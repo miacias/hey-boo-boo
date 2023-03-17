@@ -29,11 +29,19 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// renders all picnics one user is attending
+// renders all picnics one user is hosting and attending
 router.get('/my-picnics', withAuth, async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
         // finds all picnics user is invited to
+        /*
+        
+            check on this query
+            is it possible that the router.post(/join)
+            is JOINING as a host instead of attendee?
+            
+        
+        */
         const iAmInvited = await Picnic.findAll({
             include: {
                 model: User,
