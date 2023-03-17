@@ -29,7 +29,7 @@ class PicnicEvent {
 // },
 
 // }
- console.log(event)
+//  console.log(event)
 function buildParams(event){
     const params =[]
 for (const key in event){
@@ -38,7 +38,7 @@ for (const key in event){
 }
 return params
 }
-const picnic = new PicnicEvent(...buildParams(event))
+// const picnic = new PicnicEvent(...buildParams(event))
 // console.log(picnic)
 
 const myPicnics =  Picnic.findAll({
@@ -58,7 +58,7 @@ function convertDateTime(SQLDateTime){
     const googleDateTime = newDateTime.concat('-04:00')
     return googleDateTime
 }
-const googleDateTime =convertDateTime(SQLDateTime)
+// const googleDateTime =convertDateTime(SQLDateTime)
 
 
 //  used Date to set new time to two hours later.
@@ -68,7 +68,7 @@ function createEndTime(startTime){
     return dateTime.toISOString();
 }
 // console.log(myPicnics)
- console.log(createEndTime(googleDateTime))
+//  console.log(createEndTime(googleDateTime))
 // myPicnics returns a promise, use a .then() to render the resulting object, and assign its properties to variables to be passed into
 // the build params function and fed to a new picnic event object to be sent to calendar api.
 // IF MYPICNICS IS NOT A PROMISE USE THIS

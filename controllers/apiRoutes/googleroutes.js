@@ -60,11 +60,11 @@ const event1 = myPicnics.then((data)=>{
   const description = summary
   const start = {
     'dateTime':`${convertDateTime(new Date(thisPicnic.start_time).toISOString())}`,
-    'timeZone': 'America/Denver'
+    'timeZone': 'America/New_York'
   }
   const end ={
     'dateTime':`${convertDateTime(createEndTime(thisPicnic.start_time))}`,
-    'timeZone': 'America/Denver'} 
+    'timeZone': 'America/New_York'} 
   const attending =thisPicnic.users
   const attendees = []
   // console.log(attending)
