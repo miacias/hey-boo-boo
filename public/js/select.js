@@ -1,5 +1,3 @@
-console.log("connected");
-
 const add = document.querySelector(".addme");
 
 add.addEventListener("click", (event) => {
@@ -12,3 +10,5 @@ add.addEventListener("click", (event) => {
   
   window.open(`${window.location.origin}/api/goog/token/${id}`)
 });
+
+// this file takes care of grabbing the picnic ID that persists throughout the oAuth Processs.

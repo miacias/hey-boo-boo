@@ -2,32 +2,22 @@ const router = require("express").Router();
 const { google } = require("googleapis");
 const oAuth2Client = require("../../GoogAPI/oauth");
 const { PicnicEvent, googEventCreator } = require("../../GoogAPI/event.js");
-const {
-  User,
-  Picnic,
-  Food,
-  PicnicUser,
-  FoodPicnicUser,
-} = require("../../models");
 
-//  this route creates url for google auth pages
+//  this route creates url for google auth pages and requests an Access Token from Google. It stores the ID of a picnic as
+// a state so that data can persist throughout the authorization be passed to googEventCreator as an argument.
 router.get("/token/:id", async (req, res) => {
-  // get a token from the google
+  // get a toke
   console.log(req.params.id);
 
-  // generate a url that asks permissions for Blogger and Google Calendar scopes
+  // generate a url that asks permissions forGoogle Calendar scope
+  // 'online' (default) or 'offline' (gets refresh_token)
+  // If you only need one scope you can pass it as a string
   const scopes = ["https://www.googleapis.com/auth/calendar"];
-
   const url = oAuth2Client.generateAuthUrl({
-    // 'online' (default) or 'offline' (gets refresh_token)
     access_type: "offline",
-
     state: `${req.params.id}`,
-
-    // If you only need one scope you can pass it as a string
     scope: scopes,
   });
-
   res.status(302).redirect(url);
 });
 
@@ -39,8 +29,12 @@ router.get("/callback", async (req, res) => {
   oAuth2Client.setCredentials(tokens);
   console.log(tokens);
   const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
+  // calls the event creator to handle the DB query and create the event
+  // the ID argument comes back from google as a state which was defined inside of the previous route (/token/:id).
   const event = await googEventCreator(ID);
-  console.log("----------- ROUTER\n");
+  console.log(
+    "----------- ROUTER\n-----------------\nThis Object sent to Google\n"
+  );
   console.log(event);
 
   calendar.events.insert(
