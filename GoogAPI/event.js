@@ -15,26 +15,26 @@ class PicnicEvent {
 
 }
 
-const event = {
-'summary': 'Google I/O 2015',
-'location': '800 Howard St., San Francisco, CA 94103',
-'description': 'A chance to hear more about Google\'s developer products.',
-'start': {
-  'dateTime': '2023-05-28T09:00:00-07:00',
-  'timeZone': 'America/Los_Angeles',
-},
-'end': {
-  'dateTime': '2023-05-28T17:00:00-07:00',
-  'timeZone': 'America/Los_Angeles',
-},
+// const event = {
+// 'summary': 'Google I/O 2015',
+// 'location': '800 Howard St., San Francisco, CA 94103',
+// 'description': 'A chance to hear more about Google\'s developer products.',
+// 'start': {
+//   'dateTime': '2023-05-28T09:00:00-07:00',
+//   'timeZone': 'America/Los_Angeles',
+// },
+// 'end': {
+//   'dateTime': '2023-05-28T17:00:00-07:00',
+//   'timeZone': 'America/Los_Angeles',
+// },
 
-}
+// }
  console.log(event)
 function buildParams(event){
     const params =[]
 for (const key in event){
     params.push(event[key])
-    // console.log(params)
+
 }
 return params
 }
@@ -53,16 +53,13 @@ const myPicnics =  Picnic.findAll({
     
 })
 
-// this function is no longer needed
-
-const SQLDateTime = '2023-03-14T16:04:56.000Z'
 function convertDateTime(SQLDateTime){
     const newDateTime = SQLDateTime.slice(0,19);
     const googleDateTime = newDateTime.concat('-04:00')
     return googleDateTime
 }
 const googleDateTime =convertDateTime(SQLDateTime)
-// console.log(googleDateTime)
+
 
 //  used Date to set new time to two hours later.
 function createEndTime(startTime){
