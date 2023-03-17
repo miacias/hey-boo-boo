@@ -13,6 +13,9 @@
         <p class="start-time card-text">On {{format_time start_time}}</p>
         <p class="address card-text"><small>{{address}}</small></p>
       </div>
+      <div>
+        <button class="invite-link" id="https://lit-river-34902.herokuapp.com/api/new-picnic/join/{{id}}">Copy Invite Link</button>
+      </div>
     </div>
     {{/each}}
   {{/if}}
@@ -39,3 +42,4 @@
     {{!-- data inside this DIV --}}
   </div>
 </section>
+<script src="/js/myPicnics.js"></script>
