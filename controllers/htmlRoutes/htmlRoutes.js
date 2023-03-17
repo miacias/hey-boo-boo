@@ -57,12 +57,20 @@ router.get('/my-picnics', withAuth, async (req, res) => {
             res.status(404).json({ message: 'No picnics available' });
             return;
         }
-        const attending = iAmInvited.map((picnic) => {
+        const attendingArr = iAmInvited.map((picnic) => {
             return picnic.get({ plain: true });
         });
         const hosting = iAmHosting.map((picnic) => {
             return picnic.get({ plain: true });
         });
+
+        const attending =[] 
+        for (let i = 0 ; i< attendingArr.length; i++){
+           // console.log(attendingArr[i].id)
+           // console.log(hosting[0].id)
+           if (attendingArr[i].id !== hosting[0].id)
+        attending.push(attendingArr[i])
+        }
         // console.log(attending, hosting)
         res.render('myPicnics', {
             attending,
