@@ -132,3 +132,15 @@ a:active {
 .event-name a {
     color: var(--rich-black);
 }
+
+/* ----- NEW PICNIC ----- */
+
+.create-new-picnic input,
+.join-new-picnic input {
+    font-family: var(--roboto-slab);
+    font-size: medium;
+    border-radius: 5%;
+    border: 0;
+    margin: 1%;
+    text-align: center;
+}
