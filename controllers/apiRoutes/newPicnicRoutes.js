@@ -28,7 +28,6 @@ router.post('/join', async (req, res) => {
             picnicId: req.body.id,
             userId: req.session.user_id
         });
-        console.log(newAttendee)
         // all checks pass: add attendee to PicnicUser (i.e. event)
         res.status(201).json(newAttendee);
     } catch (err) {
@@ -47,8 +46,6 @@ router.post('/create', async (req, res) => {
             password: req.body.password,
             creator_role: req.session.user_id
         });
-        console.log(newPicnic)
-        // res.send(newPicnic) // for testing via Insomnia
         res.status(200).json(newPicnic);
     } catch (err) {
         console.error(err);

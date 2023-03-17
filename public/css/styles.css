@@ -21,6 +21,7 @@ body {
     font-size: x-large;
     line-height: 120%;
     cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
+    /* prevents footer from covering pages */
     padding-bottom: 6em;
 }
 
