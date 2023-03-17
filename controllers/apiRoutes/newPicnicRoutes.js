@@ -10,6 +10,7 @@ Sequelize changes values to snake case.
 
 // assigns existing user (session) to an existing picnic
 router.post('/join', async (req, res) => {
+    
     try {
         // find picnic password
         const iAmInvited = await Picnic.findOne({
@@ -24,10 +25,11 @@ router.post('/join', async (req, res) => {
             return;
         };
         // create new PicnicUser
-        const newAttendee = await PicnicUser.create({
-            picnicId: req.body.id,
-            userId: req.session.user_id
+        const newAttendee = await PicnicUser.findOne({
+            where: {picnicId: req.body.id,
+            userId: req.session.user_id}
         });
+        console.log(newAttendee)
         // all checks pass: add attendee to PicnicUser (i.e. event)
         res.status(201).json(iAmInvited.dataValues);
     } catch (err) {

@@ -34,15 +34,15 @@ router.get('/my-picnics', withAuth, async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
         // finds all picnics user is invited to
-        const iAmInvited = await Picnic.findAll({
+        const user = await User.findOne({
             include: {
-                model: User,
-                through: PicnicUser,
+                model: Picnic,
+                through: PicnicUser
             },
             where: {
                 id: req.session.user_id
             },
-            order: [['start_time', 'DESC']]
+            // order: [['start_time', 'DESC']]
         });
         // finds all picnics user is hosting
         const iAmHosting = await Picnic.findAll({
@@ -55,17 +55,31 @@ router.get('/my-picnics', withAuth, async (req, res) => {
             },
             order: [['start_time', 'DESC']]
         });
-        if (!iAmInvited && !iAmHosting) {
-            res.status(404).json({ message: 'No picnics available' });
+        
+        // const attending = iAmInvited.map((picnic) => {
+        //     return picnic.get({ plain: true });
+        // });
+         const hosting = iAmHosting.map((picnic) => {
+            return picnic.get({ plain: true });
+        });
+        const attendingArr =user.dataValues.picnics.map((picnic)=>{
+            return picnic.get({plain:true});
+        });
+        if (!attendingArr && !iAmHosting) {
+           res.status(404).json({ message: 'No picnics available' });
             return;
         }
-        const attending = iAmInvited.map((picnic) => {
-            return picnic.get({ plain: true });
-        });
-        const hosting = iAmHosting.map((picnic) => {
-            return picnic.get({ plain: true });
-        });
-        // console.log(attending, hosting)
+         const attending =[] 
+         for (let i = 0 ; i< attendingArr.length; i++){
+            // console.log(attendingArr[i].id)
+            // console.log(hosting[0].id)
+            if (attendingArr[i].id !== hosting[0].id)
+         attending.push(attendingArr[i])
+         }
+        // console.log(attending[0])
+        console.log(attending)
+        console.log('------------------------\n')
+        // console.log(hosting[0])
         res.render('myPicnics', {
             attending,
             hosting,
