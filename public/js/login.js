@@ -23,6 +23,7 @@ async function handleSignup(event) {
   if (passwordValue !== repeatPassword) {
     alert("The passwords must match!")
     signupForm.reset();
+    return;
   }
   const response = await fetch('/api/users/signup', {
     body: JSON.stringify(newUser),
@@ -34,7 +35,9 @@ async function handleSignup(event) {
   if (response.ok) {
     document.location.replace('/');
   } else {
-    alert('Failed to sign up. Please try again.');
+    const test = await response.json();
+    const errorMessage = test.errors[0].message;
+    alert('Failed to sign up. Please try again. Error: ' + errorMessage);
   }
   signupForm.reset();
 }
