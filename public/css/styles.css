@@ -21,6 +21,8 @@ body {
     font-size: x-large;
     line-height: 120%;
     cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
+    /* prevents footer from covering pages */
+    padding-bottom: 6em;
 }
 
 nav {
@@ -107,6 +109,10 @@ hr {
     font-size: xx-large;
 }
 
+.hosting {
+    background-color: var(--eton-blue);
+}
+
 /* .event-name a:link,
 .event-name a:visited,
 .event-name a:hover,
@@ -125,4 +131,16 @@ a:active {
 
 .event-name a {
     color: var(--rich-black);
+}
+
+/* ----- NEW PICNIC ----- */
+
+.create-new-picnic input,
+.join-new-picnic input {
+    font-family: var(--roboto-slab);
+    font-size: medium;
+    border-radius: 5%;
+    border: 0;
+    margin: 1%;
+    text-align: center;
 }

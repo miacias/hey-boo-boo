@@ -1,19 +1,37 @@
 {{!-- user's picnic events overview --}}
-<section class="my-picnics ">
-  {{#each picnics}}
-
-  <div class="picnic-id card border-0 m-3 col-sm-9 col-md-5 col-lg-3" id="{{id}}">
-    <a href="/my-picnics/{{id}}">
-      <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img-top img-fluid picnic-card-img"
-        alt="picnic imagery">
-    </a>
-    <div class="card-body text-center">
-      <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
-      <p class="start-time card-text">On {{format_time start_time}}</p>
-      <p class="address card-text"><small>{{address}}</small></p>
+<section class="my-picnics row m-1">
+  {{!-- picnics a user is hosting --}}
+  {{#if hosting.length}}
+    {{#each hosting}}
+    <div class="hosting picnic-id card border-0 m-3 pt-3 col-sm-9 col-md-5 col-lg-3" id="{{id}}">
+      <a href="/my-picnics/{{id}}">
+        <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img-top img-fluid picnic-card-img"
+          alt="picnic imagery">
+      </a>
+      <div class="card-body text-center">
+        <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
+        <p class="start-time card-text">On {{format_time start_time}}</p>
+        <p class="address card-text"><small>{{address}}</small></p>
+      </div>
     </div>
-  </div>
-  {{/each}}
+    {{/each}}
+  {{/if}}
+  {{!-- picnics a user is attending --}}
+  {{#if attending.length}}
+    {{#each attending}}
+    <div class="attending picnic-id card border-0 m-3 pt-3 col-sm-9 col-md-5 col-lg-3" id="{{id}}">
+      <a href="/my-picnics/{{id}}">
+        <img src="/assets/images/picnic cards (vertical)/{{verticalPhoto}}" class="card-img-top img-fluid picnic-card-img"
+          alt="picnic imagery">
+      </a>
+      <div class="card-body text-center">
+        <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
+        <p class="start-time card-text">On {{format_time start_time}}</p>
+        <p class="address card-text"><small>{{address}}</small></p>
+      </div>
+    </div>
+    {{/each}}
+  {{/if}}
 </section>
 {{!-- user's embedded Google calendar events --}}
 <section>

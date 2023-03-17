@@ -2,7 +2,11 @@ const { Model, DataTypes, NOW } = require('sequelize');
 const bcrypt = require('bcrypt');
 const {sequelize} = require('../config/connection.js');
 
-class Picnic extends Model {}
+class Picnic extends Model {
+  checkPassword(picnicPassword) {
+    return bcrypt.compareSync(picnicPassword, this.password);
+  }
+}
 
 Picnic.init(
   {
