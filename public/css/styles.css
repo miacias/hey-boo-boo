@@ -21,6 +21,7 @@ body {
     font-size: x-large;
     line-height: 120%;
     cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
+    padding-bottom: 6em;
 }
 
 nav {
@@ -105,6 +106,10 @@ hr {
 .event-name {
     text-decoration: none;
     font-size: xx-large;
+}
+
+.hosting {
+    background-color: var(--eton-blue);
 }
 
 /* .event-name a:link,

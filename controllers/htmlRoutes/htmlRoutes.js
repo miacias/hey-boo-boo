@@ -40,7 +40,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
                 through: PicnicUser,
             },
             where: {
-                id: req.session.user_id
+                id: /*req.session.user_id*/ 1
             },
             order: [['start_time', 'DESC']]
         });
@@ -51,10 +51,10 @@ router.get('/my-picnics', withAuth, async (req, res) => {
                 through: PicnicUser,
             },
             where: {
-                creator_role: req.session.user_id
+                creator_role: /*req.session.user_id*/ 1
             },
             order: [['start_time', 'DESC']]
-        })
+        });
         if (!iAmInvited && !iAmHosting) {
             res.status(404).json({ message: 'No picnics available' });
             return;
@@ -63,7 +63,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
             return picnic.get({ plain: true });
         });
         const hosting = iAmHosting.map((picnic) => {
-            return picnic.get({plain: true});
+            return picnic.get({ plain: true });
         });
         // console.log(attending, hosting)
         res.render('myPicnics', {
