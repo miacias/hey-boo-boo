@@ -7,7 +7,6 @@ When sending values to Sequelize, use camel case...
 Sequelize changes values to snake case.
 */
 
-
 // assigns existing user (session) to an existing picnic
 router.post('/join', async (req, res) => {
     try {
@@ -29,6 +28,21 @@ router.post('/join', async (req, res) => {
             userId: req.session.user_id
         });
         // all checks pass: add attendee to PicnicUser (i.e. event)
+        res.status(201).json(newAttendee);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
+// assigns existing user (session) to an existing picnic via join link (text message/social media link)
+router.post('/join/:id', async (req, res) => {
+    try {
+        // create new PicnicUser
+        const newAttendee = await PicnicUser.create({
+            picnicId: req.params.id,
+            userId: req.session.user_id
+        });
         res.status(201).json(newAttendee);
     } catch (err) {
         console.error(err);
