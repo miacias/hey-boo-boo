@@ -3,7 +3,7 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models
 const withAuth = require('../../utils/auth.js');
 
 
-// get logged in home page
+// render logged in home page
 router.get('/', async (req, res) => {
     console.log("GET: home", req.session.user_id, req.session.logged_in);
     try {
@@ -29,64 +29,43 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// JOIN PICNIC: assigns existing user (session) to an existing picnic
-router.post('/new-picnic', async (req, res) => {
-    try {
-        // when inserting values to Sequelize, need to use camel case UNLESS setting foreign keys manually, then use that name
-        // Sequelize changes values to snake case
-        const newAttendee = await PicnicUser.create({
-            picnicId: /*req.body.address*/ 1,
-            userId: /*req.body.address*/ 3
-        });
-        console.log(newAttendee)
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
-
-// creates a new picnic and assigns session user as creator
-router.post('/new-picnic', async (req, res) => {
-    try {
-        const newPicnic = await Picnic.create({
-            event_name: /*req.body.event_name*/ "party",
-            address: /*req.body.address*/ "123 hello st",
-            // start_time: /*req.body.start_time*/,
-            password: /*req.body.password*/ "password",
-            creator_role: /*req.session.user_id*/ 2
-        });
-        console.log(newPicnic)
-    } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
-    }
-});
-
-// renders all picnics one user is attending
-router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
+// renders all picnics one user is hosting and attending
+router.get('/my-picnics', withAuth, async (req, res) => {
     console.log('GET: my-picnics', req.session.user_id, req.session.logged_in);
     try {
-        // finds all picnics for one user
-        const myPicnics = await Picnic.findAll({
+        // finds all picnics user is attending
+        const iAmInvited = await Picnic.findAll({
+            include: {
+                model: PicnicUser,
+                where: {
+                    user_id: req.session.user_id
+                }
+            }
+        });
+        // finds all picnics user is hosting
+        const iAmHosting = await Picnic.findAll({
             include: {
                 model: User,
                 through: PicnicUser,
             },
             where: {
-                id: /* req.session.user_id */  3
+                creator_role: req.session.user_id
             },
-            order: [['start_time', 'DESC']],
+            order: [['start_time', 'DESC']]
         });
-        if (!myPicnics) {
+        if (!iAmInvited && !iAmHosting) {
             res.status(404).json({ message: 'No picnics available' });
             return;
         }
-        const picnics = myPicnics.map((picnic) => {
+        const attending = iAmInvited.map((picnic) => {
             return picnic.get({ plain: true });
         });
-        // console.log(picnics)
+        const hosting = iAmHosting.map((picnic) => {
+            return picnic.get({ plain: true });
+        });
         res.render('myPicnics', {
-            picnics,
+            attending,
+            hosting,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
@@ -99,28 +78,10 @@ router.get('/my-picnics', /* withAuth,*/  async (req, res) => {
 });
 
 // renders new-picnic page to allow user to create or join an event
-router.get('/new-picnic', async (req, res) => {
-    console.log("GET: home", req.session.user_id, req.session.logged_in);
+router.get('/new-picnic', withAuth, async (req, res) => {
+    console.log("GET: new-picnic", req.session.user_id, req.session.logged_in);
     try {
-        const allMyPicnics = await User.findAll({
-            // attributes: ['id', 'event_name', 'address', 'start_time', 'creator_role', 'created_at'],
-            include: {
-                model: Picnic,
-                through: PicnicUser
-                // attributes: ['id', 'first_name', 'last_name']
-            },
-            // where: { userId: req.session.user_id },
-            // order: [['start_time', 'DESC']],
-        });
-        if (!allMyPicnics) {
-            res.status(404).json({ message: 'No picnics available' });
-            return;
-        }
-        const home = allMyPicnics.map((picnic) => {
-            return picnic.get({ plain: true });
-        });
-        res.render('newpicnic', {
-            home,
+        res.render('newPicnic', {
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
@@ -131,6 +92,5 @@ router.get('/new-picnic', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 
 module.exports = router;

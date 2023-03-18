@@ -21,6 +21,8 @@ body {
     font-size: x-large;
     line-height: 120%;
     cursor: url('../assets/images/cursors/arrow-cursor-24x24.png'),auto;
+    /* prevents footer from covering pages */
+    padding-bottom: 6em;
 }
 
 nav {
@@ -89,7 +91,7 @@ hr {
 }
 
 .picnic-card-img {
-    height: 351px; 
+    height: 351px;
     object-fit: cover;
     filter: sepia(20%);
 }
@@ -105,6 +107,10 @@ hr {
 .event-name {
     text-decoration: none;
     font-size: xx-large;
+}
+
+.hosting {
+    background-color: var(--eton-blue);
 }
 
 /* .event-name a:link,
@@ -124,9 +130,30 @@ a:visited,
 a:hover,
 a:active {
     text-decoration: none;
-    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'),auto;    
+    cursor: url('../assets/images/cursors/bear-cursor-24x24.png'), auto;
 }
 
 .event-name a {
     color: var(--rich-black);
+}
+
+.login-photo {
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+#login-background {
+    background-color: #F46D74;
+}
+/* ----- NEW PICNIC ----- */
+
+.create-new-picnic input,
+.join-new-picnic input {
+    font-family: var(--roboto-slab);
+    font-size: medium;
+    border-radius: 5%;
+    border: 0;
+    margin: 1%;
+    text-align: center;
 }

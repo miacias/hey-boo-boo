@@ -128,13 +128,13 @@ calendar.freebusy.query({
 
 // 
 
-const Translate = require('@google-cloud/translate');
-const projectId = 'your project id here';
+// const Translate = require('@google-cloud/translate');
+// const projectId = 'your project id here';
 
-const translate = new Translate({
-  projectId: projectId,
-  credentials: {
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.GOOGLE_CLIENT_EMAIL
-  }
-});
+// const translate = new Translate({
+//   projectId: projectId,
+//   credentials: {
+//     private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+//     client_email: process.env.GOOGLE_CLIENT_EMAIL
+//   }
+// });

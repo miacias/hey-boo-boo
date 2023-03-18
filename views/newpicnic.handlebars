@@ -1,15 +1,85 @@
-<div>
-    {{home}}
-    <div>PICNIC TITLE</div>
-    <div> participants</div>
-    <div>DATE:</div>
-    <div>location:</div>
-    
-    <div>
-        Food LIST
+<section class="p-4">
+    <h3 class="text-center" id="join-friends">Join Friends!</h3>
+</section>
+<section class="m-3">
+    <div class="row">
+        {{!-- users can create a new picnic --}}
+        <div class="create-new-picnic col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Create a new picnic</h4>
+                    <form class="create-picnic-form m-2" id="{{userId}}">
+                        <div class="name">
+                            <label for="new-picnic-name">Event:</label>
+                            <input id="new-picnic-name" type="text" placeholder="Name Your Picnic">
+                        </div>
+                        {{!-- google-aided autocomplete address field --}}
+                        <div id="pac-container">
+                            <label for="new-picnic-address">Place:</label>
+                            <input id="new-picnic-address" type="text" placeholder="Enter an address" />
+                        </div>
+                        <div class="date-time">
+                            <label for="new-picnic-time">Time:</label>
+                            <input id="new-picnic-time" type="datetime-local" placeholder="Start Time">
+                        </div>
+                        {{!-- <div class="phone-number">
+                            <label for="new-picnic-phone">Receive secure sign up code:</label>
+                            <input id="new-picnic-phone" type="tel" placeholder="SMS +15556667777">
+                        </div> --}}
+                        <div class="password">
+                            <label for="new-picnic-password">Set password:</label>
+                            <input id="new-picnic-password" type="password" placeholder="8+ characters">
+                        </div>
+                        <div class="password-check">
+                            <label for="new-picnic-password-check">Verify password:</label>
+                            <input id="new-picnic-password-check" type="password" placeholder="must match">
+                        </div>
+                        {{!-- submit button and modal trigger --}}
+                        {{!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                            <a href="#" class="create-picnic btn btn-primary">Get Cookin'</a>
+                        </button> --}}
+                        {{!-- submit button (no modal) --}}
+                        <button type="button" class="create-picnic btn btn-primary">Get Cookin'</button>
+                    </form>
+                    {{!-- modal: password check --}}
+                    {{!-- <div class="modal fade hide" id="passwordModal" tabindex="-1" aria-labelledby="passCheckModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="passCheckModal">Invalid Password</h1>
+                                    <button type="button" class="btn-close close-pass-check" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Password must be at least 8 characters in length.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        {{!-- users can join an existing picnic --}}
+        <div class="join-new-picnic col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Join someone's picnic</h4>
+                    <form class="join-picnic-form" >
+                        <div class="picnic-code">
+                            <label for="join-picnic-code">Event code:</label>
+                            <input id="join-picnic-code" type="text" placeholder="36+ characters">
+                        </div>
+                        <div class="password">
+                            <label for="join-picnic-password">Password from Host:</label>
+                            <input id="join-picnic-password" type="text" placeholder="must match">
+                        </div>
+                        <button type="button" class="join-picnic btn btn-primary">See my friends</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div> ALLERGIES</div>
-
-</div>
-
-<script src= '/js/picnic.js'></script>
+</section>
+<script src='/js/newPicnic.js'></script>
+{{!-- Google Maps autocomplete --}}
+{{!-- <script id="google" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_lzFaPkQ0D4hUMzWih5DZ19d0HMv9Lf0&libraries=places&callback=initAutocomplete&solution_channel=GMP_QB_addressselection_v1_cA" defer></script>
+<script src="/js/googleMap.js"></script> --}}
