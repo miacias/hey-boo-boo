@@ -2,39 +2,36 @@
 
 <div class="card">
   <div class="card-header">
-    Event: {{allFoods.[0].picnicUsers.dataValues.picnic.event_name}}
+    Event: {{eventName}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">When: {{format_time allAttendees.dataValues.start_time}}</h5>
-    <h6>Where: {{allAttendees.dataValues.address}}</h6>
-    <h6>Host: {{host.dataValues.first_name}} {{host.dataValues.last_name}}</h6>
+    <h5 class="card-title">When: {{format_time startTime}}</h5>
+    <h6>Where: {{address}}</h6>
+    <h6>Host: {{host}}</h6>
     <a class="btn btn-primary" href="/my-picnics">Go back to My Picnics</a>
-    <p>🐻🍽️</p>
-    <p>So who's bringing what?!</p>
   </div>
 </div>
 
-<ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      {{!-- This doesn't work yet! --}}
-      <div class="fw-bold">Honey!</div>
-      {{allAttendees.dataValues.users.[0].dataValues.first_name}} {{allAttendees.dataValues.users.[0].dataValues.last_name}}
+<section class="row">
+  <div class="card col-sm-6 col-md-6 col-lg-4">
+    <div class="card-header">
+    Food & Fixings 🍽️
     </div>
-    {{!-- <span class="badge bg-primary rounded-pill">14</span>
-  </li> --}}
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Content for list item
+      <ul class="list-group list-group-flush">
+       {{#each foodsList}}
+      <li class="list-group-item">{{this}}</li>
+       {{/each}}
+    </ul>
+  </div>
+
+  <div class="card col-sm-6 col-md-6 col-lg-4">
+   <div class="card-header">
+    Guests 🐻
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Content for list item
-    </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-</ol>
+    <ul class="list-group list-group-flush">
+    {{#each guests}}
+      <li class="list-group-item">{{this}}</li>
+    {{/each}}
+    </ul>
+  </div>
+</section>

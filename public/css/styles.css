@@ -115,6 +115,10 @@ hr {
     color: green;
 } */
 
+.card-header {
+    background-color: var(--eton-blue);
+}
+
 a:link,
 a:visited,
 a:hover,

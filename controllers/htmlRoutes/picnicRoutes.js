@@ -6,11 +6,11 @@ const {
   PicnicUser,
   //   FoodPicnicUser,
 } = require("../../models");
-// const withAuth = require('../../utils/auth.js');
+const withAuth = require('../../utils/auth.js');
 
 
 // find all food & users attending one specific picnic
-router.get("/:id",/*withAuth,*/ async (req, res) => {
+router.get("/:id",withAuth, async (req, res) => {
     try {
         //Get all food & event info
       const allFoods = await Food.findAll({
@@ -84,10 +84,3 @@ router.get("/:id",/*withAuth,*/ async (req, res) => {
 
 module.exports = router;
 
-
-
-//   let foodBringers = allFoods[0].picnicUsers.map(({ user: { first_name, last_name } }) => `${first_name} ${last_name}`);
-// let usersNames = data.picnicUsers.map(({first_name,last_name}), `${first_name} ${last_name}`)
-
-
-// let host = creatorName.filter(({host: {first_name,last_name} }) => `${first_name} ${last_name}`);
