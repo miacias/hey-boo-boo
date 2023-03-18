@@ -96,6 +96,27 @@ hr {
     background-color: var(--begonia);
 }
 
+.login-register {
+    background-color: var(--eton-blue);
+}
+
+.login-button,
+.signup-button {
+    background-color: var(--rich-black);
+    color: var(--eton-blue);
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: var(--eton-blue);
+    color: var(--rich-black);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--eton-blue) !important;
+    color: var(--rich-black) !important;
+}
+
 /* ----- MY PICNICS DASHBOARD ----- */
 
 .my-picnics {
@@ -140,13 +161,18 @@ hr {
 a:link,
 a:visited,
 a:hover,
-a:active {
+a:active,
+.btn:hover {
     text-decoration: none;
     cursor: url('../assets/images/cursors/bear-cursor-24x24.png'), auto;
 }
 
 .event-name a {
     color: var(--rich-black);
+}
+
+.invite-link {
+    background-color: var(--rich-black);
 }
 
 .bear-card {

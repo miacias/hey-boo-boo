@@ -30,7 +30,8 @@
         <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
         <p class="start-time card-text">On {{format_time start_time}}</p>
         <p class="address card-text"><small>{{address}}</small></p>
-        <button type="button" class="invite-link btn btn-lg btn-danger" id="{{id}}" data-bs-toggle="popover" data-bs-title="Share with your friends to join your event!" data-bs-content="Copied your code! {{id}}">Copy Picnic Code</button>
+        {{!-- share invite code with friends --}}
+        <button type="button" class="invite-link btn btn-lg btn-danger border-0" id="{{id}}" data-bs-toggle="popover" data-bs-title="Share with your friends to join your event!" data-bs-content="Copied your code! {{id}}">Copy Picnic Code</button>
       </div>
     </div>
     {{/each}}
