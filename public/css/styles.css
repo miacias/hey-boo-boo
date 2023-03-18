@@ -167,7 +167,7 @@ a:active,
     cursor: url('../assets/images/cursors/bear-cursor-24x24.png'), auto;
 }
 
-.event-name a {
+.picnic-card > a:link {
     color: var(--rich-black);
 }
 

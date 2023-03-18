@@ -7,7 +7,6 @@ const {
 } = require("../../models");
 const withAuth = require('../../utils/auth.js');
 
-
 // find all food & users attending one specific picnic
 router.get("/:id", withAuth, async (req, res) => {
   try {
