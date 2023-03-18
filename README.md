@@ -1,5 +1,5 @@
 # Hey Boo Boo!
-social planning app for events where food is on the table!
+A potlucking- or party-planning app for creating picnics (events), inviting your friends, and organizing which foods get put on the table! 
 
 ## Description
 
