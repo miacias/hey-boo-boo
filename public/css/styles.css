@@ -84,6 +84,39 @@ hr {
     font-size: medium;
 }
 
+/* ----- LOGIN ----- */
+
+.login-photo {
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+#login-background {
+    background-color: var(--begonia);
+}
+
+.login-register {
+    background-color: var(--eton-blue);
+}
+
+.login-button,
+.signup-button {
+    background-color: var(--rich-black);
+    color: var(--eton-blue);
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: var(--eton-blue);
+    color: var(--rich-black);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--eton-blue) !important;
+    color: var(--rich-black) !important;
+}
+
 /* ----- MY PICNICS DASHBOARD ----- */
 
 .my-picnics {
@@ -128,24 +161,29 @@ hr {
 a:link,
 a:visited,
 a:hover,
-a:active {
+a:active,
+.btn:hover {
     text-decoration: none;
     cursor: url('../assets/images/cursors/bear-cursor-24x24.png'), auto;
 }
 
-.event-name a {
+.picnic-card > a:link {
     color: var(--rich-black);
 }
 
-.login-photo {
-    height: 100%;
-    width: 100%;
-    object-fit: cover
+.invite-link,
+.addme {
+    background-color: var(--rich-black);
 }
 
-#login-background {
-    background-color: #F46D74;
+.bear-card {
+    background-color: var(--dark-gold);
 }
+
+.bear-talk {
+    color: var(--eton-blue);
+}
+
 /* ----- NEW PICNIC ----- */
 
 .create-new-picnic input,
@@ -156,4 +194,28 @@ a:active {
     border: 0;
     margin: 1%;
     text-align: center;
+}
+
+.create-new-picnic form p,
+.create-new-picnic label,
+.join-new-picnic label {
+    font-size: .8em;
+}
+
+.create-card {
+    background-color: var(--dark-gold);
+}
+
+.join-card {
+    background-color: var(--begonia);
+}
+
+.join-picnic-btn,
+.create-picnic-btn {
+    background-color: var(--rich-black);
+}
+
+.join-picnic-btn:hover,
+.create-picnic-btn:hover {
+    background-color: var(--eton-blue);
 }

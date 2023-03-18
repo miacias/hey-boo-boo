@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { UserRefreshClient } = require('google-auth-library');
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+
 // Parent route = /api/users
+
 
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
