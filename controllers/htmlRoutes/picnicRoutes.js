@@ -37,7 +37,7 @@ router.get("/:id", withAuth, async (req, res) => {
     let eventName = data.picnicUsers[0].picnic.event_name;
     let address = data.picnicUsers[0].picnic.address;
     let startTime = data.picnicUsers[0].picnic.start_time;
-    let foodsList = allFoods.map(({ name }) => name);
+    const foodsList = allFoods.map(({ name }) => name);
 
     //grab creator role number
     const creatorRole = data.picnicUsers[0].picnic.creator_role;
@@ -63,6 +63,10 @@ router.get("/:id", withAuth, async (req, res) => {
     //   res.send(allAttendees); //for insomnia testing
 
     res.render("picnicview", {
+      loggedIn: req.session.logged_in,
+      userId: req.session.user_id,
+      firstName: req.session.first_name,
+      lastName: req.session.last_name,
       allFoods,
       eventName,
       address,
@@ -85,6 +89,15 @@ router.get("/:id", withAuth, async (req, res) => {
         let address = allInfo.address;
         let startTime = allInfo.start_time;
 
+        //get all people attending the picnic
+        const allAttendees = await Picnic.findOne({
+          where: { id: req.params.id },
+          include: [{ model: User }]
+        });
+
+        // format names of all people attending
+        let guests = await allInfo.dataValues.users.map(({ first_name, last_name }) => `${first_name} ${last_name}`);
+
         // //grab creator role number
         const creatorRole = allInfo.creator_role;
 
@@ -99,12 +112,17 @@ router.get("/:id", withAuth, async (req, res) => {
         // res.send(allInfo); //for insomnia testing
 
         res.render("picnicview", {
-            allInfo,
-            eventName,
-            address,
-            startTime,
-            host
-          });
+          loggedIn: req.session.logged_in,
+          userId: req.session.user_id,
+          firstName: req.session.first_name,
+          lastName: req.session.last_name,
+          allInfo,
+          eventName,
+          address,
+          startTime,
+          guests,
+          host
+        });
 
     } catch (err) {
         console.error(err);
@@ -116,5 +134,3 @@ router.get("/:id", withAuth, async (req, res) => {
 
 
 module.exports = router;
-
-
