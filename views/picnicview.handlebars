@@ -1,0 +1,37 @@
+{{!-- view of specific picnic, including attendees and food list --}}
+
+<div class="card">
+  <div class="card-header">
+    Event: {{eventName}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">When: {{format_time startTime}}</h5>
+    <h6>Where: {{address}}</h6>
+    <h6>Host: {{host}}</h6>
+    <a class="btn btn-primary" href="/my-picnics">Go back to My Picnics</a>
+  </div>
+</div>
+
+<section class="row">
+  <div class="card col-sm-6 col-md-6 col-lg-4">
+    <div class="card-header">
+    Food & Fixings 🍽️
+    </div>
+      <ul class="list-group list-group-flush">
+       {{#each foodsList}}
+      <li class="list-group-item">{{this}}</li>
+       {{/each}}
+    </ul>
+  </div>
+
+  <div class="card col-sm-6 col-md-6 col-lg-4">
+   <div class="card-header">
+    Guests 🐻
+    </div>
+    <ul class="list-group list-group-flush">
+    {{#each guests}}
+      <li class="list-group-item">{{this}}</li>
+    {{/each}}
+    </ul>
+  </div>
+</section>

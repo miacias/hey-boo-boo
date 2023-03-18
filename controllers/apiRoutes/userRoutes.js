@@ -2,6 +2,10 @@ const router = require('express').Router();
 const { UserRefreshClient } = require('google-auth-library');
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
+<<<<<<< HEAD
+
+// Parent route = /api/users
+=======
 // parent route is /api/users
 
 router.get('/login', async (req, res) => {
@@ -12,6 +16,8 @@ router.get('/login', async (req, res) => {
     res.status(500).json(err);
   }
 });
+>>>>>>> c536673d86bb048660787bd5c004ac267109d7a3
+
 
 // handles sign up for new users
 router.post('/signup', async (req, res) => {
@@ -33,6 +39,7 @@ router.post('/signup', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 // handles log in for returning users
 router.post('/login', async (req, res) => {
@@ -65,6 +72,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 // handles log out for exiting users
 router.get('/logout', (req, res) => {
