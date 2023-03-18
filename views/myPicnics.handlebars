@@ -12,6 +12,9 @@
         <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
         <p class="start-time card-text">On {{format_time start_time}}</p>
         <p class="address card-text"><small>{{address}}</small></p>
+        <div>
+          <p data = {{id}} class = 'addme'>Click to add to Calendar!</p>
+        </div>
       </div>
     </div>
     {{/each}}
@@ -28,6 +31,9 @@
         <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
         <p class="start-time card-text">On {{format_time start_time}}</p>
         <p class="address card-text"><small>{{address}}</small></p>
+        <div>
+          <p data = {{id}} class = 'addme'>Click to add to Calendar!</p>
+        </div>
       </div>
     </div>
     {{/each}}
@@ -39,3 +45,4 @@
     {{!-- data inside this DIV --}}
   </div>
 </section>
+<script src = '/js/select.js'></script>
