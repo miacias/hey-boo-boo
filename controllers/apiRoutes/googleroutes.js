@@ -27,7 +27,7 @@ router.get("/callback", async (req, res) => {
 
   const { tokens } = await oAuth2Client.getToken(req.query.code);
   oAuth2Client.setCredentials(tokens);
-  console.log(tokens);
+  // console.log(tokens);
   const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
   // calls the event creator to handle the DB query and create the event
   // the ID argument comes back from google as a state which was defined inside of the previous route (/token/:id).

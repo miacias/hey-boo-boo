@@ -7,6 +7,20 @@ module.exports = {
         }).format(date);
         return timestamp;
     },
+    myPicnicsUrl: (url) => {
+        if (url === '/my-picnics') {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    hasEvents: (hosting, attending) => {
+        if (hosting || attending) {
+            return true;
+        } else {
+            return false;
+        }
+    },
     // randomly selects vertical image from provided list
     verticalPhoto: () => {
         const verticalPhotos = [
@@ -50,5 +64,68 @@ module.exports = {
         // random index number
         const random = Math.floor(Math.random() * horizontalPhotos.length);
         return horizontalPhotos[random];
+    },
+    // randomly selects bear photograph from provided list
+    bearPhoto: () => {
+        const bearPhotos = [
+            '2018 - Thomas Bonometti (Unsplash).jpg',
+            '2019 - Dušan veverkolog (Unsplash).jpg',
+            '2019 - Francesco (Unsplash).jpg',
+            '2019 - Owlie Harrington (Unsplash).jpg',
+            '2019 - Roxanna López Piedrafuette (Unsplash).jpg',
+            '2019 - Zdeněk Macháček (Unsplash).jpg',
+            '2018 - Thomas Bonometti (Unsplash).jpg',
+            '2019 - Dušan veverkolog (Unsplash).jpg',
+            '2019 - Francesco (Unsplash).jpg',
+            '2019 - Le Mucky (Unsplash).jpg',
+            '2019 - Owlie Harrington (Unsplash).jpg',
+            '2019 - Roxanna López Piedrafuette (Unsplash).jpg',
+            '2019 - Zdeněk Macháček (Unsplash).jpg',
+            '2020 - Fabe collage (Unsplash).jpg',
+            '2020 - mana5280 (Unsplash).jpg',
+            '2020 - Nico Meier (Unsplash).jpg',
+            '2020 - Rey Emsen (Unsplash).jpg',
+            '2020 2 - mana5280 (Unsplash).jpg',
+            '2020 3 - mana5280 (Unsplash).jpg',
+            '2021 - Alvaro Calvo (Unsplash).jpg',
+            '2021 - mana5280 (Unsplash).jpg',
+            '2021 - Max Saeling (Unsplash).jpg',
+            '2021 - Mohamed Elsayed (Unsplash).jpg',
+            '2021 - Rey Emsen (Unsplash).jpg',
+            '2021 2 - Max Saeling (Unsplash).jpg',
+            'A momma bear and her cub in Boulder Valley - Ben Owen (Unsplash).jpg',
+            'Alaska brown bear - Elizabeth Meyers (Unsplash).jpg',
+            'Alberta Wild - Richard Lee (Unsplash).jpg',
+            'BÄRENWALD, Österreich - Daniel Diesenreither (Unsplash).jpg',
+            'bear - Becca (Unsplash).jpg',
+            'bear - Joshua Hoehne (Unsplash).jpg',
+            'bear in the forest - Eugene Chystiakov (Unsplash).jpg',
+            'Bear smiling in Wildpark Knüll - Tom Radetzki (Unsplash).jpg',
+            'bears - Lisa Yount (Unsplash).jpg',
+            'Beary thoughts - Matthias Götzke (Unsplash).jpg',
+            'British Columbia - Rey Emsen (Unsplash).jpg',
+            'Brown bear hunting for fish - Federico Artusi (Unsplash).jpg',
+            'Brown bear in the wild forest - Eugene Chystiakov (Unsplash).jpg',
+            'Brown Bear, Kodiak Island, Alaska - Brent Jones (Unsplash).jpg',
+            'Brown Bears, Kodiak Island, Alaska 2 - Brent Jones (Unsplash).jpg',
+            'Custer, SD, USA - Stephanie LeBlanc (Unsplash).jpg',
+            'dancing bear - mana5280 (Unsplash).jpg',
+            'Grizzly bear sow. Jasper National Park - Richard Lee (Unsplash).jpg',
+            'Grumpy brown bear - NOAA (Unsplash).jpg',
+            'Les Angles, France - Max Saeling (Unsplash).jpg',
+            'Lonely bear - Mark Basarab (Unsplash).jpg',
+            'Rhodes, France - Thomas Bonometti (Unsplash).jpg',
+            'Saint-Félicien, QC, Canada - Céline Chamiot-Poncet (Unsplash).jpg',
+            'sleeping beauty - Daniele Levis Pelusi (Unsplash).jpg',
+            'Sweden - Janko Ferlič (Unsplash).jpg',
+            'Thoughtful grizzly - Thomas Lefebvre (Unsplash).jpg',
+            'Vancouver, BC, Canada - Danika Perkinson (Unsplash).jpg',
+            'wild - anthony renovato (Unsplash).jpg',
+            'Wildpark Lüneburger Heide, Nindorf, Germany - Mika Brandt (Unsplash).jpg',
+            'Wildwood, Herne Bay, UK - Andy Holmes (Unsplash).jpg'
+        ];
+        // random index number
+        const random = Math.floor(Math.random() * bearPhotos.length);
+        return bearPhotos[random];
     }
 }
