@@ -41,6 +41,9 @@ FoodPicnicUser.belongsTo(PicnicUser);
 Food.hasMany(FoodPicnicUser);
 PicnicUser.hasMany(FoodPicnicUser);
 
+// User.belongsToMany(Food, {through: FoodPicnicUser});
+// Food.belongsToMany(User, {through: FoodPicnicUser});
+
 
 
 
