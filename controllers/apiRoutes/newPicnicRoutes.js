@@ -37,6 +37,17 @@ router.post('/join', async (req, res) => {
 
 // acts like a POST, needs to be GET for user to access html view
 // assigns existing user (session) to an existing picnic via join link (text message/social media link)
+
+/*
+
+plans for refactoring!
+instead of join link automatically adding a user to an event, do the following steps:
+
+- create a new HTML view and route to /join/:id
+- HTML view says "welcome to {{event_name}}, please enter the password you received from {{creator name person}} to join!"
+- after entering correct password, redirect to /my-picnics/:id
+
+*/
 router.get('/join/:id', async (req, res) => {
     try {
         // create new PicnicUser
