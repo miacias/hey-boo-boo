@@ -1,4 +1,4 @@
-# red-knights
+# Hey Boo Boo!
 Project 2
 
 ## Credits
