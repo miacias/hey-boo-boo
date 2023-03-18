@@ -171,7 +171,8 @@ a:active,
     color: var(--rich-black);
 }
 
-.invite-link {
+.invite-link,
+.addme {
     background-color: var(--rich-black);
 }
 
