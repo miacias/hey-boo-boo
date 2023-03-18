@@ -19,7 +19,7 @@ class PicnicEvent {
 // TODO: Make this dynamic
 function convertDateTime(SQLDateTime) {
   const newDateTime = SQLDateTime.slice(0, 19);
-  const googleDateTime = newDateTime.concat("-04:00");
+  const googleDateTime = newDateTime.concat("-00:00");
   return googleDateTime;
 }
 
