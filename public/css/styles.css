@@ -84,6 +84,18 @@ hr {
     font-size: medium;
 }
 
+/* ----- LOGIN ----- */
+
+.login-photo {
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+#login-background {
+    background-color: var(--begonia);
+}
+
 /* ----- MY PICNICS DASHBOARD ----- */
 
 .my-picnics {
@@ -133,15 +145,14 @@ a:active {
     color: var(--rich-black);
 }
 
-.login-photo {
-    height: 100%;
-    width: 100%;
-    object-fit: cover
+.bear-card {
+    background-color: var(--dark-gold);
 }
 
-#login-background {
-    background-color: #F46D74;
+.bear-talk {
+    color: var(--eton-blue);
 }
+
 /* ----- NEW PICNIC ----- */
 
 .create-new-picnic input,
@@ -152,4 +163,28 @@ a:active {
     border: 0;
     margin: 1%;
     text-align: center;
+}
+
+.create-new-picnic form p,
+.create-new-picnic label,
+.join-new-picnic label {
+    font-size: .8em;
+}
+
+.create-card {
+    background-color: var(--dark-gold);
+}
+
+.join-card {
+    background-color: var(--begonia);
+}
+
+.join-picnic-btn,
+.create-picnic-btn {
+    background-color: var(--rich-black);
+}
+
+.join-picnic-btn:hover,
+.create-picnic-btn:hover {
+    background-color: var(--eton-blue);
 }

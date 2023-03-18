@@ -21,9 +21,9 @@ const copyLink = (event) => {
     navigator.clipboard.writeText(inviteLink);
 
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = inviteBtn.map(function (element) {
-        return new bootstrap.Popover(element);
-});
+    // var popoverList = inviteBtn.map(function (element) {
+    //     return new bootstrap.Popover(element);
+// });
 
     // Alert the copied text
     // alert("Copied the text: " + inviteLink);

@@ -1,3 +1,21 @@
+{{!-- welcome back --}}
+<section class="mt-3 ms-4">
+{{#if (hasEvents hosting.length attending.length)}}
+  <h3>{{firstName}}, here's all your events!</h3>
+{{else}}
+  <h3>Uh oh, your picnics list is empty!</h3>
+  <p>{{firstName}}, host or join your first event at <a href="/new-picnic">New Event</a>!</p>
+  <div class="col-10 d-flex">
+    <div class="row">
+      <div class="card col p-3 bear-card">
+        <img src="/assets/images/bears/bear-photos/{{bearPhoto}}" class="card-img-top img-fluid picnic-card-img"
+        alt="bear photograph">
+        <p class="bear-talk text-center mt-2">" I can't WAIT ! "</p>
+      </div>
+    </div>
+  </div>
+{{/if}}
+</section>
 {{!-- user's picnic events overview --}}
 <section class="my-picnics row m-1">
   {{!-- picnics a user is hosting --}}
@@ -12,9 +30,7 @@
         <a href="/my-picnics/{{id}}"><h5 class="event-name card-title">{{event_name}}</h5></a>
         <p class="start-time card-text">On {{format_time start_time}}</p>
         <p class="address card-text"><small>{{address}}</small></p>
-      </div>
-      <div>
-        <button type="button" class="invite-link btn btn-lg btn-danger" id="{{id}}" data-bs-toggle="popover" data-bs-title="Copied your code!" data-bs-content="Share {{id}} with your friends to join your event!">Copy Picnic Code</button>
+        <button type="button" class="invite-link btn btn-lg btn-danger" id="{{id}}" data-bs-toggle="popover" data-bs-title="Share with your friends to join your event!" data-bs-content="Copied your code! {{id}}">Copy Picnic Code</button>
       </div>
     </div>
     {{/each}}

@@ -1,14 +1,17 @@
 <section class="p-4">
     <h3 class="text-center" id="join-friends">Join Friends!</h3>
 </section>
-<section class="m-3">
+<section class="m-3 d-flex justify-content-center">
     <div class="row">
         {{!-- users can create a new picnic --}}
         <div class="create-new-picnic col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
+            <div class="create-card card border-0">
+                <div class="card-body row">
                     <h4 class="card-title text-center">Create a new picnic</h4>
-                    <form class="create-picnic-form m-2" id="{{userId}}">
+                    <form class="create-picnic-form m-2 ms-4 col" id="{{userId}}">
+                        <div class="host">
+                            <p>Host: {{firstName}} {{lastName}}!</p>
+                        </div>
                         <div class="name">
                             <label for="new-picnic-name">Event:</label>
                             <input id="new-picnic-name" type="text" placeholder="Name Your Picnic">
@@ -34,33 +37,14 @@
                             <label for="new-picnic-password-check">Verify password:</label>
                             <input id="new-picnic-password-check" type="password" placeholder="must match">
                         </div>
-                        {{!-- submit button and modal trigger --}}
-                        {{!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                            <a href="#" class="create-picnic btn btn-primary">Get Cookin'</a>
-                        </button> --}}
-                        {{!-- submit button (no modal) --}}
-                        <button type="button" class="create-picnic btn btn-primary">Get Cookin'</button>
+                        <button type="button" class="create-picnic create-picnic-btn btn btn-primary border-0">Get Cookin'</button>
                     </form>
-                    {{!-- modal: password check --}}
-                    {{!-- <div class="modal fade hide" id="passwordModal" tabindex="-1" aria-labelledby="passCheckModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="passCheckModal">Invalid Password</h1>
-                                    <button type="button" class="btn-close close-pass-check" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Password must be at least 8 characters in length.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
         {{!-- users can join an existing picnic --}}
         <div class="join-new-picnic col-sm-6">
-            <div class="card">
+            <div class="join-card card border-0">
                 <div class="card-body">
                     <h4 class="card-title text-center">Join someone's picnic</h4>
                     <form class="join-picnic-form" >
@@ -72,7 +56,7 @@
                             <label for="join-picnic-password">Password from Host:</label>
                             <input id="join-picnic-password" type="text" placeholder="must match">
                         </div>
-                        <button type="button" class="join-picnic btn btn-primary">See my friends</button>
+                        <button type="button" class="join-picnic join-picnic-btn btn btn-primary border-0">See my friends</button>
                     </form>
                 </div>
             </div>

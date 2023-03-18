@@ -14,6 +14,13 @@ module.exports = {
             return false;
         }
     },
+    hasEvents: (hosting, attending) => {
+        if (hosting || attending) {
+            return true;
+        } else {
+            return false;
+        }
+    },
     // randomly selects vertical image from provided list
     verticalPhoto: () => {
         const verticalPhotos = [
@@ -57,5 +64,14 @@ module.exports = {
         // random index number
         const random = Math.floor(Math.random() * horizontalPhotos.length);
         return horizontalPhotos[random];
+    },
+    // randomly selects bear photograph from provided list
+    bearPhoto: () => {
+        const bearPhotos = [
+            '2018 - Thomas Bonometti (Unsplash).jpg'
+        ];
+        // random index number
+        const random = Math.floor(Math.random() * bearPhotos.length);
+        return bearPhotos[random];
     }
 }
