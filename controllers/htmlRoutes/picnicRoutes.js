@@ -10,6 +10,7 @@ const withAuth = require('../../utils/auth.js');
 
 // find all food & users attending one specific picnic
 router.get("/:id", withAuth, async (req, res) => {
+    //if there's food already at the picnic
   try {
     //Get all food & event info
     const allFoods = await Food.findAll({
@@ -73,11 +74,48 @@ router.get("/:id", withAuth, async (req, res) => {
     });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
+    //if it's a new picnic with no food yet
+    try {
+        const allInfo = await Picnic.findOne({
+            where: {id: req.params.id},
+            include: User
+        });
+
+        //variables for event info
+        let eventName = allInfo.event_name;
+        let address = allInfo.address;
+        let startTime = allInfo.start_time;
+
+        // //grab creator role number
+        const creatorRole = allInfo.creator_role;
+
+        // //grab user info from creator role
+         const creatorInfo = await User.findOne({
+            where: { id: creatorRole },
+        });
+
+        // //format host name
+        const host = `${creatorInfo.dataValues.first_name} ${creatorInfo.dataValues.last_name}`;
+
+        // res.send(allInfo); //for insomnia testing
+
+        res.render("picnicview", {
+            allInfo,
+            eventName,
+            address,
+            startTime,
+            host
+          });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
   }
 }
 );
 
 
 module.exports = router;
+
+

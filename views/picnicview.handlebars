@@ -18,9 +18,13 @@
     Food & Fixings 🍽️
     </div>
       <ul class="list-group list-group-flush">
+      {{#if foodsList}}
        {{#each foodsList}}
-      <li class="list-group-item">{{this}}</li>
+        <li class="list-group-item">{{this}}</li>
        {{/each}}
+      {{else}}
+        <li class="list-group-item">Be the first to add something!</li>
+      {{/if}}
     </ul>
   </div>
 
@@ -29,9 +33,13 @@
     Guests 🐻
     </div>
     <ul class="list-group list-group-flush">
-    {{#each guests}}
-      <li class="list-group-item">{{this}}</li>
-    {{/each}}
+    {{#if guests}}
+      {{#each guests}}
+        <li class="list-group-item">{{this}}</li>
+      {{/each}}
+    {{else}}
+      <li class="list-group-item">Be the first to RSVP!</li>
+    {{/if}}
     </ul>
   </div>
 </section>
