@@ -20,8 +20,6 @@ const createFood = async (event) => {
         const response = await fetch('/api/edit-picnic/add-food', {
             body: {
                 name: JSON.stringify(newItem),
-                // currentPicnicId: currentPicnicId,
-                currentUser: 
             },
             method: 'POST',
             headers: { 'content-type': 'application/json' }
