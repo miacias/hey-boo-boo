@@ -2,37 +2,47 @@ const router = require("express").Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require("../../models");
 const withAuth = require('../../utils/auth.js');
 
-// adds food to picnic event
-// router.delete('/test/add/:id', async (req, res) => {
-//   const foodData = await Food.destroy({
-//     where: {id: req.body.food_id}
-//   });
-//   const foodToUserData = await FoodPicnicUser.destroy({
-//     where: {
-//       food_id: req.body.food_id,
-//       picnic_id: req.body.picnic_id,
-//       user_id: req.body.user_id,
-//     }
-//   });
-//   res.status(200).json(foodData, foodToUserData);
-// });
+// deletes food from picnic event
+router.delete('/test/delete/:id', async (req, res) => {
+  try {    
+    const foodToUserData = await FoodPicnicUser.destroy({
+      where: {
+        food_id: req.body.foodId,
+        picnicUserId: req.body.picnicUserId
+      }
+    });
+    const foodData = await Food.destroy({
+      where: {id: req.body.foodId}
+    });
+    res.status(200).json(foodData, foodToUserData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
-// adds food to picnic event
-// router.put('/test/add/:id', async (req, res) => {
-//   const foodData = await Food.update({
-//     name: req.body.name,
-//     where: {id: req.body.food_id}
-//   });
-//   const foodToUserData = await FoodPicnicUser.update({
-//     name: req.body.name,
-//     where: {
-//       // food_id: req.body.food_id,
-//       picnic_id: req.body.picnic_id,
-//       user_id: req.body.user_id,
-//     }
-//   });
-//   res.status(200).json(foodData, foodToUserData);
-// });
+// edits food from picnic event
+router.put('/test/edit/:id', async (req, res) => {
+  try {
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+  const foodData = await Food.update({
+    name: req.body.name,
+    where: {id: req.body.food_id}
+  });
+  const foodToUserData = await FoodPicnicUser.update({
+    name: req.body.name,
+    where: {
+      // food_id: req.body.food_id,
+      picnic_id: req.body.picnic_id,
+      user_id: req.body.user_id,
+    }
+  });
+  res.status(200).json(foodData, foodToUserData);
+});
 
 // adds food to picnic event
 router.post('/test/add/:id', async (req, res) => {
@@ -42,7 +52,7 @@ router.post('/test/add/:id', async (req, res) => {
     });
     const foodToUserData = await FoodPicnicUser.create({
       foodId: foodData.id,
-      picnicUserId: req.body.picnicUserId, // req.body.camelCase ? or req.body.snake_case ?
+      picnicUserId: req.body.picnicUserId,
     });
     res.status(200).json(foodData, foodToUserData);
   } catch (err) {
@@ -70,7 +80,7 @@ router.get('/test/:id', async (req, res) => {
               },
               { // accesses creator role ID
                 model: Picnic,
-                attributes: ['creator_role']
+                attributes: ['event_name', 'address', 'start_time', 'creator_role']
               }
             ]
         },
@@ -93,7 +103,6 @@ router.get('/test/:id', async (req, res) => {
       };
       picnicData.push(userData);
     });
-    console.log(picnicData)
 
     // identifies user ID of event host
     const hostId = thisPicnic.flatMap((user) => {
@@ -123,14 +132,27 @@ router.get('/test/:id', async (req, res) => {
     // converts data to plain text
     const hostAndFoods = hostFood.get({ plain: true });
 
+    // gets picnic info
+    const eventInfo = [];
+    thisPicnic.map((event) => {
+      const eventData = {
+        picnicName: event.picnicUser.picnic.event_name,
+        picnicAddy: event.picnicUser.picnic.address,
+        picnicTime: event.picnicUser.picnic.start_time,
+      }
+      eventInfo.push(eventData);
+    });
+    console.log(eventInfo)
+
     // sends data to Insomnia for testing
-    res.send(thisPicnic);
+    res.send(eventInfo);
     // res.send(hostFood);
 
     // sends data to front-end page
     // res.render('test', {
     //   picnicData,
     //   hostAndFoods,
+    //   eventInfo,
     //   loggedIn: req.session.logged_in,
     //   userId: req.session.user_id,
     //   firstName: req.session.first_name,

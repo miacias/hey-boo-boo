@@ -124,7 +124,8 @@ U. Penn Bootcamp instructor(s):
 - [C. Ross King](https://github.com/RomeoKilo125/) - database theory
 
 Tutor(s):
-- Geronimo Perez - extracting data from complex database queries
+- [Geronimo Perez](https://www.linkedin.com/in/geronimoperez/) - extracting data from complex database queries
+- [Rene Trevino](https://www.linkedin.com/in/rene-trevino-236058169/) - MVC flow
 
 Artist(s):
 
