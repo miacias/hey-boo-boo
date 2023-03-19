@@ -166,45 +166,49 @@ router.get('/:id', async (req, res) => {
     // res.status(500).json(err);
     //if it's a new picnic with no food yet - NEED TO REFACTOR!!!
     try {
-      const allInfo = await Picnic.findOne({
+      const thisPicnic = await Picnic.findOne({
         where: { id: req.params.id },
         include: User
       });
 
-      //variables for event info
-      let eventName = allInfo.event_name;
-      let address = allInfo.address;
-      let startTime = allInfo.start_time;
+      // gets picnic info variables
+      thisEvent = {
+        picnicName: thisPicnic.event_name,
+        picnicAddy: thisPicnic.address,
+        picnicTime: thisPicnic.start_time
+      };
 
-      // //grab creator role number
-      const creatorRole = allInfo.creator_role;
+      //grab creator role number
+      const creatorRole = thisPicnic.creator_role;
 
-      // //grab user info from creator role
+      //grab user info from creator role
       const creatorInfo = await User.findOne({
         where: { id: creatorRole },
       });
 
-      // //format host name
-      const host = `${creatorInfo.dataValues.first_name} ${creatorInfo.dataValues.last_name}`;
+      //format host name
+      const host = `${creatorInfo.first_name} ${creatorInfo.last_name}`;
 
       // gets my picnicUser ID for add/edit/delete capabilities
       const myInfo = await PicnicUser.findOne({
           where: { 
-            userId: req.session.userId,
+            userId: req.session.user_id,
             picnicId: req.params.id
           },
           attributes: ['id']
       });
 
-      // res.send(allInfo); //for insomnia testing
+      // res.send(myInfo); //for insomnia testing
 
       res.render("picnicview", {
-        allInfo,
-        eventName,
-        address,
-        startTime,
+        thisPicnic,
+        thisEvent,
         host,
-        myInfo
+        myInfo,
+        loggedIn: req.session.logged_in,
+        userId: req.session.user_id,
+        firstName: req.session.first_name,
+        lastName: req.session.last_name
       });
 
     } catch (err) {

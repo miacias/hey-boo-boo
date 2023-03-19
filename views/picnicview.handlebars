@@ -7,7 +7,11 @@
   <div class="card-body">
     <h5 class="card-title">When: {{format_time thisEvent.picnicTime}}</h5>
     <h6>Where: {{thisEvent.picnicAddy}}</h6>
-    <h6>Host: {{hostAndFoods.picnicUser.user.first_name}} {{hostAndFoods.picnicUser.user.last_name}}</h6>
+    {{#if hostAndFoods}}
+      <h6>Host: {{hostAndFoods.picnicUser.user.first_name}} {{hostAndFoods.picnicUser.user.last_name}}</h6>
+    {{else}}
+      <h6>Host: {{host}}</h6>
+    {{/if}}
     <a class="btn btn-primary" href="/my-picnics">Go back to My Picnics</a>
   </div>
 </div>
@@ -20,7 +24,7 @@
       <ul class="list-group list-group-flush">
       {{#if picnicData}}
        {{#each picnicData}}
-        <li data-picnicUId="{{this.picnicUserId}}" data-foodId="{{this.foodId}}" class="list-group-item">{{this.firstName}} is bringing {{this.foodName}}</li>
+        <li data-picnicUId="{{this.picnicUserId}}" data-foodId="{{this.foodId}}" class="list-group-item">{{this.foodName}} ~ brought by {{this.firstName}} {{this.lastName}}</li>
        {{/each}}
       {{else}}
         <li class="list-group-item">Be the first to add something!</li>
