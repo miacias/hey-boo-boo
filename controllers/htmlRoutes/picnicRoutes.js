@@ -3,48 +3,52 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require("../../models
 const withAuth = require('../../utils/auth.js');
 
 // adds food to picnic event
-router.delete('/test/add/:id', async (req, res) => {
-  const foodData = await Food.destroy({
-    where: {id: req.body.food_id}
-  });
-  const foodToUserData = await FoodPicnicUser.destroy({
-    where: {
-      food_id: req.body.food_id,
-      picnic_id: req.body.picnic_id,
-      user_id: req.body.user_id,
-    }
-  });
-  res.status(200).json(foodData, foodToUserData);
-});
+// router.delete('/test/add/:id', async (req, res) => {
+//   const foodData = await Food.destroy({
+//     where: {id: req.body.food_id}
+//   });
+//   const foodToUserData = await FoodPicnicUser.destroy({
+//     where: {
+//       food_id: req.body.food_id,
+//       picnic_id: req.body.picnic_id,
+//       user_id: req.body.user_id,
+//     }
+//   });
+//   res.status(200).json(foodData, foodToUserData);
+// });
 
 // adds food to picnic event
-router.put('/test/add/:id', async (req, res) => {
-  const foodData = await Food.update({
-    name: req.body.name,
-    where: {id: req.body.food_id}
-  });
-  const foodToUserData = await FoodPicnicUser.update({
-    name: req.body.name,
-    where: {
-      // food_id: req.body.food_id,
-      picnic_id: req.body.picnic_id,
-      user_id: req.body.user_id,
-    }
-  });
-  res.status(200).json(foodData, foodToUserData);
-});
+// router.put('/test/add/:id', async (req, res) => {
+//   const foodData = await Food.update({
+//     name: req.body.name,
+//     where: {id: req.body.food_id}
+//   });
+//   const foodToUserData = await FoodPicnicUser.update({
+//     name: req.body.name,
+//     where: {
+//       // food_id: req.body.food_id,
+//       picnic_id: req.body.picnic_id,
+//       user_id: req.body.user_id,
+//     }
+//   });
+//   res.status(200).json(foodData, foodToUserData);
+// });
 
 // adds food to picnic event
 router.post('/test/add/:id', async (req, res) => {
-  const foodData = await Food.create({
-    name: req.body.name,
-  });
-  const foodToUserData = await FoodPicnicUser.create({
-    food_id: req.body.food_id,
-    picnic_id: req.body.picnic_id,
-    user_id: req.body.user_id,
-  });
-  res.status(200).json(foodData, foodToUserData);
+  try {
+    const foodData = await Food.create({
+      name: req.body.name,
+    });
+    const foodToUserData = await FoodPicnicUser.create({
+      foodId: foodData.id,
+      picnicUserId: req.body.picnic_user_id,
+    });
+    res.status(200).json(foodData, foodToUserData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
 // renders users and foods for one picnic
@@ -52,12 +56,11 @@ router.get('/test/:id', async (req, res) => {
   try {
     // gets all invited users and the foods they will be bringing
     const thisPicnic = await FoodPicnicUser.findAll({
-      // raw: true,
-      attributes: [],
+      attributes: ['id'],
       include: [
         { // identifies relationship between the picnic and attending users
           model: PicnicUser,
-          attributes: ['user_id'],
+          attributes: ['id', 'user_id'],
           where: {picnicId: req.params.id},
           include: 
           [
