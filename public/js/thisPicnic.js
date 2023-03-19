@@ -5,17 +5,24 @@ const foodBtn = document.querySelector('#add-food-btn');
 const createFood = async (event) => {
     event.preventDefault();
 
+    let url = window.location.href;
+    let currentPicnicId = url.slice(-36);
+
     const inputItem = document.querySelector('#new-food-name');
-    const newFood = {
+    const newItem = {
         name: inputItem.value.trim()
     }
 
-    if (!newFood) {
+    if (!newItem) {
         alert('You must enter an item name to add it. Please try again.')
     } else {
-        // console.log(newFood);
+        // console.log(newItem);
         const response = await fetch('/api/edit-picnic/add-food', {
-            body: JSON.stringify(newFood),
+            body: {
+                name: JSON.stringify(newItem),
+                currentPicnicId: currentPicnicId,
+                currentUser: req.session.user_id
+            },
             method: 'POST',
             headers: { 'content-type': 'application/json' }
         });
