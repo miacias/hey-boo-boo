@@ -52,7 +52,7 @@ router.post('/test/add/:id', async (req, res) => {
 });
 
 // renders users and foods for one picnic
-router.get('/test/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     // gets all invited users and the foods they will be bringing
     const thisPicnic = await FoodPicnicUser.findAll({
@@ -70,7 +70,7 @@ router.get('/test/:id', async (req, res) => {
               },
               { // accesses creator role ID
                 model: Picnic,
-                attributes: ['creator_role']
+                attributes: ['event_name', 'address', 'start_time', 'creator_role']
               }
             ]
         },
@@ -93,7 +93,7 @@ router.get('/test/:id', async (req, res) => {
       };
       picnicData.push(userData);
     });
-    console.log(picnicData)
+    // console.log(picnicData);
 
     // identifies user ID of event host
     const hostId = thisPicnic.flatMap((user) => {
@@ -106,7 +106,7 @@ router.get('/test/:id', async (req, res) => {
       include: [
         { // identifies relationship between the picnic and host
           model: PicnicUser,
-          attributes: [],
+          attributes: ["id"],
           where: { picnicId: req.params.id },
           include: [
             {
@@ -123,23 +123,48 @@ router.get('/test/:id', async (req, res) => {
     // converts data to plain text
     const hostAndFoods = hostFood.get({ plain: true });
 
+       // gets picnic info
+       const eventInfo = [];
+       thisPicnic.map((event) => {
+        const eventData = {
+           picnicName: event.picnicUser.picnic.event_name,
+           picnicAddy: event.picnicUser.picnic.address,
+           picnicTime: event.picnicUser.picnic.start_time,
+         }
+         eventInfo.push(eventData);
+       });
+
+       const thisEvent = eventInfo[0];
+
+       // gets my picnicUser ID for add/edit/delete capabilities
+       const myInfo = await PicnicUser.findOne({
+        raw: true,
+        where: { 
+          userId: req.session.user_id,
+          picnicId: req.params.id,
+        },
+        attributes: ['id']
+      });
+
     // sends data to Insomnia for testing
-    res.send(thisPicnic);
+    // res.send(thisPicnic);
     // res.send(hostFood);
 
     // sends data to front-end page
-    // res.render('test', {
-    //   picnicData,
-    //   hostAndFoods,
-    //   loggedIn: req.session.logged_in,
-    //   userId: req.session.user_id,
-    //   firstName: req.session.first_name,
-    //   lastName: req.session.last_name
-    // });
+    res.render('picnicview', {
+      picnicData,
+      hostAndFoods,
+      thisEvent,
+      myInfo,
+      loggedIn: req.session.logged_in,
+      userId: req.session.user_id,
+      firstName: req.session.first_name,
+      lastName: req.session.last_name
+    });
   } catch (err) {
     // console.error(err);
     // res.status(500).json(err);
-    //if it's a new picnic with no food yet
+    //if it's a new picnic with no food yet - NEED TO REFACTOR!!!
     try {
       const allInfo = await Picnic.findOne({
         where: { id: req.params.id },
@@ -162,6 +187,15 @@ router.get('/test/:id', async (req, res) => {
       // //format host name
       const host = `${creatorInfo.dataValues.first_name} ${creatorInfo.dataValues.last_name}`;
 
+      // gets my picnicUser ID for add/edit/delete capabilities
+      const myInfo = await PicnicUser.findOne({
+          where: { 
+            userId: req.session.userId,
+            picnicId: req.params.id
+          },
+          attributes: ['id']
+      });
+
       // res.send(allInfo); //for insomnia testing
 
       res.render("picnicview", {
@@ -169,7 +203,8 @@ router.get('/test/:id', async (req, res) => {
         eventName,
         address,
         startTime,
-        host
+        host,
+        myInfo
       });
 
     } catch (err) {

@@ -2,39 +2,43 @@
 
 <div class="card">
   <div class="card-header">
-    Event: {{eventName}}
+    Event: {{thisEvent.picnicName}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">When: {{format_time startTime}}</h5>
-    <h6>Where: {{address}}</h6>
-    <h6>Host: {{host}}</h6>
+    <h5 class="card-title">When: {{format_time thisEvent.picnicTime}}</h5>
+    <h6>Where: {{thisEvent.picnicAddy}}</h6>
+    <h6>Host: {{hostAndFoods.picnicUser.user.first_name}} {{hostAndFoods.picnicUser.user.last_name}}</h6>
     <a class="btn btn-primary" href="/my-picnics">Go back to My Picnics</a>
   </div>
 </div>
 
 <section class="row">
-  <div class="card col-sm-6 col-md-6 col-lg-4">
+  <div class="card col-sm-6 col-md-6 col-lg-6">
     <div class="card-header">
-    Food & Fixings 🍽️
+    Who's bringing what?! 🐻🍽️
     </div>
       <ul class="list-group list-group-flush">
-      {{#if foodsList}}
-       {{#each foodsList}}
-        <li class="list-group-item">{{this}}</li>
+      {{#if picnicData}}
+       {{#each picnicData}}
+        <li data-picnicUId="{{this.picnicUserId}}" data-foodId="{{this.foodId}}" class="list-group-item">{{this.firstName}} is bringing {{this.foodName}}</li>
        {{/each}}
       {{else}}
         <li class="list-group-item">Be the first to add something!</li>
       {{/if}}
     </ul>
+      <div class="input-group mb-3">
+        <input type="text" id="new-food-name" data-myPicnicUserId="{{myInfo.id}}" class="form-control" placeholder="Spaghetti or something..." aria-label="Enter name of food or item to bring here" aria-describedby="add-button">
+        <button class="btn btn-primary" type="button" id="add-food-btn">Add</button>
+      </div>
   </div>
 
-  <div class="card col-sm-6 col-md-6 col-lg-4">
+  {{!-- <div class="card col-sm-6 col-md-6 col-lg-4">
    <div class="card-header">
     Guests 🐻
     </div>
     <ul class="list-group list-group-flush">
-    {{#if guests}}
-      {{#each guests}}
+    {{#if picnicData}}
+      {{#each picnicData}}
         <li class="list-group-item">{{this}}</li>
       {{/each}}
     {{else}}
@@ -42,4 +46,9 @@
     {{/if}}
     </ul>
   </div>
-</section>
+</section> --}}
+
+{{!-- {{log picnicData}} --}}
+{{!-- {{log hostAndFoods}} --}}
+{{!-- {{log thisEvent}} --}}
+{{!-- {{log myInfo}} --}}
