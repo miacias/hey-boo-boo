@@ -1,15 +1,114 @@
 const router = require("express").Router();
-const {
-  User,
-  Picnic,
-  Food,
-  PicnicUser,
-} = require("../../models");
+const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require("../../models");
 const withAuth = require('../../utils/auth.js');
+
+router.post('/test/add/:id', async (req, res) => {
+  // const foodData = await FoodPicnicUser.create()
+  const food = await Food.create({ name: 'tasty food'});
+  const user = req.session.user_id;
+  const picnic = req.params.id;
+});
+
+// renders users and foods for one picnic
+router.get('/test/:id', async (req, res) => {
+  try {
+    // gets all invited users and the foods they will be bringing
+    const thisPicnic = await FoodPicnicUser.findAll({
+      // raw: true,
+      attributes: [],
+      include: [
+        { // identifies relationship between the picnic and attending users
+          model: PicnicUser,
+          attributes: ['user_id'],
+          where: {picnicId: req.params.id},
+          include: 
+          [
+            { // accesses users invited to picnic
+              model: User,
+              attributes: ['id', 'first_name', 'last_name'],
+            },
+            { // accesses creator role ID
+              model: Picnic,
+              attributes: ['creator_role']
+            }
+          ]
+        },
+        { // accesses foods brought by each user
+          model: Food
+        },
+      ]
+    });
+
+    // condenses returned values
+    const picnicData = [];
+    thisPicnic.map((user) => {
+      const userData = {
+        userId: user.picnicUser.user.id,
+        firstName: user.picnicUser.user.first_name,
+        lastName: user.picnicUser.user.last_name,
+        foodId: user.food.id,
+        foodName: user.food.name
+      };
+      picnicData.push(userData);
+    });
+
+    // identifies user ID of event host
+    const hostId = thisPicnic.flatMap((user) => {
+      return user.picnicUser.picnic.creator_role;
+    })[0];
+    
+    // gets all the food the host will be bringing
+    const hostFood = await FoodPicnicUser.findOne({
+      attributes: [],
+      include: [
+        { // identifies relationship between the picnic and host
+          model: PicnicUser,
+          attributes: [],
+          where: {picnicId: req.params.id},
+          include: [
+            {
+              model: User,
+              where: { id: hostId}
+            }
+          ]
+        },
+        { // accesses foods brought by the host
+          model: Food
+        },
+      ]
+    });
+    // converts data to plain text
+    const hostAndFoods = hostFood.get({plain: true});
+
+    // sends data to Insomnia for testing
+    res.send(thisPicnic);
+    // res.send(hostFood);
+    
+    // sends data to front-end page
+    // res.render('test', {
+    //   picnicData,
+    //   hostAndFoods,
+    //   loggedIn: req.session.logged_in,
+    //   userId: req.session.user_id,
+    //   firstName: req.session.first_name,
+    //   lastName: req.session.last_name
+    // });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
+
+
 
 // find all food & users attending one specific picnic
 router.get("/:id", withAuth, async (req, res) => {
-    //if there's food already at the picnic
+  //if there's food already at the picnic
   try {
     //Get all food & event info
     const allFoods = await Food.findAll({
@@ -75,40 +174,40 @@ router.get("/:id", withAuth, async (req, res) => {
   } catch (err) {
     //if it's a new picnic with no food yet
     try {
-        const allInfo = await Picnic.findOne({
-            where: {id: req.params.id},
-            include: User
-        });
+      const allInfo = await Picnic.findOne({
+        where: { id: req.params.id },
+        include: User
+      });
 
-        //variables for event info
-        let eventName = allInfo.event_name;
-        let address = allInfo.address;
-        let startTime = allInfo.start_time;
+      //variables for event info
+      let eventName = allInfo.event_name;
+      let address = allInfo.address;
+      let startTime = allInfo.start_time;
 
-        // //grab creator role number
-        const creatorRole = allInfo.creator_role;
+      // //grab creator role number
+      const creatorRole = allInfo.creator_role;
 
-        // //grab user info from creator role
-         const creatorInfo = await User.findOne({
-            where: { id: creatorRole },
-        });
+      // //grab user info from creator role
+      const creatorInfo = await User.findOne({
+        where: { id: creatorRole },
+      });
 
-        // //format host name
-        const host = `${creatorInfo.dataValues.first_name} ${creatorInfo.dataValues.last_name}`;
+      // //format host name
+      const host = `${creatorInfo.dataValues.first_name} ${creatorInfo.dataValues.last_name}`;
 
-        // res.send(allInfo); //for insomnia testing
+      // res.send(allInfo); //for insomnia testing
 
-        res.render("picnicview", {
-            allInfo,
-            eventName,
-            address,
-            startTime,
-            host
-          });
+      res.render("picnicview", {
+        allInfo,
+        eventName,
+        address,
+        startTime,
+        host
+      });
 
     } catch (err) {
-        console.error(err);
-        res.status(500).json(err);
+      console.error(err);
+      res.status(500).json(err);
     }
   }
 }
@@ -116,5 +215,3 @@ router.get("/:id", withAuth, async (req, res) => {
 
 
 module.exports = router;
-
-
