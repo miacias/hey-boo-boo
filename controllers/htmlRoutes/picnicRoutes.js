@@ -14,6 +14,8 @@ router.delete('/test/delete/:id', async (req, res) => {
     const foodData = await Food.destroy({
       where: {id: req.body.foodId}
     });
+    // res.send(foodToUserData); // for Insomnia testing
+    // res.send(foodData); // for Insomnia testing
     res.status(200).json(foodData, foodToUserData);
   } catch (err) {
     console.error(err);
@@ -23,25 +25,26 @@ router.delete('/test/delete/:id', async (req, res) => {
 
 // edits food from picnic event
 router.put('/test/edit/:id', async (req, res) => {
-  try {
-    
+  try {    
+    const foodData = await Food.update({
+      name: req.body.name,
+      where: {id: req.body.food_id}
+    });
+    const foodToUserData = await FoodPicnicUser.update({
+      name: req.body.name,
+      where: {
+        // food_id: req.body.food_id,
+        picnic_id: req.body.picnic_id,
+        user_id: req.body.user_id,
+      }
+    });
+    // res.send(foodData); // for Insomnia testing
+    // res.send(foodToUserData); // for Insomnia testing
+    res.status(200).json(foodData, foodToUserData);
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
   }
-  const foodData = await Food.update({
-    name: req.body.name,
-    where: {id: req.body.food_id}
-  });
-  const foodToUserData = await FoodPicnicUser.update({
-    name: req.body.name,
-    where: {
-      // food_id: req.body.food_id,
-      picnic_id: req.body.picnic_id,
-      user_id: req.body.user_id,
-    }
-  });
-  res.status(200).json(foodData, foodToUserData);
 });
 
 // adds food to picnic event
@@ -145,6 +148,7 @@ router.get('/test/:id', async (req, res) => {
 
     // gets my picnicUser ID for add/edit/delete capabilities
     const myInfo = await PicnicUser.findOne({
+      raw: true,
       where: { 
         userId: req.session.userId,
         picnicId: req.params.id
@@ -153,7 +157,7 @@ router.get('/test/:id', async (req, res) => {
     })
 
     // sends data to Insomnia for testing
-    res.send(eventInfo);
+    res.send(myInfo);
     // res.send(hostFood);
 
     // sends data to front-end page
