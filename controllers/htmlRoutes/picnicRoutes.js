@@ -142,7 +142,15 @@ router.get('/test/:id', async (req, res) => {
       }
       eventInfo.push(eventData);
     });
-    console.log(eventInfo)
+
+    // gets my picnicUser ID for add/edit/delete capabilities
+    const myInfo = await PicnicUser.findOne({
+      where: { 
+        userId: req.session.userId,
+        picnicId: req.params.id
+      },
+      attributes: ['id']
+    })
 
     // sends data to Insomnia for testing
     res.send(eventInfo);
@@ -153,6 +161,7 @@ router.get('/test/:id', async (req, res) => {
     //   picnicData,
     //   hostAndFoods,
     //   eventInfo,
+    //   myInfo,
     //   loggedIn: req.session.logged_in,
     //   userId: req.session.user_id,
     //   firstName: req.session.first_name,
