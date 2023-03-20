@@ -16,10 +16,14 @@
     {{!-- local CSS --}}
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/styles.css" />
-    {{!-- removes any favicon errors from DevTools --}}
+    {{!-- favicon --}}
     <link rel="shortcut icon" href="/assets/images/picnic basket icons/favicon.ico">
     {{!-- Google Maps auto-fill --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    {{#if (newPicnicUrl url)}}
+    {{!-- jQuery to control modals --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    {{/if}}
     <title>Hey Boo-Boo!</title>
   </head>
 

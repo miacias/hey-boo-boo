@@ -7,7 +7,7 @@ const withAuth = require('../../utils/auth.js');
 router.get('/', async (req, res) => {
     console.log("GET: home", req.session.user_id, req.session.logged_in);
     try {
-        res.render('home', {
+        return res.render('home', {
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
@@ -72,7 +72,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
         // attending.push(attendingArr[i])
         // }
         // console.log(attending, hosting)
-        res.render('myPicnics', {
+        return res.render('myPicnics', {
             attending,
             hosting,
             loggedIn: req.session.logged_in,
@@ -91,11 +91,12 @@ router.get('/my-picnics', withAuth, async (req, res) => {
 router.get('/new-picnic', withAuth, async (req, res) => {
     console.log("GET: new-picnic", req.session.user_id, req.session.logged_in);
     try {
-        res.render('newPicnic', {
+        return res.render('newPicnic', {
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
             firstName: req.session.first_name,
-            lastName: req.session.last_name
+            lastName: req.session.last_name,
+            url: req.url
         });
     } catch (err) {
         console.error(err);
