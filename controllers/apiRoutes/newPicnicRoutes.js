@@ -73,6 +73,11 @@ router.post('/create', async (req, res) => {
             password: req.body.password,
             creator_role: req.session.user_id
         });
+        const newPicnicUser = await PicnicUser.create({
+            userId: req.session.user_id,
+            picnicId: newPicnic.id
+        })
+        console.log(newPicnicUser)
         res.status(200).json(newPicnic);
     } catch (err) {
         console.error(err);

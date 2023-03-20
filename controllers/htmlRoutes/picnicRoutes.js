@@ -176,14 +176,16 @@ router.get('/:id', async (req, res) => {
       const host = `${creatorInfo.first_name} ${creatorInfo.last_name}`;
 
       // gets my picnicUser ID for add/edit/delete capabilities
-      const myInfo = await PicnicUser.findOne({
+      const myInfoData = await PicnicUser.findOne({
           where: { 
             userId: req.session.user_id,
             picnicId: req.params.id
           },
           attributes: ['id']
       });
-
+      const myInfo= myInfoData.dataValues
+      console.log(myInfo)
+      console.log('\n---------------------')
       // res.send(myInfo); //for insomnia testing
 
       res.render("picnicview", {
