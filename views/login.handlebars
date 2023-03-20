@@ -1,4 +1,67 @@
 {{!-- "Row" class to separate login/signup form and content on right of page --}}
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+
+</head>
+
+{{!-- Mismatched Passwords on Register Modal --}}
+<div>
+  <div id="matchPasswordsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error!</h5>
+          {{!-- <button type="button" id='close' class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> --}}
+        </div>
+        <div class="modal-body">
+          Passwords must match!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Failure to Login Modal --}}
+<div>
+  <div id="failureModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error!</h5>
+          {{!-- <button type="button" id='failure-close' class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> --}}
+        </div>
+        <div class="modal-body">
+          Failed to log in. Try again!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Generic Failure to signup Modal --}}
+<div>
+  <div id="failSignupModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error!</h5>
+          {{!-- <button type="button" id='signup-close' class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> --}}
+        </div>
+        <div class="modal-body">
+          Failed to sign up. Try again!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="login-background" class="container rounded">
   <div class="row justify-content-center m-5">
 
@@ -12,11 +75,12 @@
       <div class="w-50 p-3">
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
-            <a class="nav-link active text-dark login-register" id="tab-login" data-bs-toggle="pill" href="#pills-login" role="tab"
-              aria-controls="pills-login" aria-selected="true">Login</a>
+            <a class="nav-link active text-dark login-register" id="tab-login" data-bs-toggle="pill" href="#pills-login"
+              role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link text-dark login-register" id="tab-register" data-bs-toggle="pill" href="#pills-register">Register</a>
+            <a class="nav-link text-dark login-register" id="tab-register" data-bs-toggle="pill"
+              href="#pills-register">Register</a>
           </li>
         </ul>
 
@@ -50,13 +114,15 @@
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="registerPassword" class="form-control text-center" placeholder="8+ characters"/>
+                <input type="password" id="registerPassword" class="form-control text-center"
+                  placeholder="8+ characters" />
                 <label class="form-label" for="registerPassword">Password</label>
               </div>
 
               <!-- Repeat Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="registerRepeatPassword" class="form-control text-center" placeholder="must match"/>
+                <input type="password" id="registerRepeatPassword" class="form-control text-center"
+                  placeholder="must match" />
                 <label class="form-label" for="registerRepeatPassword">Repeat password</label>
               </div>
 
@@ -87,7 +153,8 @@
 
                 <!-- Login Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="password-login" class="form-control text-center" placeholder="8+ characters" />
+                  <input type="password" id="password-login" class="form-control text-center"
+                    placeholder="8+ characters" />
                   <label class="form-label" for="loginPassword">Password</label>
                 </div>
                 <!-- Login Sign-In button -->
@@ -115,4 +182,7 @@
 
   </div>
 </div>
+
+
+
 <script src="/js/login.js"></script>

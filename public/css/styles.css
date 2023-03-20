@@ -186,6 +186,22 @@ a:active,
 
 /* ----- NEW PICNIC ----- */
 
+.modal-header,
+.modal-title {
+    background-color: var(--dark-gold);
+    color: var(--rich-black);
+    font-weight: 600;
+}
+
+.modal-body {
+    background-color: var(--begonia);
+    color: var(--rich-black);
+}
+
+.close-btn {
+    background-color: var(--begonia);
+}
+
 .create-new-picnic input,
 .join-new-picnic input {
     font-family: var(--roboto-slab);
