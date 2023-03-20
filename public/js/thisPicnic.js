@@ -22,9 +22,9 @@ const createFood = async (event) => {
         picnicUserId: picnicUId
     };
 
-    console.log(addFoodData);
+    // console.log(addFoodData);
 
-    if (!addFoodData) {
+    if (!addFoodData.name) {
         alert('You must enter an item name to add it. Please try again.')
     } else {
         // console.log(newItem);

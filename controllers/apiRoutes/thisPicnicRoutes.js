@@ -4,8 +4,6 @@ const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models
 
 // lets user add food to picnic event
 router.post('/add-food', async (req, res) => {
-  console.log(req.body)
-  console.log('\n-----------------------------')
     try {
       const foodData = await Food.create({
         name: req.body.name,
@@ -14,14 +12,11 @@ router.post('/add-food', async (req, res) => {
         foodId: foodData.id,
         picnicUserId: req.body.picnicUserId,
       });
-
+      // collects created data to one object
       const allData = {
         newFood: foodData,
         newFPU: foodToUserData
       }
-
-      console.log(allData);
-
       res.status(200).json(allData);
       // res.send(foodToUserData); //for insomnia testing
     } catch (err) {
