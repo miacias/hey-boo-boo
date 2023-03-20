@@ -1,3 +1,79 @@
+{{!-- error modals --}}
+<section class="modals">
+  {{!-- Passwords must match. Please try again. --}}
+  <div>
+    <div id="password-modal" class="modal close" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error!</h5>
+            {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> --}}
+          </div>
+          <div class="modal-body">
+            <p>Passwords must match. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- Form is missing fields. Please try again. --}}
+  <div>
+    <div id="missing-modal" class="modal close" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error!</h5>
+            {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> --}}
+          </div>
+          <div class="modal-body">
+            <p>Form is missing fields. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- Failed to create new event. Please try again. --}}
+  <div>
+    <div id="failed-create-modal" class="modal close" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error!</h5>
+            {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> --}}
+          </div>
+          <div class="modal-body">
+            <p>Failed to create new event. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- Failed to join event. Please try again. --}}
+  <div>
+    <div id="join-modal" class="modal close" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error!</h5>
+            {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> --}}
+          </div>
+          <div class="modal-body">
+            <p>Failed to join event. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{!-- start of page --}}
 <section class="p-4">
     <h3 class="text-center" id="join-friends">Join Friends!</h3>
 </section>
@@ -56,7 +132,7 @@
                             <label for="join-picnic-password">Password from Host:</label>
                             <input id="join-picnic-password" type="text" placeholder="must match">
                         </div>
-                        <button type="button" class="join-picnic join-picnic-btn btn btn-primary border-0">See my friends</button>
+                        <button type="button" id="join-picnic" class="join-picnic-btn btn btn-primary border-0">See my friends</button>
                     </form>
                 </div>
             </div>
@@ -65,5 +141,5 @@
 </section>
 <script src='/js/newPicnic.js'></script>
 {{!-- Google Maps autocomplete --}}
-<script id="google" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_lzFaPkQ0D4hUMzWih5DZ19d0HMv9Lf0&libraries=places&callback=initAutocomplete&solution_channel=GMP_QB_addressselection_v1_cA" defer></script>
-<script src="/js/googleMap.js"></script>
+{{!-- <script id="google" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_lzFaPkQ0D4hUMzWih5DZ19d0HMv9Lf0&libraries=places&callback=initAutocomplete&solution_channel=GMP_QB_addressselection_v1_cA" defer></script>
+<script src="/js/googleMap.js"></script> --}}

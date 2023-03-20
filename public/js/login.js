@@ -98,6 +98,6 @@ async function handleLogin(event) {
 
 signupForm.addEventListener('submit', handleSignup);
 loginForm.addEventListener('submit', handleLogin);
-closeModal.addEventListener('click', hideModal);
-closeFailureModal.addEventListener('click', hideFailureModal);
-closeSignUpModal.addEventListener('click', hideFailSigninModal);
+// closeModal.addEventListener('click', hideModal);
+// closeFailureModal.addEventListener('click', hideFailureModal);
+// closeSignUpModal.addEventListener('click', hideFailSigninModal);

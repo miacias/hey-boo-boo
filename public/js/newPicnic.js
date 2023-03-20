@@ -1,5 +1,20 @@
+// queries for form inputs
 const createBtn = document.querySelector('.create-picnic');
-const joinBtn = document.querySelector('.join-picnic');
+const joinBtn = document.querySelector('#join-picnic');
+const closeModals = document.querySelector(".close");
+
+// displays modals
+const showModal = async (modalId) => {
+    let thisModal = document.querySelector(`#${modalId}`);
+    $(thisModal).modal('show');
+};
+
+// // hides modals
+// const hideModal = async (event) => {
+//     event.preventDefault();
+//     let thisModal = event.currentTarget;
+//     $(thisModal).modal('hide');
+// };
 
 // collects user data and sends to server to create a new picnic
 const createPicnic = async (event) => {
@@ -15,46 +30,33 @@ const createPicnic = async (event) => {
         password: newPassword.value.trim(),
         passCheck: passCheck.value.trim()
     };
-    // verifies user typed password correctly and completed form
-    if (
-        newPicnic.password === newPicnic.passCheck
-        && newPicnic.event_name
-        && newPicnic.address
-        && newPicnic.start_time
-        && newPicnic.password
-        && newPicnic.passCheck
+    // verifies user completed form
+    if (!newPicnic.event_name
+        || !newPicnic.address
+        || !newPicnic.start_time
+        || !newPicnic.password
+        || !newPicnic.passCheck
     ) {
-        // send data to server
-        const response = await fetch('/api/new-picnic/create', {
-            body: JSON.stringify(newPicnic),
-            method: 'POST',
-            headers: { 'content-type': 'application/json' }
-        });
-        if (response.ok) {
-            document.location.replace('/my-picnics');
-        } else {
-            alert('Failed to create event. Please try again.');
-        }
+        const modalId = 'missing-modal';
+        return showModal(modalId);
+    }
+    // verifies user typed password correctly
+    if (newPicnic.password !== newPicnic.passCheck) {
+        const modalId = 'password-modal';
+        return showModal(modalId);
+    }
+    // sends data to server
+    const response = await fetch('/api/new-picnic/create', {
+        body: JSON.stringify(newPicnic),
+        method: 'POST',
+        headers: { 'content-type': 'application/json' }
+    });
+    if (response.ok) {
+        return document.location.replace('/my-picnics');
     } else {
-        alert('Issue: Form is missing fields or passwords do not match.');
-    };
-    // const modal = document.querySelector('.modal-container');
-    // const closeModal = document.querySelector('.close-pass-check');
-    // if (newPicnic.newPassword.length < 8) {
-    //     // document.querySelector('.modal').showModal();
-    //     modal.style.visibility = 'visible';
-    //     closeModal.addEventListener('click', () => {
-    //         closeModal.style.visibility = 'hidden';
-    //     });
-    //     window.addEventListener('click', (event) => {
-    //         if (event.target == modal) {
-    //             modal.style.visibility = 'hidden';
-    //         }
-    //     })
-    //     return;
-    // } else {
-    //     modal.style.visibility = 'hidden';
-    // }
+        const modalId = 'failed-create-modal';
+        return showModal(modalId);
+    }
 };
 
 // collects user data and sends to server to join an existing picnic
@@ -69,20 +71,24 @@ const joinPicnic = async (event) => {
         password: joinPassword.value.trim()
     };
     // verifies user completed form
-    if (picnicData.id && picnicData.password) {
-        // send data to server
-        const response = await fetch('/api/new-picnic/join', {
-            body: JSON.stringify(picnicData),
-            method: 'POST',
-            headers: { 'content-type': 'application/json' }
-        });
-        if (response.ok) {
-            document.location.replace('/my-picnics');
-        } else {
-            alert('Failed to join event. Please try again.');
-        }
-    };
+    if (!picnicData.id || !picnicData.password) {
+        const modalId = 'missing-modal';
+        return showModal(modalId);
+    }
+    // send data to server
+    const response = await fetch('/api/new-picnic/join', {
+        body: JSON.stringify(picnicData),
+        method: 'POST',
+        headers: { 'content-type': 'application/json' }
+    });
+    if (response.ok) {
+        document.location.replace('/my-picnics');
+    } else {
+        const modalId = 'join-modal';
+        return showModal(modalId);
+    }
 };
 
+// listens to forms
 createBtn.addEventListener("click", createPicnic);
 joinBtn.addEventListener("click", joinPicnic);

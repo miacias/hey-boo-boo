@@ -7,15 +7,22 @@ module.exports = {
         }).format(date);
         return timestamp;
     },
-    myPicnicsUrl: (url) => {
-        if (url === '/my-picnics') {
+    hasEvents: (hosting, attending) => {
+        if (hosting || attending) {
             return true;
         } else {
             return false;
         }
     },
-    hasEvents: (hosting, attending) => {
-        if (hosting || attending) {
+    newPicnicUrl: (url) => {
+        if (url === '/new-picnic') {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    myPicnicsUrl: (url) => {
+        if (url === '/my-picnics') {
             return true;
         } else {
             return false;
