@@ -34,13 +34,13 @@ const createFood = async (event) => {
             headers: { 'content-type': 'application/json' }
         });
         if (response.ok) {
-            // console.log(response.ok);
+            document.location.reload();
         } else {
             alert('Error. Please try again.');
         }
     };
 
-    // location.reload();
+    location.reload();
 };
 
 
