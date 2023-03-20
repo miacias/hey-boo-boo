@@ -57,21 +57,28 @@ router.get('/my-picnics', withAuth, async (req, res) => {
             res.status(404).json({ message: 'No picnics available' });
             return;
         }
-        const attending = iAmInvited.map((picnic) => {
+        const attendingArr = iAmInvited.map((picnic) => {
             return picnic.get({ plain: true });
         });
         const hosting = iAmHosting.map((picnic) => {
             return picnic.get({ plain: true });
         });
-
-        // const attending =[] 
+        
+        console.log(attendingArr)
+        console.log('\n-----------------')
+        console.log(hosting)
+        console.log('\n-----------------')
+        //  use the filter method to find all instances where Hosting and Attending arrays would display the same 
+        // event twice on the page. search through the hosting array with .some() if the two objects have the same id
+        // property some returns false, so we use the '!' to include that object in the new attending array
+        const attending =attendingArr.filter( (attendingID) => !hosting.some((host)=> host.id===attendingID.id ))
+        console.log(attending)
+        // below code is garbage( only works if hosting one event)
         // for (let i = 0 ; i< attendingArr.length; i++){
-        //    // console.log(attendingArr[i].id)
-        //    // console.log(hosting[0].id)
         //    if (attendingArr[i].id !== hosting[0].id)
         // attending.push(attendingArr[i])
         // }
-        console.log(attending, hosting)
+        // console.log(attending, hosting)
         return res.render('myPicnics', {
             attending,
             hosting,
