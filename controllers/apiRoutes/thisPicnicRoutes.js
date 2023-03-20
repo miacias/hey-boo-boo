@@ -2,39 +2,29 @@ const router = require('express').Router();
 const { User, Picnic, Food, PicnicUser, FoodPicnicUser } = require('../../models');
 
 
-//user can add a food they want to bring to the picnic
+// lets user add food to picnic event
 router.post('/add-food', async (req, res) => {
-    // console.log(req.body);
-    try{
-        const newFood = await Food.create({
-            // name: req.body.name
-            name: "Grapes"
-        });
+    try {
+      const foodData = await Food.create({
+        name: req.body.addFoodData.name,
+      });
+      const foodToUserData = await FoodPicnicUser.create({
+        foodId: foodData.id,
+        picnicUserId: req.body.addFoodData.picnicUserId,
+      });
 
-        const addToFPU = await FoodPicnicUser.create(
-            {
-                // foodId: newFood.id,
-                // picnicUserId: addPU.id
-                foodId: 7,
-                picnicUserId: 1
-            }
-        );
+      const allData = {
+        newFood: foodData,
+        newFPU: foodToUserData
+      }
 
-        // console.log(addToFPU);
+      console.log(allData);
 
-        // res.render("picnicview", {
-        //     loggedIn: req.session.logged_in,
-        //     userId: req.session.user_id,
-        //     firstName: req.session.first_name,
-        //     lastName: req.session.last_name,
-        //     // newFood
-        // });
-
-        res.send(newFood, addToFPU); //for insomnia testing
-
-    } catch(err) {
-        console.error(err);
-        res.status(500).json(err);
+    //   res.status(200).json(allData);
+      res.send(foodToUserData); //for insomnia testing
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
     }
 });
 

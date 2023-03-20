@@ -9,28 +9,38 @@ const createFood = async (event) => {
     // let currentPicnicId = url.slice(-36);
 
     const inputItem = document.querySelector('#new-food-name');
-    const newItem = {
-        name: inputItem.value.trim()
-    }
+    // const newItem = {
+    //     name: inputItem.value.trim()
+    // }
 
-    if (!newItem) {
+    const picnicUId = inputItem.dataset.myPicnicUserId;
+
+    // console.log(inputItem.dataset);
+
+    const addFoodData = {
+        name: inputItem.value.trim(),
+        picnicUserId: picnicUId
+    };
+
+    console.log(addFoodData);
+
+    if (!addFoodData) {
         alert('You must enter an item name to add it. Please try again.')
     } else {
         // console.log(newItem);
         const response = await fetch('/api/edit-picnic/add-food', {
-            body: {
-                name: JSON.stringify(newItem),
-            },
+            body: JSON.stringify(addFoodData),
             method: 'POST',
             headers: { 'content-type': 'application/json' }
         });
         if (response.ok) {
             // console.log(response.ok);
-            location.reload();
         } else {
-            alert('Error: Please try again.');
+            alert('Error. Please try again.');
         }
     };
+
+    // location.reload();
 };
 
 
