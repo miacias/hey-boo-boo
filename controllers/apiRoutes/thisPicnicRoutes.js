@@ -22,8 +22,8 @@ router.post('/add-food', async (req, res) => {
 
       console.log(allData);
 
-    //   res.status(200).json(allData);
-      res.send(foodToUserData); //for insomnia testing
+      res.status(200).json(allData);
+      // res.send(foodToUserData); //for insomnia testing
     } catch (err) {
       console.error(err);
       res.status(500).json(err);
