@@ -2,12 +2,12 @@ const add = document.querySelectorAll(".addme");
 
 add.forEach((picnic)=>{
 picnic.addEventListener("click", (event) => {
-  console.log(event.currenTarget);
+  // console.log(event.currenTarget);
   const id = event.target.getAttribute("data");
-  console.log(id);
-  console.log("clicked");
+  // console.log(id);
+  // console.log("clicked");
   const data = { id };
-  console.log(data);
+  // console.log(data);
   
   window.open(`${window.location.origin}/api/goog/token/${id}`)
 });

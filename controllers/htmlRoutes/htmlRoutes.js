@@ -71,7 +71,7 @@ router.get('/my-picnics', withAuth, async (req, res) => {
         //    if (attendingArr[i].id !== hosting[0].id)
         // attending.push(attendingArr[i])
         // }
-        // console.log(attending, hosting)
+        console.log(attending, hosting)
         return res.render('myPicnics', {
             attending,
             hosting,

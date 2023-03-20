@@ -9,7 +9,7 @@ const showModal = async (modalId) => {
     $(thisModal).modal('show');
 };
 
-// // hides modals
+// // hides modals (event listener/document query needs to be adjusted for this to work)
 // const hideModal = async (event) => {
 //     event.preventDefault();
 //     let thisModal = event.currentTarget;
