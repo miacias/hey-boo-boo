@@ -1,5 +1,12 @@
 const foodBtn = document.querySelector('#add-food-btn');
+const closeModals = document.querySelector(".close");
 
+
+// displays modals
+const showModal = async (modalId) => {
+    let thisModal = document.querySelector(`#${modalId}`);
+    $(thisModal).modal('show');
+};
 
 //grab new food name from input for server to add a new food
 const createFood = async (event) => {
@@ -15,6 +22,8 @@ const createFood = async (event) => {
     };
     // verifies user data
     if (!addFoodData.name) {
+        const modalId = 'missing-modal';
+        return showModal(modalId);
         alert('Food name required. Please try again.');
     } else {
         const response = await fetch('/api/edit-picnic/add-food', {
@@ -32,5 +41,5 @@ const createFood = async (event) => {
     location.reload();
 };
 
-
+// listens to form
 foodBtn.addEventListener("click", createFood);
