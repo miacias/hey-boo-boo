@@ -27,7 +27,8 @@ Overall, the picnic planner app provides users with a comprehensive toolset for 
 ## Installation
 
 N/A. [Deployed site here!](https://lit-river-34902.herokuapp.com/)
-[Video demo here!]([https://lit-river-34902.herokuapp.com/](https://youtu.be/Hr_MiHfB8rQ))
+
+[Video demo here!](https://youtu.be/Hr_MiHfB8rQ)
 
 ## Usage
 
